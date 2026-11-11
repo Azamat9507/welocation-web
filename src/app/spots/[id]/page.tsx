@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { CATEGORIES, REGIONS, TAGS, getReviews, getSpot, isTourApiImage, type Page, type Review } from "@/lib/api";
 import { findMyReview, getMe, getMyState } from "@/lib/api-auth";
 import { Rating } from "../../rating";
+import { Directions } from "./directions";
+import { Gallery } from "./gallery";
 import { ReviewForm } from "./review-form";
 import { Toggles } from "./toggles";
 
@@ -23,28 +25,20 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
   const [spot, reviews] = await Promise.all([getSpot(id), getReviews(id)]);
   if (!spot) notFound();
 
-  const image = spot.images[0];
   return (
     <article className="mx-auto max-w-2xl">
       <Link href="/" className="text-sm text-muted hover:text-accent">
         ← 목록
       </Link>
 
-      {image && (
-        <figure className="mt-2">
-          {/* eslint-disable-next-line @next/next/no-img-element -- 공공누리 photo, shown unaltered */}
-          <img src={image} alt={spot.name} className="h-60 w-full rounded-2xl object-cover sm:h-96" />
-          {isTourApiImage(image) && (
-            <figcaption className="mt-1 text-right text-xs text-muted">사진 출처: 한국관광공사</figcaption>
-          )}
-        </figure>
+      {spot.images.length > 0 && (
+        <Gallery images={spot.images} name={spot.name} credit={spot.images.some(isTourApiImage)} />
       )}
 
       <p className="mt-3 text-xs text-muted">
         {CATEGORIES[spot.category]} · {REGIONS[spot.region]}
       </p>
       <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{spot.name}</h1>
-      <p className="text-sm text-muted">{spot.address}</p>
       <div className="mt-1 flex items-center gap-3">
         <Rating average={spot.averageRating} count={spot.reviewCount} />
       </div>
@@ -58,6 +52,8 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
           ))}
         </ul>
       )}
+
+      <Directions name={spot.name} address={spot.address} lat={spot.latitude} lng={spot.longitude} />
 
       <Suspense fallback={<div className="mt-3 h-8" />}>
         <Mine spotId={spot.id} likeCount={spot.likeCount ?? 0} />

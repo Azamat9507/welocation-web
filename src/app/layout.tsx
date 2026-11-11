@@ -14,16 +14,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="ko" className="h-full antialiased">
       <body className="flex min-h-full flex-col">
         <header className="border-b border-line">
-          <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-3">
+          <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-3">
             <Link href="/" className="shrink-0 text-lg font-bold text-accent">
               위로케이션
             </Link>
             <span className="hidden text-sm text-muted sm:inline">위로가 되는 장소</span>
-            <div className="ml-auto min-w-0">
+            <nav className="ml-auto flex min-w-0 items-center gap-3 text-sm">
+              <Link href="/ranking" className="shrink-0 hover:text-accent">
+                주간 인기
+              </Link>
               <Suspense>
                 <UserMenu />
               </Suspense>
-            </div>
+            </nav>
           </div>
         </header>
         <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4">{children}</main>

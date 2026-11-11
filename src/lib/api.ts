@@ -82,6 +82,19 @@ export type Page<T> = {
   totalPages: number;
 };
 
+// GET /api/spots/ranking/weekly (RankingDtos.WeeklyRanking): likes given since Monday 00:00 KST
+export type RankedSpot = {
+  rank: number;
+  weeklyLikes: number;
+  spot: SpotSummary;
+};
+
+export type WeeklyRanking = {
+  // ISO week in Korean time, e.g. "2026-W46"
+  week: string;
+  items: RankedSpot[];
+};
+
 export type SpotFilter = { region?: Region; category?: Category; tag?: Tag; page: number };
 
 // URL query is user input: anything not on the lists is dropped instead of forwarded
@@ -129,6 +142,28 @@ export function getSpot(id: number) {
 
 export function getReviews(id: number) {
   return get<Page<Review>>(`/api/spots/${id}/reviews?page=0&size=10`);
+}
+
+// Not cached: a like should show up on the next page load. The API answers from one Redis read.
+export async function getWeeklyRanking(): Promise<WeeklyRanking> {
+  const ranking = await get<WeeklyRanking>("/api/spots/ranking/weekly");
+  if (!ranking) throw new Error("API 404 for /api/spots/ranking/weekly");
+  return ranking;
+}
+
+// "2026-W46" -> Monday and Sunday of that ISO week as UTC dates, or null if the label is not one
+export function isoWeekRange(label: string): { start: Date; end: Date } | null {
+  const m = /^(\d{4})-W(\d{2})$/.exec(label);
+  if (!m) return null;
+  const year = Number(m[1]);
+  const week = Number(m[2]);
+  if (week < 1 || week > 53) return null;
+  // January 4th is always in week 1
+  const jan4 = Date.UTC(year, 0, 4);
+  const day = 24 * 60 * 60 * 1000;
+  const monday1 = jan4 - ((new Date(jan4).getUTCDay() + 6) % 7) * day;
+  const start = monday1 + (week - 1) * 7 * day;
+  return { start: new Date(start), end: new Date(start + 6 * day) };
 }
 
 // 공공누리 photos from KTO need the source shown next to them

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-// Swipe on phones, arrows on desktop. Photos are shown as-is (공공누리), only cropped to fit the frame.
+// Swipe on phones, arrows on desktop. Photos are shown whole and unaltered (공공누리 Type3 allows no changes), letterboxed on sand.
 export function Gallery({ images, name, credit }: { images: string[]; name: string; credit: boolean }) {
   const strip = useRef<HTMLUListElement>(null);
   const [index, setIndex] = useState(0);
@@ -30,7 +30,7 @@ export function Gallery({ images, name, credit }: { images: string[]; name: stri
                 src={src}
                 alt={many ? `${name} 사진 ${i + 1}` : name}
                 loading={i === 0 ? "eager" : "lazy"}
-                className="h-64 w-full bg-sand object-cover sm:h-[28rem]"
+                className="h-64 w-full bg-sand object-contain sm:h-[28rem]"
               />
             </li>
           ))}

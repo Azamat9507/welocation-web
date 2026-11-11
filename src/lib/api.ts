@@ -1,5 +1,5 @@
-// Server-side only: pages fetch here and render HTML, the browser never calls the API in W1.
-const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:8080";
+// Server-side only: pages and Server Actions fetch here; the browser never calls the API directly.
+export const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:8080";
 
 export const CATEGORIES = {
   CAFE: "카페",

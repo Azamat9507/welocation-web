@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import "./globals.css";
+import { UserMenu } from "./user-menu";
 
 export const metadata: Metadata = {
   title: "위로케이션 · 위로가 되는 장소",
@@ -12,11 +14,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="ko" className="h-full antialiased">
       <body className="flex min-h-full flex-col">
         <header className="border-b border-line">
-          <div className="mx-auto flex max-w-5xl items-baseline gap-2 px-4 py-3">
-            <Link href="/" className="text-lg font-bold text-accent">
+          <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-3">
+            <Link href="/" className="shrink-0 text-lg font-bold text-accent">
               위로케이션
             </Link>
-            <span className="text-sm text-muted">위로가 되는 장소</span>
+            <span className="hidden text-sm text-muted sm:inline">위로가 되는 장소</span>
+            <div className="ml-auto min-w-0">
+              <Suspense>
+                <UserMenu />
+              </Suspense>
+            </div>
           </div>
         </header>
         <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4">{children}</main>

@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { CATEGORIES, REGIONS, TAGS, getReviews, getSpot, isTourApiImage } from "@/lib/api";
+import { CATEGORIES, REGIONS, TAGS, getReviews, getSpot, isTourApiImage, type Page, type Review } from "@/lib/api";
+import { getMe, getMyState } from "@/lib/api-auth";
 import { Rating } from "../../rating";
+import { ReviewForm } from "./review-form";
+import { Toggles } from "./toggles";
 
 export default function SpotPage({ params }: PageProps<"/spots/[id]">) {
   return (
@@ -44,7 +47,6 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
       <p className="text-sm text-muted">{spot.address}</p>
       <div className="mt-1 flex items-center gap-3">
         <Rating average={spot.averageRating} count={spot.reviewCount} />
-        {spot.likeCount !== undefined && <span className="text-xs text-muted">♥ {spot.likeCount}</span>}
       </div>
 
       {spot.tags.length > 0 && (
@@ -57,10 +59,17 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
         </ul>
       )}
 
+      <Suspense fallback={<div className="mt-3 h-8" />}>
+        <Mine spotId={spot.id} likeCount={spot.likeCount ?? 0} />
+      </Suspense>
+
       {spot.description && <p className="mt-3 text-sm leading-relaxed whitespace-pre-line">{spot.description}</p>}
 
-      <section className="mt-6">
+      <section id="reviews" className="mt-6">
         <h2 className="font-semibold">리뷰 {spot.reviewCount}</h2>
+        <Suspense>
+          <MyReview spotId={spot.id} reviews={reviews} />
+        </Suspense>
         {!reviews || reviews.items.length === 0 ? (
           <p className="mt-2 text-sm text-muted">첫 리뷰를 기다리고 있어요.</p>
         ) : (
@@ -79,4 +88,36 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
       </section>
     </article>
   );
+}
+
+// Reads the session cookie, so it streams in after the public part of the page
+async function Mine({ spotId, likeCount }: { spotId: number; likeCount: number }) {
+  const me = await getMe().catch(() => null);
+  const state = me ? await getMyState(spotId) : null;
+  return (
+    <Toggles
+      spotId={spotId}
+      likeCount={likeCount}
+      liked={me ? (state?.liked ?? null) : false}
+      bookmarked={me ? (state?.bookmarked ?? null) : false}
+    />
+  );
+}
+
+async function MyReview({ spotId, reviews }: { spotId: number; reviews: Page<Review> | null }) {
+  const me = await getMe().catch(() => null);
+  if (!me) {
+    return (
+      <p className="mt-2 text-sm">
+        <Link href={`/login?next=${encodeURIComponent(`/spots/${spotId}#reviews`)}`} className="text-accent">
+          로그인
+        </Link>
+        <span className="text-muted">하고 리뷰를 남겨 보세요.</span>
+      </p>
+    );
+  }
+  const state = await getMyState(spotId);
+  const mine = reviews?.items.find((r) => (state?.reviewId != null ? r.id === state.reviewId : r.author.id === me.id));
+  const review = mine ? { id: mine.id, rating: mine.rating, content: mine.content } : undefined;
+  return <ReviewForm key={review?.id ?? "new"} spotId={spotId} review={review} />;
 }

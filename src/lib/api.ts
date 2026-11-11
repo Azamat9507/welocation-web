@@ -166,6 +166,83 @@ export function isoWeekRange(label: string): { start: Date; end: Date } | null {
   return { start: new Date(start), end: new Date(start + 6 * day) };
 }
 
+// GET /api/spots/nearby (SpotDtos.NearbySpot): nearest first
+export type NearbySpot = {
+  id: number;
+  name: string;
+  category: Category;
+  region: Region;
+  address: string;
+  latitude: number;
+  longitude: number;
+  thumbnailUrl: string | null;
+  distanceMeters: number;
+};
+
+export const NEARBY_RADII = [1, 3, 10, 30] as const;
+export type NearbyRadius = (typeof NEARBY_RADII)[number];
+export const DEFAULT_NEARBY_RADIUS: NearbyRadius = 3;
+
+export type NearbyFilter = {
+  // null until the browser has shared a location
+  point: { lat: number; lng: number } | null;
+  radius: NearbyRadius;
+  category?: Category;
+};
+
+// About 100 m: enough for a nearby list, and the URL never carries a precise location
+export function roundCoord(v: number) {
+  return Math.round(v * 1000) / 1000;
+}
+
+// Same rule as parseFilter: the query is user input, so only Korea-ish points and listed values pass
+export function parseNearby(q: Record<string, string | string[] | undefined>): NearbyFilter {
+  const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
+  const num = (v: string | undefined, min: number, max: number) => {
+    if (v === undefined || !/^-?\d{1,3}(\.\d{1,15})?$/.test(v)) return undefined;
+    const n = Number(v);
+    return n >= min && n <= max ? roundCoord(n) : undefined;
+  };
+  const lat = num(one(q.lat), 33, 39);
+  const lng = num(one(q.lng), 124, 132.5);
+  const radius = NEARBY_RADII.find((r) => String(r) === one(q.radius)) ?? DEFAULT_NEARBY_RADIUS;
+  const category = one(q.category);
+  return {
+    point: lat !== undefined && lng !== undefined ? { lat, lng } : null,
+    radius,
+    category: category !== undefined && Object.hasOwn(CATEGORIES, category) ? (category as Category) : undefined,
+  };
+}
+
+export function nearbyQuery(f: NearbyFilter): string {
+  const p = new URLSearchParams();
+  if (f.point) {
+    p.set("lat", String(f.point.lat));
+    p.set("lng", String(f.point.lng));
+  }
+  if (f.radius !== DEFAULT_NEARBY_RADIUS) p.set("radius", String(f.radius));
+  if (f.category) p.set("category", f.category);
+  const s = p.toString();
+  return s ? `?${s}` : "";
+}
+
+// Not cached: every point is a different query, and the API does not store or log it
+export async function getNearby(point: { lat: number; lng: number }, radius: NearbyRadius, category?: Category) {
+  const p = new URLSearchParams({
+    lat: String(point.lat),
+    lng: String(point.lng),
+    radiusKm: String(radius),
+    size: "50",
+  });
+  if (category) p.set("category", category);
+  return (await get<NearbySpot[]>(`/api/spots/nearby?${p}`)) ?? [];
+}
+
+export function formatDistance(meters: number) {
+  if (meters < 1000) return `${Math.max(10, Math.round(meters / 10) * 10)}m`;
+  return `${(meters / 1000).toFixed(meters < 10_000 ? 1 : 0)}km`;
+}
+
 // 공공누리 photos from KTO need the source shown next to them
 export function isTourApiImage(url: string) {
   return url.startsWith("https://tong.visitkorea.or.kr/");

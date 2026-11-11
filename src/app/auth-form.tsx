@@ -5,7 +5,7 @@ import { useActionState } from "react";
 import { login, signup, type FormState } from "./actions";
 
 const input =
-  "mt-1 w-full rounded-md border border-line bg-white px-3 py-2 text-base focus:border-accent focus:outline-none";
+  "mt-1 w-full rounded-md border border-line bg-surface px-3 py-2 text-base focus:border-accent focus:outline-none";
 
 export function AuthForm({ mode, next }: { mode: "login" | "signup"; next: string }) {
   const [state, action, pending] = useActionState<FormState, FormData>(mode === "login" ? login : signup, {});

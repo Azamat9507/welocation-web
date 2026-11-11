@@ -139,7 +139,7 @@ function NearbyRow({ spot }: { spot: NearbySpot }) {
     <li className="min-w-0">
       <Link
         href={`/spots/${spot.id}`}
-        className="flex items-center gap-3 rounded-lg border border-line bg-white p-2 hover:border-accent"
+        className="flex items-center gap-3 rounded-lg border border-line bg-surface p-2 hover:border-accent"
       >
         <div className="h-14 w-14 shrink-0 overflow-hidden rounded-md bg-accent-soft">
           {spot.thumbnailUrl && (
@@ -175,7 +175,7 @@ function ChipRow({ label, items }: { label: string; items: { text: string; activ
             href={item.href}
             aria-current={item.active ? "true" : undefined}
             className={`shrink-0 rounded-full border px-3 py-1 text-sm ${
-              item.active ? "border-accent bg-accent text-white" : "border-line bg-white hover:border-accent"
+              item.active ? "border-accent bg-accent text-white" : "border-line bg-surface hover:border-accent"
             }`}
           >
             {item.text}

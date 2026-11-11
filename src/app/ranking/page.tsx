@@ -67,7 +67,7 @@ function RankRow({ item }: { item: RankedSpot }) {
     <li className="min-w-0">
       <Link
         href={`/spots/${spot.id}`}
-        className="flex items-center gap-3 rounded-lg border border-line bg-white p-2 hover:border-accent"
+        className="flex items-center gap-3 rounded-lg border border-line bg-surface p-2 hover:border-accent"
       >
         <span className={`w-6 shrink-0 text-center text-lg font-bold ${rank <= 3 ? "text-accent" : "text-muted"}`}>
           {rank}

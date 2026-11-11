@@ -14,7 +14,7 @@ export function Toggles({ spotId, likeCount, liked, bookmarked }: Props) {
 
   const btn = (on: boolean | null) =>
     `rounded-full border px-3 py-1 text-sm disabled:opacity-60 ${
-      on ? "border-accent bg-accent text-white" : "border-line bg-white text-foreground hover:border-accent"
+      on ? "border-accent bg-accent text-white" : "border-line bg-surface text-foreground hover:border-accent"
     }`;
 
   return (

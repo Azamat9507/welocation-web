@@ -60,7 +60,7 @@ function EditForm({ spotId, review, onDone }: Props & { onDone?: () => void }) {
   const rating = v.rating ?? String(review?.rating ?? "");
 
   return (
-    <form action={action} className="mt-2 space-y-2 rounded-lg border border-line bg-white p-3">
+    <form action={action} className="mt-2 space-y-2 rounded-lg border border-line bg-surface p-3">
       <fieldset className="flex items-center gap-1">
         <legend className="sr-only">별점</legend>
         {[1, 2, 3, 4, 5].map((n) => (

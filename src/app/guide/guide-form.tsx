@@ -26,7 +26,7 @@ export function GuideForm() {
           // a new question after an answer keeps what was typed, not the first value
           key={state.question ?? ""}
           placeholder="부산에서 바다 보이는 조용한 카페 추천해 줘"
-          className="block w-full resize-y rounded-md border border-line bg-white px-3 py-2 text-base focus:border-accent focus:outline-none"
+          className="block w-full resize-y rounded-md border border-line bg-surface px-3 py-2 text-base focus:border-accent focus:outline-none"
         />
         <div className="flex items-center gap-3">
           <p className="min-w-0 flex-1 text-xs text-muted">{MAX_QUESTION}자까지 · 하루 질문 수에 제한이 있어요</p>
@@ -105,7 +105,7 @@ function PickCard({ pick: { spot, reason } }: { pick: GuidePick }) {
     <li className="min-w-0">
       <Link
         href={`/spots/${spot.id}`}
-        className="flex h-full gap-3 rounded-lg border border-line bg-white p-2 hover:border-accent"
+        className="flex h-full gap-3 rounded-lg border border-line bg-surface p-2 hover:border-accent"
       >
         <div className="h-20 w-20 shrink-0 overflow-hidden rounded-md bg-accent-soft">
           {spot.thumbnailUrl && (

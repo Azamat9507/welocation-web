@@ -33,7 +33,7 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
       {image && (
         <figure className="mt-2">
           {/* eslint-disable-next-line @next/next/no-img-element -- 공공누리 photo, shown unaltered */}
-          <img src={image} alt={spot.name} className="max-h-80 w-full rounded-lg object-cover" />
+          <img src={image} alt={spot.name} className="h-60 w-full rounded-2xl object-cover sm:h-96" />
           {isTourApiImage(image) && (
             <figcaption className="mt-1 text-right text-xs text-muted">사진 출처: 한국관광공사</figcaption>
           )}
@@ -43,7 +43,7 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
       <p className="mt-3 text-xs text-muted">
         {CATEGORIES[spot.category]} · {REGIONS[spot.region]}
       </p>
-      <h1 className="text-xl font-bold">{spot.name}</h1>
+      <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{spot.name}</h1>
       <p className="text-sm text-muted">{spot.address}</p>
       <div className="mt-1 flex items-center gap-3">
         <Rating average={spot.averageRating} count={spot.reviewCount} />
@@ -66,7 +66,7 @@ async function Spot({ params }: { params: PageProps<"/spots/[id]">["params"] }) 
       {spot.description && <p className="mt-3 text-sm leading-relaxed whitespace-pre-line">{spot.description}</p>}
 
       <section id="reviews" className="mt-6">
-        <h2 className="font-semibold">리뷰 {spot.reviewCount}</h2>
+        <h2 className="text-lg font-bold tracking-tight">리뷰 {spot.reviewCount}</h2>
         <Suspense>
           <MyReview spotId={spot.id} reviews={reviews} />
         </Suspense>

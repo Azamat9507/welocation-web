@@ -23,6 +23,7 @@ browser only talks to this origin.
   fetched on every request so a new like shows up on the next load
 - `/nearby` spots near the browser's location, nearest first, with 1/3/10/30 km radius and category chips
   (`GET /api/spots/nearby`); coordinates are rounded to 3 decimals in the URL and never stored
+- `/guide` AI guide (login required): a question goes to `POST /api/guide` through a Server Action; the answer is shown as plain text with the picked spots linked to `/spots/[id]`
 
 Photos are 한국관광공사 공공누리 images, shown unaltered with the source credited.
 

@@ -26,6 +26,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Link href="/ranking" className="shrink-0 hover:text-accent">
                 주간 인기
               </Link>
+              <Link href="/guide" className="shrink-0 hover:text-accent">
+                AI 가이드
+              </Link>
               <Suspense>
                 <UserMenu />
               </Suspense>

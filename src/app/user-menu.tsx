@@ -10,7 +10,7 @@ export async function UserMenu() {
   }
   return (
     <div className="flex min-w-0 items-center gap-3 text-sm">
-      <span className="truncate text-muted">{me.nickname}</span>
+      <span className="hidden truncate text-muted sm:inline">{me.nickname}</span>
       <Link href="/me/bookmarks" className="shrink-0 text-accent">
         북마크
       </Link>

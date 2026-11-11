@@ -20,6 +20,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </Link>
             <span className="hidden text-sm text-muted sm:inline">위로가 되는 장소</span>
             <nav className="ml-auto flex min-w-0 items-center gap-3 text-sm">
+              <Link href="/nearby" className="shrink-0 hover:text-accent">
+                내 주변
+              </Link>
               <Link href="/ranking" className="shrink-0 hover:text-accent">
                 주간 인기
               </Link>

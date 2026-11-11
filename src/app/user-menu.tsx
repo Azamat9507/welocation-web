@@ -1,15 +1,12 @@
 import Link from "next/link";
 import { getMe } from "@/lib/api-auth";
 import { logout } from "./actions";
+import { LoginLink } from "./login-link";
 
 export async function UserMenu() {
   const me = await getMe().catch(() => null);
   if (!me) {
-    return (
-      <Link href="/login" className="text-sm text-accent">
-        로그인
-      </Link>
-    );
+    return <LoginLink />;
   }
   return (
     <div className="flex min-w-0 items-center gap-3 text-sm">

@@ -12,7 +12,7 @@ npm install
 npm run dev                  # http://localhost:3000
 ```
 
-The API must be running. Pages fetch on the server; `/api/*` is proxied to `API_ORIGIN`, so the
+The API must be running. Pages fetch on the server; only the Next server talks to `API_ORIGIN`, so the
 browser only talks to this origin.
 
 ## Pages

@@ -29,7 +29,7 @@ export function Toggles({ spotId, likeCount, liked, bookmarked }: Props) {
             start(async () => {
               const r = await setLike(spotId, !like.on);
               setError(r.error);
-              setLikeState({ on: r.on, count: r.count ?? like.count });
+              if (r.on !== undefined) setLikeState({ on: r.on, count: r.count ?? like.count });
             })
           }
         >
@@ -44,7 +44,7 @@ export function Toggles({ spotId, likeCount, liked, bookmarked }: Props) {
             start(async () => {
               const r = await setBookmark(spotId, !mark);
               setError(r.error);
-              setMark(r.on);
+              if (r.on !== undefined) setMark(r.on);
             })
           }
         >

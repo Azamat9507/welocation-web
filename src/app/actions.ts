@@ -9,6 +9,9 @@ export type FormState = { error?: string; values?: Record<string, string> };
 
 type TokenResponse = { accessToken: string; tokenType: string; expiresIn: number };
 
+// the API (bcrypt) limits passwords to 72 bytes, not characters
+const bytes = (s: string) => new TextEncoder().encode(s).length;
+
 const str = (f: FormData, k: string) => {
   const v = f.get(k);
   return typeof v === "string" ? v : "";
@@ -37,7 +40,7 @@ export async function login(_prev: FormState, form: FormData): Promise<FormState
   const email = str(form, "email").trim();
   const password = str(form, "password");
   const values = { email };
-  if (!email || !password || email.length > 254 || password.length > 72) {
+  if (!email || !password || email.length > 254 || bytes(password) > 72) {
     return { error: "이메일과 비밀번호를 확인해 주세요.", values };
   }
   const status = await startSession(email, password);
@@ -53,7 +56,8 @@ export async function signup(_prev: FormState, form: FormData): Promise<FormStat
   const values = { email, nickname };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) return { error: "이메일 형식이 아니에요.", values };
   if (!nickname || nickname.length > 30) return { error: "닉네임은 1~30자로 입력해 주세요.", values };
-  if (password.length < 8 || password.length > 72) return { error: "비밀번호는 8~72자로 입력해 주세요.", values };
+  if (password.length < 8) return { error: "비밀번호는 8자 이상 입력해 주세요.", values };
+  if (bytes(password) > 72) return { error: "비밀번호가 너무 길어요. 조금 줄여 주세요.", values };
 
   const r = await call("/api/auth/signup", { method: "POST", body: { email, password, nickname }, token: null });
   if (!r.ok) {
@@ -62,8 +66,9 @@ export async function signup(_prev: FormState, form: FormData): Promise<FormStat
     return { error: failMessage(r.status, "가입하지 못했어요."), values };
   }
   const status = await startSession(email, password);
-  if (status) redirect("/login");
-  redirect(safeNext(form.get("next")));
+  const next = safeNext(form.get("next"));
+  if (status) redirect(`/login?next=${encodeURIComponent(next)}`);
+  redirect(next);
 }
 
 export async function logout() {
@@ -77,7 +82,8 @@ async function toLogin(spotId: number): Promise<never> {
   redirect(`/login?next=${encodeURIComponent(`/spots/${spotId}`)}`);
 }
 
-export type ToggleResult = { on: boolean; count?: number; error?: string };
+// on is missing when the call failed: the button keeps whatever it showed before
+export type ToggleResult = { on?: boolean; count?: number; error?: string };
 
 export async function setLike(spotIdArg: number, on: boolean): Promise<ToggleResult> {
   const spotId = spotIdOf(spotIdArg);
@@ -86,7 +92,7 @@ export async function setLike(spotIdArg: number, on: boolean): Promise<ToggleRes
     method: on ? "POST" : "DELETE",
   });
   if (r.status === 401) return toLogin(spotId);
-  if (!r.ok) return { on: !on, error: failMessage(r.status, "처리하지 못했어요.") };
+  if (!r.ok) return { error: failMessage(r.status, "처리하지 못했어요.") };
   refresh();
   return { on: r.data.liked, count: r.data.likeCount };
 }
@@ -96,7 +102,7 @@ export async function setBookmark(spotIdArg: number, on: boolean): Promise<Toggl
   if (!(await getToken())) return toLogin(spotId);
   const r = await call(`/api/spots/${spotId}/bookmark`, { method: on ? "POST" : "DELETE" });
   if (r.status === 401) return toLogin(spotId);
-  if (!r.ok) return { on: !on, error: failMessage(r.status, "처리하지 못했어요.") };
+  if (!r.ok) return { error: failMessage(r.status, "처리하지 못했어요.") };
   return { on };
 }
 

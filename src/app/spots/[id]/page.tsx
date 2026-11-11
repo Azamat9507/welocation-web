@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { CATEGORIES, REGIONS, TAGS, getReviews, getSpot, isTourApiImage, type Page, type Review } from "@/lib/api";
-import { getMe, getMyState } from "@/lib/api-auth";
+import { findMyReview, getMe, getMyState } from "@/lib/api-auth";
 import { Rating } from "../../rating";
 import { ReviewForm } from "./review-form";
 import { Toggles } from "./toggles";
@@ -116,8 +116,6 @@ async function MyReview({ spotId, reviews }: { spotId: number; reviews: Page<Rev
       </p>
     );
   }
-  const state = await getMyState(spotId);
-  const mine = reviews?.items.find((r) => (state?.reviewId != null ? r.id === state.reviewId : r.author.id === me.id));
-  const review = mine ? { id: mine.id, rating: mine.rating, content: mine.content } : undefined;
+  const review = await findMyReview(spotId, me, reviews?.items ?? []);
   return <ReviewForm key={review?.id ?? "new"} spotId={spotId} review={review} />;
 }

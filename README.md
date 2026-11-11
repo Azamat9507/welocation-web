@@ -1,0 +1,25 @@
+# welocation-web
+
+Web client for WeLocation (위로케이션), a guide to cafés, beaches, lakes, rivers and viewpoints in Korea.
+Data comes from the `welocation-api` Spring Boot service, which syncs places from the Korea Tourism
+Organization TourAPI.
+
+## Run
+
+```bash
+cp .env.example .env.local   # API_ORIGIN, defaults to http://localhost:8080
+npm install
+npm run dev                  # http://localhost:3000
+```
+
+The API must be running. Pages fetch on the server; `/api/*` is proxied to `API_ORIGIN`, so the
+browser only talks to this origin.
+
+## Pages
+
+- `/` spot list with category, region and tag filters kept in the URL, 20 per page
+- `/spots/[id]` spot detail: photo, address, tags, rating and reviews
+
+Photos are 한국관광공사 공공누리 images, shown unaltered with the source credited.
+
+Next.js 16 (App Router, Cache Components), TypeScript, Tailwind CSS 4.

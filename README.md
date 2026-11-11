@@ -19,6 +19,8 @@ browser only talks to this origin.
 
 - `/` spot list with category, region and tag filters kept in the URL, 20 per page
 - `/spots/[id]` spot detail: photo, address, tags, rating and reviews
+- `/ranking` this week's top 10 spots by likes given since Monday 00:00 KST (`GET /api/spots/ranking/weekly`),
+  fetched on every request so a new like shows up on the next load
 
 Photos are 한국관광공사 공공누리 images, shown unaltered with the source credited.
 

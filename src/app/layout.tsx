@@ -13,10 +13,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <header className="border-b border-line">
           <div className="mx-auto flex max-w-5xl items-baseline gap-2 px-4 py-3">
-            <Link href="/" className="text-lg font-bold text-accent">
+            <Link href="/" className="shrink-0 text-lg font-bold text-accent">
               위로케이션
             </Link>
-            <span className="text-sm text-muted">위로가 되는 장소</span>
+            <span className="min-w-0 truncate text-sm text-muted">위로가 되는 장소</span>
+            <nav className="ml-auto shrink-0 text-sm">
+              <Link href="/ranking" className="hover:text-accent">
+                주간 인기
+              </Link>
+            </nav>
           </div>
         </header>
         <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4">{children}</main>

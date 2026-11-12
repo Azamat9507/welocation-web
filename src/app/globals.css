@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f3ec;
-  --surface: #fffdf9;
-  --sand: #ece3d5;
-  --foreground: #26221e;
-  --muted: #7a7067;
-  --line: #e4dccf;
+  --background: #ffffff;
+  --surface: #f5f6f7;
+  --sand: #eceff1;
+  --foreground: #1c2126;
+  --muted: #6b737c;
+  --line: #e6e8eb;
   --accent: #1e5b5e;
-  --accent-soft: #e2ecea;
+  --accent-soft: #e3efee;
   /* the only typeface on the site */
   --font-ui: system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
 }

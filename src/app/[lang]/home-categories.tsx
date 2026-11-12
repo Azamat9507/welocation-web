@@ -15,6 +15,7 @@ export function HomeCategories({ lang, t }: { lang: Locale; t: Dictionary["home"
     { href: cat("RIVER"), label: t.tiles.river, icon: "river" },
     { href: cat("VIEWPOINT"), label: t.tiles.viewpoint, icon: "viewpoint" },
     { href: cat("STAY"), label: t.tiles.stay, icon: "stay" },
+    { href: cat("LEISURE"), label: t.tiles.leisure, icon: "leisure" },
     { href: "/nearby", label: t.tiles.nearby, icon: "nearby" },
     { href: "/guide", label: t.tiles.guide, icon: "guide", badge: "NEW" },
   ];

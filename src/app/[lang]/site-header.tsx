@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { SEARCH_MAX_LENGTH } from "@/lib/api";
+import { CATEGORIES, REGIONS, SEARCH_MAX_LENGTH, TAGS, filterQuery } from "@/lib/api";
 import { currentLocale } from "@/lib/current-locale";
+import { CategoryMenu, CategoryMenuFallback, type MenuColumn } from "./category-menu";
 import { HeaderSearch } from "./header-search";
 import { HeaderTabs, TabList } from "./header-tabs";
 import { HeartIcon, iconLinkClass } from "./icons";
@@ -16,8 +17,14 @@ export async function SiteHeader() {
     { href: "/ranking", label: t.tabs.ranking },
     { href: "/guide", label: t.tabs.guide },
   ];
+  const menu: MenuColumn[] = [
+    { title: t.header.menuKinds, items: CATEGORIES.map((c) => ({ href: `/${filterQuery({ category: c })}`, label: t.categories[c] })) },
+    { title: t.header.menuRegions, items: REGIONS.map((r) => ({ href: `/${filterQuery({ region: r })}`, label: t.regions[r] })) },
+    { title: t.header.menuThemes, items: TAGS.map((g) => ({ href: `/${filterQuery({ tag: g })}`, label: t.tags[g] })) },
+    { title: t.header.menuServices, items: tabs.slice(1) },
+  ];
   return (
-    <header className="border-b border-line bg-background">
+    <header className="relative border-b border-line bg-background">
       <div className="mx-auto max-w-5xl px-4">
         {/* phones: logo + icons on one row, search below; wider screens: one row */}
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-3 sm:flex-nowrap sm:pt-4">
@@ -49,7 +56,11 @@ export async function SiteHeader() {
             </Suspense>
           </div>
         </div>
-        <div className="mt-1 sm:mt-2">
+        <div className="mt-1 flex items-center gap-4 sm:mt-2 sm:gap-5">
+          <Suspense fallback={<CategoryMenuFallback label={t.header.allCategories} />}>
+            <CategoryMenu lang={lang} columns={menu} labels={{ open: t.header.allCategories, close: t.header.menuClose }} />
+          </Suspense>
+          <span aria-hidden="true" className="h-4 w-px shrink-0 bg-line" />
           <Suspense fallback={<TabList lang={lang} tabs={tabs} path={null} />}>
             <HeaderTabs lang={lang} tabs={tabs} />
           </Suspense>

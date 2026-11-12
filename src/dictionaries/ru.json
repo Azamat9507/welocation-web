@@ -13,7 +13,13 @@
     "language": "Язык",
     "askAi": "Спросить AI-гида",
     "searchFor": "Искать «{q}»",
-    "askAiFor": "Спросить AI-гида: «{q}»"
+    "askAiFor": "Спросить AI-гида: «{q}»",
+    "allCategories": "Все категории",
+    "menuClose": "Закрыть",
+    "menuKinds": "Тип",
+    "menuRegions": "Регион",
+    "menuThemes": "Тема",
+    "menuServices": "Сервисы"
   },
   "tabs": {
     "home": "Главная",
@@ -34,6 +40,7 @@
     "RIVER": "Реки",
     "VIEWPOINT": "Виды",
     "STAY": "Жильё",
+    "LEISURE": "Развлечения",
     "ATTRACTION": "Интересное"
   },
   "regions": {
@@ -86,7 +93,8 @@
       "viewpoint": "Виды",
       "stay": "Жильё",
       "nearby": "Рядом",
-      "guide": "AI-гид"
+      "guide": "AI-гид",
+      "leisure": "Развлечения"
     },
     "badgeWeekly": "Популярно на неделе",
     "badgeNew": "Новое место",
@@ -99,6 +107,7 @@
       "RIVER": "Прогулка у реки",
       "VIEWPOINT": "Весь вид как на ладони",
       "STAY": "Ночь у воды",
+      "LEISURE": "День ярких эмоций",
       "ATTRACTION": "Куда поехать сегодня"
     }
   },

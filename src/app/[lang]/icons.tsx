@@ -91,4 +91,4 @@ export const SparkIcon = (p: P) => (
 );
 
 // shared by the 찜 / 마이 links in the header
-export const iconLinkClass = "flex w-11 shrink-0 flex-col items-center gap-0.5 text-[11px] text-foreground hover:text-accent";
+export const iconLinkClass = "flex min-w-11 shrink-0 whitespace-nowrap px-0.5 flex-col items-center gap-0.5 text-[11px] text-foreground hover:text-accent";

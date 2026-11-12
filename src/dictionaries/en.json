@@ -118,7 +118,8 @@
     "removeFilter": "Remove {name} filter",
     "pagesLabel": "Pages",
     "prev": "← Prev",
-    "next": "Next →"
+    "next": "Next →",
+    "staysSoon": "Stays near the sea, lakes and rivers are added every night. They will show up here soon."
   },
   "rating": {
     "none": "No reviews yet",

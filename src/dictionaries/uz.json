@@ -118,7 +118,8 @@
     "removeFilter": "{name} filtrini olib tashlash",
     "pagesLabel": "Sahifalar",
     "prev": "← Oldingi",
-    "next": "Keyingi →"
+    "next": "Keyingi →",
+    "staysSoon": "Dengiz, ko'l va daryo bo'yidagi mehmonxonalar har kecha qo'shiladi. Tez orada shu yerda paydo bo'ladi."
   },
   "rating": {
     "none": "Hali sharhlar yo'q",

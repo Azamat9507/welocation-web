@@ -30,6 +30,7 @@
     "LAKE": "호수",
     "RIVER": "강",
     "VIEWPOINT": "전망대",
+    "STAY": "숙소",
     "ATTRACTION": "명소"
   },
   "regions": {
@@ -79,6 +80,7 @@
       "lake": "호수",
       "river": "강",
       "viewpoint": "전망대",
+      "stay": "숙소",
       "nearby": "내 주변",
       "guide": "AI 가이드"
     },
@@ -92,6 +94,7 @@
       "LAKE": "잔잔한 호수에서 숨 고르기",
       "RIVER": "강바람 맞으며 걷기",
       "VIEWPOINT": "탁 트인 풍경을 한눈에",
+      "STAY": "물소리 들으며 하룻밤",
       "ATTRACTION": "오늘은 여기로 떠나요"
     }
   },

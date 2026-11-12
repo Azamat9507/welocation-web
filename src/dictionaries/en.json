@@ -30,6 +30,7 @@
     "LAKE": "Lakes",
     "RIVER": "Rivers",
     "VIEWPOINT": "Viewpoints",
+    "STAY": "Stays",
     "ATTRACTION": "Sights"
   },
   "regions": {
@@ -79,6 +80,7 @@
       "lake": "Lakes",
       "river": "Rivers",
       "viewpoint": "Views",
+      "stay": "Stays",
       "nearby": "Nearby",
       "guide": "AI Guide"
     },
@@ -92,6 +94,7 @@
       "LAKE": "Catch your breath by the lake",
       "RIVER": "Walk in the river breeze",
       "VIEWPOINT": "The whole view at a glance",
+      "STAY": "A night by the water",
       "ATTRACTION": "Your trip for today"
     }
   },

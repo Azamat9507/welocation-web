@@ -30,6 +30,7 @@
     "LAKE": "Ko'llar",
     "RIVER": "Daryolar",
     "VIEWPOINT": "Manzaralar",
+    "STAY": "Mehmonxonalar",
     "ATTRACTION": "Diqqatga sazovor"
   },
   "regions": {
@@ -79,6 +80,7 @@
       "lake": "Ko'l",
       "river": "Daryo",
       "viewpoint": "Manzara",
+      "stay": "Mehmonxona",
       "nearby": "Atrofda",
       "guide": "AI gid"
     },
@@ -92,6 +94,7 @@
       "LAKE": "Ko'l bo'yida nafas rostlang",
       "RIVER": "Daryo shabadasida sayr",
       "VIEWPOINT": "Butun manzara bir qarashda",
+      "STAY": "Suv bo'yida bir kecha",
       "ATTRACTION": "Bugun shu yerga boring"
     }
   },

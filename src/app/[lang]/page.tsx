@@ -9,6 +9,7 @@ import {
   getWeeklyRanking,
   isTourApiImage,
   parseFilter,
+  type Region,
   type SpotFilter,
   type SpotSummary,
 } from "@/lib/api";
@@ -18,6 +19,7 @@ import { fill, href, intlLocale, type Locale } from "@/lib/i18n";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
 import { HomeCategories } from "./home-categories";
 import { SpotCard } from "./spot-card";
+import { StaysRail } from "./stays-rail";
 
 export default async function Home({ searchParams }: PageProps<"/[lang]">) {
   const { t } = await currentLocale();
@@ -38,10 +40,12 @@ async function HomeContent({ searchParams }: { searchParams: PageProps<"/[lang]"
 
 async function HomeSections() {
   const { lang, t } = await currentLocale();
-  const [ranking, newest, cafes] = await Promise.all([
+  const [ranking, newest, cafes, stays] = await Promise.all([
     getWeeklyRanking().catch(() => null),
     getSpots({ page: 1 }, 12),
     waterCafes(t),
+    // API builds before the STAY category answer 400; the rail just stays hidden then
+    getSpots({ category: "STAY", page: 1 }, 30).catch(() => null),
   ]);
   const ranked = ranking?.items ?? [];
   const slides = heroSlides(
@@ -86,6 +90,7 @@ async function HomeSections() {
       {cafes.spots.length > 0 && (
         <Rail t={t} title={cafes.title} href={href(lang, `/${cafes.query}`)} spots={cafes.spots} />
       )}
+      {stays && stays.items.length >= 4 && <Stays lang={lang} t={t} spots={stays.items} />}
       <Rail t={t} title={t.home.newest} href={href(lang, "/?page=1")} spots={newest.items.slice(0, 8)} />
     </>
   );
@@ -150,6 +155,33 @@ function Rail({ t, title, href, spots, ranked }: RailProps) {
       </ul>
       <PhotoCredit spots={spots} text={t.common.photoCredit} />
     </section>
+  );
+}
+
+// Region chips come from the fetched stays, most common first, so a chip never leads to an empty row
+function Stays({ lang, t, spots }: { lang: Locale; t: Dictionary; spots: SpotSummary[] }) {
+  const counts = new Map<Region, number>();
+  for (const s of spots) counts.set(s.region, (counts.get(s.region) ?? 0) + 1);
+  const regions = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5).map(([r]) => r);
+  const listHref = (region?: Region) => href(lang, `/${filterQuery({ category: "STAY", region })}`);
+  return (
+    <>
+      <StaysRail
+        title={t.home.stays}
+        seeAll={t.home.seeAll}
+        chipsLabel={t.list.region}
+        chips={[
+          { value: "", label: t.list.all, href: listHref() },
+          ...regions.map((r) => ({ value: r, label: t.regions[r], href: listHref(r) })),
+        ]}
+        items={spots.map((s) => ({
+          id: s.id,
+          region: s.region,
+          card: <SpotCard spot={s} className="w-[40%] shrink-0 snap-start sm:w-[28%] md:w-auto" />,
+        }))}
+      />
+      <PhotoCredit spots={spots} text={t.common.photoCredit} />
+    </>
   );
 }
 

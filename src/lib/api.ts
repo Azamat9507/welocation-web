@@ -95,7 +95,10 @@ export type WeeklyRanking = {
   items: RankedSpot[];
 };
 
-export type SpotFilter = { region?: Region; category?: Category; tag?: Tag; page: number };
+export type SpotFilter = { region?: Region; category?: Category; tag?: Tag; q?: string; page: number };
+
+// The API answers 400 above this length
+export const SEARCH_MAX_LENGTH = 50;
 
 // URL query is user input: anything not on the lists is dropped instead of forwarded
 export function parseFilter(q: Record<string, string | string[] | undefined>): SpotFilter {
@@ -107,6 +110,7 @@ export function parseFilter(q: Record<string, string | string[] | undefined>): S
     region: pick(one(q.region), REGIONS),
     category: pick(one(q.category), CATEGORIES),
     tag: pick(one(q.tag), TAGS),
+    q: one(q.q)?.trim().slice(0, SEARCH_MAX_LENGTH).trim() || undefined,
     page: Number.isInteger(page) && page >= 1 && page <= 10_000 ? page : 1,
   };
 }
@@ -116,6 +120,7 @@ export function filterQuery(f: Partial<SpotFilter>): string {
   if (f.region) p.set("region", f.region);
   if (f.category) p.set("category", f.category);
   if (f.tag) p.set("tag", f.tag);
+  if (f.q) p.set("q", f.q);
   if (f.page && f.page > 1) p.set("page", String(f.page));
   const s = p.toString();
   return s ? `?${s}` : "";
@@ -128,11 +133,12 @@ async function get<T>(path: string): Promise<T | null> {
   return res.json() as Promise<T>;
 }
 
-export async function getSpots(f: SpotFilter): Promise<Page<SpotSummary>> {
-  const p = new URLSearchParams({ page: String(f.page - 1), size: "20" });
+export async function getSpots(f: SpotFilter, size = 20): Promise<Page<SpotSummary>> {
+  const p = new URLSearchParams({ page: String(f.page - 1), size: String(size) });
   if (f.region) p.set("region", f.region);
   if (f.category) p.set("category", f.category);
   if (f.tag) p.set("tag", f.tag);
+  if (f.q) p.set("q", f.q);
   return (await get<Page<SpotSummary>>(`/api/spots?${p}`))!;
 }
 

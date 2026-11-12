@@ -10,7 +10,10 @@
     "bookmarks": "찜",
     "my": "마이",
     "logout": "로그아웃",
-    "language": "언어"
+    "language": "언어",
+    "askAi": "AI 가이드에게 묻기",
+    "searchFor": "‘{q}’ 검색",
+    "askAiFor": "AI 가이드에게 묻기: ‘{q}’"
   },
   "tabs": {
     "home": "홈",

@@ -4,6 +4,7 @@ import { getDictionary } from "@/lib/dictionaries";
 import { LOCALES, isLocale } from "@/lib/i18n";
 import "../globals.css";
 import { ErrorStrings } from "./error-strings";
+import { GuidePanelProvider } from "./guide-panel/provider";
 import { SiteHeader } from "./site-header";
 
 export function generateStaticParams() {
@@ -24,13 +25,25 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   return (
     <html lang={lang} className="h-full antialiased">
       <body className="flex min-h-full flex-col">
-        <SiteHeader />
-        <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4 sm:py-6">
-          <ErrorStrings value={t.error}>{children}</ErrorStrings>
-        </main>
-        <footer className="mt-10 border-t border-line px-4 py-5 text-center text-xs text-muted">
-          {t.common.footerCredit}
-        </footer>
+        <GuidePanelProvider
+          lang={lang}
+          labels={{
+            panel: t.guide.panel,
+            form: t.guide.form,
+            connect: t.guide.errors.connect,
+            categories: t.categories,
+            regions: t.regions,
+          }}
+        >
+          <SiteHeader />
+          <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4 sm:py-6">
+            <ErrorStrings value={t.error}>{children}</ErrorStrings>
+          </main>
+          {/* phones: room under the credit line for the floating AI guide button */}
+          <footer className="mt-10 border-t border-line px-4 pt-5 pb-20 text-center text-xs text-muted sm:pb-5">
+            {t.common.footerCredit}
+          </footer>
+        </GuidePanelProvider>
       </body>
     </html>
   );

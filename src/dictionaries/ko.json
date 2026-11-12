@@ -244,10 +244,8 @@
     },
     "form": {
       "questionLabel": "질문",
-      "placeholder": "부산에서 바다 보이는 조용한 카페 추천해 줘",
+      "placeholder": "어디로, 누구와, 어떤 분위기?",
       "limits": "{n}자까지 · 하루 질문 수에 제한이 있어요",
-      "asking": "찾는 중…",
-      "ask": "물어보기",
       "waiting": "장소를 찾고 있어요. 30초쯤 걸릴 수 있어요.",
       "loginNeeded": "로그인이 필요해요.",
       "loginAndAsk": "로그인하고 다시 물어보기",
@@ -255,6 +253,17 @@
       "fromPrevious": "이전 장소에서 {d}",
       "straightLine": "거리는 직선거리예요.",
       "noPicks": "조건에 맞는 장소를 찾지 못했어요. 지역이나 종류를 바꿔서 물어봐 주세요."
+    },
+    "panel": {
+      "launcher": "AI 가이드",
+      "title": "AI 가이드",
+      "subtitle": "장소 데이터에서만 추천해요",
+      "reset": "대화 지우기",
+      "close": "닫기",
+      "welcome": "가고 싶은 곳을 말해 주세요. 위로케이션에 있는 장소 중에서만 골라 드려요.",
+      "independent": "질문마다 따로 답해요. 앞의 대화는 기억하지 않아요.",
+      "send": "보내기",
+      "thinking": "생각 중…"
     },
     "errors": {
       "empty": "질문을 입력해 주세요.",

@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { currentLocale } from "@/lib/current-locale";
 import { HeaderTabs, TabList } from "./header-tabs";
 import { HeartIcon, iconLinkClass, SearchIcon } from "./icons";
+import { LangSwitch, LangSwitchFallback } from "./lang-switch";
 import { UserMenu } from "./user-menu";
 
 export async function SiteHeader() {
@@ -43,6 +44,9 @@ export async function SiteHeader() {
             </button>
           </form>
           <div className="ml-auto flex shrink-0 items-center gap-1 sm:ml-0">
+            <Suspense fallback={<LangSwitchFallback lang={lang} label={t.header.language} />}>
+              <LangSwitch lang={lang} label={t.header.language} />
+            </Suspense>
             <Link href={`/${lang}/me/bookmarks`} className={iconLinkClass}>
               <HeartIcon />
               {t.header.bookmarks}

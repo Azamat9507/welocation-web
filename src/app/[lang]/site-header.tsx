@@ -43,7 +43,7 @@ export async function SiteHeader() {
               <SearchIcon className="h-5 w-5" />
             </button>
           </form>
-          <div className="ml-auto flex shrink-0 items-center gap-1 sm:ml-0">
+          <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:ml-0">
             <Suspense fallback={<LangSwitchFallback lang={lang} label={t.header.language} />}>
               <LangSwitch lang={lang} label={t.header.language} />
             </Suspense>

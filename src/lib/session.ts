@@ -1,5 +1,6 @@
 import "server-only";
 import { cookies, headers } from "next/headers";
+import { href, splitLocale, type Locale } from "./i18n";
 
 // The API's JWT lives only here, in an httpOnly cookie on the web origin.
 // Browser scripts never see it; Server Actions and server components forward it to the API.
@@ -34,10 +35,12 @@ export async function clientAddress(): Promise<string | undefined> {
   return value && /^[0-9a-fA-F:.]{2,45}$/.test(value) ? value : undefined;
 }
 
-// Only same-site paths are allowed as a post-login target
-export function safeNext(value: unknown): string {
-  if (typeof value !== "string" || value.length > 300) return "/";
-  if (!value.startsWith("/") || value.startsWith("//") || value.includes("\\")) return "/";
-  if (/[\u0000-\u001f]/.test(value)) return "/";
-  return value;
+// Only same-site paths are allowed as a post-login target. A path without a locale gets the current one,
+// so the visitor lands on a page directly instead of going through the proxy's redirect.
+export function safeNext(value: unknown, lang: Locale): string {
+  const home = `/${lang}`;
+  if (typeof value !== "string" || value.length > 300) return home;
+  if (!value.startsWith("/") || value.startsWith("//") || value.includes("\\")) return home;
+  if (/[\u0000-\u001f]/.test(value)) return home;
+  return splitLocale(value).lang ? value : href(lang, value);
 }

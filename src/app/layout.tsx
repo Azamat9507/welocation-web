@@ -3,7 +3,7 @@ import "./globals.css";
 import { SiteHeader } from "./site-header";
 
 export const metadata: Metadata = {
-  title: "위로케이션 · 위로가 되는 장소",
+  title: "WeLocation · 위로가 되는 장소",
   description: "바다와 호수, 강이 보이는 카페와 전망대. 한국의 위로가 되는 장소를 모았습니다.",
 };
 

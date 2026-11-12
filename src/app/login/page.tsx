@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { safeNext } from "@/lib/session";
 import { AuthForm } from "../auth-form";
 
-export const metadata = { title: "로그인 · 위로케이션" };
+export const metadata = { title: "로그인 · WeLocation" };
 
 export default function Page({ searchParams }: PageProps<"/login">) {
   return (

@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { getMyBookmarks } from "@/lib/api-auth";
 import { SpotCard } from "../../spot-card";
 
-export const metadata = { title: "북마크 · 위로케이션" };
+export const metadata = { title: "북마크 · WeLocation" };
 
 export default function BookmarksPage({ searchParams }: PageProps<"/me/bookmarks">) {
   return (

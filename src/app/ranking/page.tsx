@@ -12,7 +12,7 @@ import {
 import { Rating } from "../rating";
 
 export const metadata: Metadata = {
-  title: "이번 주 인기 장소 · 위로케이션",
+  title: "이번 주 인기 장소 · WeLocation",
   description: "이번 주 좋아요를 가장 많이 받은 장소 10곳.",
 };
 

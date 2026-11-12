@@ -5,7 +5,7 @@ import { getToken } from "@/lib/session";
 import { GuideForm } from "./guide-form";
 
 export const metadata: Metadata = {
-  title: "AI 가이드 · 위로케이션",
+  title: "AI 가이드 · WeLocation",
   description: "원하는 장소를 말하면 위로케이션에 있는 장소 중에서 골라 드려요.",
 };
 

@@ -16,7 +16,7 @@ import {
 import { LocateButton } from "./locate-button";
 
 export const metadata: Metadata = {
-  title: "내 주변 장소 · 위로케이션",
+  title: "내 주변 장소 · WeLocation",
   description: "지금 있는 곳에서 가까운 카페, 해변, 호수, 전망대를 거리순으로 보여 드려요.",
 };
 

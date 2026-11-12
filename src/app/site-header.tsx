@@ -11,7 +11,7 @@ export function SiteHeader() {
         {/* phones: logo + icons on one row, search below; wider screens: one row */}
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-3 sm:flex-nowrap sm:pt-4">
           <Link href="/" className="shrink-0 text-xl font-extrabold tracking-tight text-accent sm:text-2xl">
-            위로케이션
+            WeLocation
           </Link>
           <form
             action="/"

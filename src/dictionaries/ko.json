@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "title": "WeLocation · 위로가 되는 장소",
+    "description": "바다와 호수, 강이 보이는 카페와 전망대. 한국의 위로가 되는 장소를 모았습니다."
+  },
+  "header": {
+    "searchPlaceholder": "어디로 위로받으러 갈까요?",
+    "searchLabel": "장소 검색",
+    "searchButton": "검색",
+    "bookmarks": "찜",
+    "my": "마이",
+    "logout": "로그아웃",
+    "language": "언어"
+  },
+  "tabs": {
+    "home": "홈",
+    "nearby": "내 주변",
+    "ranking": "주간 인기",
+    "guide": "AI 가이드"
+  },
+  "common": {
+    "loading": "불러오는 중…",
+    "photoCredit": "사진 출처: 한국관광공사",
+    "footerCredit": "장소 정보와 사진: 한국관광공사 (공공누리)",
+    "browseSpots": "장소 둘러보기"
+  },
+  "categories": {
+    "CAFE": "카페",
+    "BEACH": "해변",
+    "LAKE": "호수",
+    "RIVER": "강",
+    "VIEWPOINT": "전망대",
+    "STAY": "숙소",
+    "ATTRACTION": "명소"
+  },
+  "regions": {
+    "SEOUL": "서울",
+    "BUSAN": "부산",
+    "DAEGU": "대구",
+    "INCHEON": "인천",
+    "GWANGJU": "광주",
+    "DAEJEON": "대전",
+    "ULSAN": "울산",
+    "SEJONG": "세종",
+    "GYEONGGI": "경기",
+    "GANGWON": "강원",
+    "CHUNGBUK": "충북",
+    "CHUNGNAM": "충남",
+    "JEONBUK": "전북",
+    "JEONNAM": "전남",
+    "GYEONGBUK": "경북",
+    "GYEONGNAM": "경남",
+    "JEJU": "제주"
+  },
+  "tags": {
+    "OCEAN_VIEW": "오션뷰",
+    "LAKE_VIEW": "호수뷰",
+    "RIVER_VIEW": "리버뷰",
+    "NIGHT_VIEW": "야경",
+    "ROOFTOP": "루프탑",
+    "PET_FRIENDLY": "반려동물",
+    "PARKING": "주차",
+    "KIDS": "아이와 함께"
+  },
+  "home": {
+    "noticeLabel": "안내",
+    "notice": "매일 밤 한국관광공사 데이터로 새 장소와 사진을 업데이트해요",
+    "carouselLabel": "추천 장소",
+    "prevSlide": "이전 장소",
+    "nextSlide": "다음 장소",
+    "weekly": "이번 주 인기",
+    "oceanCafes": "바다가 보이는 카페",
+    "seaViews": "바다 풍경",
+    "stays": "바다가 보이는 숙소",
+    "newest": "새로 추가된 장소",
+    "seeAll": "전체보기 ›",
+    "tilesLabel": "카테고리",
+    "tiles": {
+      "cafe": "카페",
+      "beach": "바다",
+      "lake": "호수",
+      "river": "강",
+      "viewpoint": "전망대",
+      "stay": "숙소",
+      "nearby": "내 주변",
+      "guide": "AI 가이드"
+    },
+    "badgeWeekly": "이번 주 인기",
+    "badgeNew": "새로 추가된 장소",
+    "pause": "자동 넘김 멈추기",
+    "play": "자동 넘김 시작",
+    "taglines": {
+      "CAFE": "창가에 앉아 쉬어 가요",
+      "BEACH": "파도 소리 들으러 가요",
+      "LAKE": "잔잔한 호수에서 숨 고르기",
+      "RIVER": "강바람 맞으며 걷기",
+      "VIEWPOINT": "탁 트인 풍경을 한눈에",
+      "STAY": "물소리 들으며 하룻밤",
+      "ATTRACTION": "오늘은 여기로 떠나요"
+    }
+  },
+  "list": {
+    "filtersLabel": "필터",
+    "count": "{n}곳",
+    "noResults": "검색 결과가 없어요.",
+    "noMatch": "조건에 맞는 장소가 없어요.",
+    "startOver": "처음으로",
+    "clearFilters": "필터 지우기",
+    "searchHeading": "“{q}” 검색 결과",
+    "allSpots": "모든 장소",
+    "all": "전체",
+    "moreFilters": "지역 · 분위기",
+    "region": "지역",
+    "mood": "분위기",
+    "removeFilter": "{name} 필터 지우기",
+    "pagesLabel": "페이지",
+    "prev": "← 이전",
+    "next": "다음 →"
+  },
+  "rating": {
+    "none": "아직 리뷰가 없어요",
+    "count": "리뷰 {n}"
+  },
+  "spot": {
+    "back": "← 목록",
+    "reviews": "리뷰 {n}",
+    "noReviews": "첫 리뷰를 기다리고 있어요.",
+    "login": "로그인",
+    "loginToReview": "하고 리뷰를 남겨 보세요.",
+    "like": "좋아요",
+    "unlike": "좋아요 취소",
+    "bookmark": "북마크",
+    "unbookmark": "북마크 해제",
+    "gallery": {
+      "photo": "{name} 사진 {n}",
+      "prev": "이전 사진",
+      "next": "다음 사진",
+      "show": "사진 {n} 보기"
+    },
+    "directions": {
+      "title": "가는 길",
+      "copy": "주소 복사",
+      "copied": "복사됨",
+      "kakao": "카카오맵 길찾기",
+      "naver": "네이버 지도",
+      "google": "구글 지도"
+    },
+    "checkPrice": "가격·예약 확인",
+    "naverSearch": "네이버 검색",
+    "googleSearch": "구글 검색",
+    "priceNote": "가격과 예약은 각 사이트에서 확인해 주세요"
+  },
+  "review": {
+    "editMine": "내 리뷰 수정",
+    "deleting": "지우는 중…",
+    "delete": "삭제",
+    "ratingLegend": "별점",
+    "placeholder": "이 장소는 어땠나요?",
+    "saving": "저장 중…",
+    "saveEdit": "수정 저장",
+    "submit": "리뷰 남기기",
+    "cancel": "취소"
+  },
+  "auth": {
+    "loginTitle": "로그인 · WeLocation",
+    "signupTitle": "회원가입 · WeLocation",
+    "login": "로그인",
+    "signup": "회원가입",
+    "email": "이메일",
+    "nickname": "닉네임",
+    "password": "비밀번호",
+    "passwordHint": "(8자 이상)",
+    "wait": "잠시만요…",
+    "signupSubmit": "가입하기",
+    "newHere": "처음이신가요?",
+    "haveAccount": "이미 계정이 있나요?"
+  },
+  "errors": {
+    "tooMany": "요청이 너무 많아요. 잠시 후 다시 시도해 주세요.",
+    "server": "서버에 문제가 있어요. 잠시 후 다시 시도해 주세요.",
+    "checkCredentials": "이메일과 비밀번호를 확인해 주세요.",
+    "wrongCredentials": "이메일 또는 비밀번호가 맞지 않아요.",
+    "loginFailed": "로그인하지 못했어요.",
+    "badEmail": "이메일 형식이 아니에요.",
+    "nicknameLength": "닉네임은 1~30자로 입력해 주세요.",
+    "passwordShort": "비밀번호는 8자 이상 입력해 주세요.",
+    "passwordLong": "비밀번호가 너무 길어요. 조금 줄여 주세요.",
+    "emailTaken": "이미 가입된 이메일이에요.",
+    "checkInput": "입력한 내용을 다시 확인해 주세요.",
+    "signupFailed": "가입하지 못했어요.",
+    "actionFailed": "처리하지 못했어요.",
+    "pickRating": "별점을 골라 주세요.",
+    "reviewLength": "리뷰는 1~1000자로 써 주세요.",
+    "reviewExists": "이미 이 장소에 리뷰를 남겼어요. 기존 리뷰를 수정해 주세요.",
+    "notYourReview": "내 리뷰만 수정할 수 있어요.",
+    "reviewSaveFailed": "리뷰를 저장하지 못했어요.",
+    "reviewDeleteFailed": "리뷰를 지우지 못했어요."
+  },
+  "nearby": {
+    "metaTitle": "내 주변 장소 · WeLocation",
+    "metaDescription": "지금 있는 곳에서 가까운 카페, 해변, 호수, 전망대를 거리순으로 보여 드려요.",
+    "title": "내 주변 장소",
+    "privacy": "위치는 이번 검색에만 쓰고 저장하지 않아요. 주소창에는 약 100m 단위로 줄인 좌표만 남아요.",
+    "radius": "반경",
+    "kind": "종류",
+    "all": "전체",
+    "outsideKorea": "이 위치는 찾을 수 없어요. 위로케이션은 한국 안의 장소만 보여 드려요.",
+    "hint": "‘내 주변 찾기’를 누르면 가까운 장소를 거리순으로 보여 드려요.",
+    "browseAll": "전체 장소 둘러보기",
+    "none": "반경 {r}km 안에 장소가 없어요.",
+    "noneOfKind": "반경 {r}km 안에 {kind} 장소가 없어요.",
+    "widen": "{r}km로 넓혀서 찾기",
+    "allKinds": "모든 종류 보기",
+    "summary": "반경 {r}km · 가까운 순 {n}곳",
+    "max": " (최대 50곳)",
+    "distance": "거리",
+    "locate": {
+      "find": "내 주변 찾기",
+      "again": "현재 위치로 다시 찾기",
+      "busy": "위치 확인 중…",
+      "unsupported": "이 브라우저는 위치 찾기를 지원하지 않아요.",
+      "denied": "위치 권한이 거부됐어요. 브라우저 설정에서 위치 접근을 허용해 주세요.",
+      "unavailable": "지금은 위치를 확인할 수 없어요. 잠시 후 다시 시도해 주세요.",
+      "timeout": "위치 확인 시간이 초과됐어요. 다시 시도해 주세요."
+    }
+  },
+  "ranking": {
+    "metaTitle": "이번 주 인기 장소 · WeLocation",
+    "metaDescription": "이번 주 좋아요를 가장 많이 받은 장소 10곳.",
+    "title": "이번 주 인기 장소",
+    "basis": "월요일 0시부터 받은 좋아요 순",
+    "empty": "이번 주에는 아직 좋아요를 받은 장소가 없어요.",
+    "rank": "{n}위",
+    "weeklyLikes": "이번 주 좋아요"
+  },
+  "guide": {
+    "page": {
+      "metaTitle": "AI 가이드 · WeLocation",
+      "metaDescription": "원하는 장소를 말하면 위로케이션에 있는 장소 중에서 골라 드려요.",
+      "title": "AI 가이드",
+      "intro": "원하는 장소를 말해 주세요. 위로케이션에 있는 장소 중에서만 골라 드려요.",
+      "loginHint": "AI 가이드는 로그인 후 사용할 수 있어요.",
+      "login": "로그인"
+    },
+    "form": {
+      "questionLabel": "질문",
+      "placeholder": "부산에서 바다 보이는 조용한 카페 추천해 줘",
+      "limits": "{n}자까지 · 하루 질문 수에 제한이 있어요",
+      "asking": "찾는 중…",
+      "ask": "물어보기",
+      "waiting": "장소를 찾고 있어요. 30초쯤 걸릴 수 있어요.",
+      "loginNeeded": "로그인이 필요해요.",
+      "loginAndAsk": "로그인하고 다시 물어보기",
+      "route": "추천 동선",
+      "fromPrevious": "이전 장소에서 {d}",
+      "straightLine": "거리는 직선거리예요.",
+      "noPicks": "조건에 맞는 장소를 찾지 못했어요. 지역이나 종류를 바꿔서 물어봐 주세요."
+    },
+    "errors": {
+      "empty": "질문을 입력해 주세요.",
+      "tooLong": "질문은 {n}자까지 쓸 수 있어요.",
+      "connect": "서버에 연결하지 못했어요. 잠시 후 다시 시도해 주세요.",
+      "quota": "오늘 AI 가이드 사용 한도를 다 썼어요. 내일 다시 이용해 주세요.",
+      "unavailable": "AI 가이드를 지금 사용할 수 없어요. 잠시 후 다시 시도해 주세요.",
+      "badRequest": "질문을 다시 확인해 주세요. ({n}자 이하)",
+      "failed": "답을 받지 못했어요. 다시 시도해 주세요."
+    }
+  },
+  "bookmarks": {
+    "metaTitle": "북마크 · WeLocation",
+    "title": "북마크 {n}",
+    "empty": "아직 저장한 장소가 없어요.",
+    "prev": "이전",
+    "next": "다음"
+  },
+  "notFound": {
+    "message": "찾는 장소가 없어요.",
+    "back": "목록으로"
+  },
+  "error": {
+    "message": "지금은 장소 정보를 불러올 수 없어요.",
+    "retry": "다시 시도"
+  }
+}

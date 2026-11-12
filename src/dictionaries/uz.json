@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "title": "WeLocation · Ko'ngilga taskin beradigan joylar",
+    "description": "Dengiz, ko'l va daryo manzarali kafelar hamda tomosha maydonchalari. Koreyaning sokin joylari bir joyda."
+  },
+  "header": {
+    "searchPlaceholder": "Qayerda dam olmoqchisiz?",
+    "searchLabel": "Joy qidirish",
+    "searchButton": "Qidirish",
+    "bookmarks": "Saqlangan",
+    "my": "Profil",
+    "logout": "Chiqish",
+    "language": "Til"
+  },
+  "tabs": {
+    "home": "Bosh sahifa",
+    "nearby": "Atrofda",
+    "ranking": "Mashhur",
+    "guide": "AI gid"
+  },
+  "common": {
+    "loading": "Yuklanmoqda…",
+    "photoCredit": "Surat: Koreya turizm tashkiloti",
+    "footerCredit": "Joy ma'lumotlari va suratlar: Koreya turizm tashkiloti (KOGL)",
+    "browseSpots": "Joylarni ko'rish"
+  },
+  "categories": {
+    "CAFE": "Kafelar",
+    "BEACH": "Plyajlar",
+    "LAKE": "Ko'llar",
+    "RIVER": "Daryolar",
+    "VIEWPOINT": "Manzaralar",
+    "STAY": "Mehmonxonalar",
+    "ATTRACTION": "Diqqatga sazovor"
+  },
+  "regions": {
+    "SEOUL": "Seul",
+    "BUSAN": "Pusan",
+    "DAEGU": "Tegu",
+    "INCHEON": "Inchxon",
+    "GWANGJU": "Kvanju",
+    "DAEJEON": "Tejon",
+    "ULSAN": "Ulsan",
+    "SEJONG": "Sejong",
+    "GYEONGGI": "Kyonggido",
+    "GANGWON": "Kanvondo",
+    "CHUNGBUK": "Shimoliy Chxunchxon",
+    "CHUNGNAM": "Janubiy Chxunchxon",
+    "JEONBUK": "Shimoliy Cholla",
+    "JEONNAM": "Janubiy Cholla",
+    "GYEONGBUK": "Shimoliy Kyonsan",
+    "GYEONGNAM": "Janubiy Kyonsan",
+    "JEJU": "Chejudo"
+  },
+  "tags": {
+    "OCEAN_VIEW": "Dengiz manzarasi",
+    "LAKE_VIEW": "Ko'l manzarasi",
+    "RIVER_VIEW": "Daryo manzarasi",
+    "NIGHT_VIEW": "Tungi manzara",
+    "ROOFTOP": "Tom terrasa",
+    "PET_FRIENDLY": "Uy hayvonlari bilan",
+    "PARKING": "Avtoturargoh",
+    "KIDS": "Bolalar bilan"
+  },
+  "home": {
+    "noticeLabel": "E'lon",
+    "notice": "Har kecha Koreya turizm tashkiloti ma'lumotlari asosida yangi joylar va suratlar qo'shiladi",
+    "carouselLabel": "Tavsiya etilgan joylar",
+    "prevSlide": "Oldingi joy",
+    "nextSlide": "Keyingi joy",
+    "weekly": "Bu haftaning mashhurlari",
+    "oceanCafes": "Dengiz manzarali kafelar",
+    "seaViews": "Dengiz manzaralari",
+    "stays": "Suv bo'yidagi mehmonxonalar",
+    "newest": "Yangi qo'shilgan joylar",
+    "seeAll": "Hammasi ›",
+    "tilesLabel": "Toifalar",
+    "tiles": {
+      "cafe": "Kafe",
+      "beach": "Dengiz",
+      "lake": "Ko'l",
+      "river": "Daryo",
+      "viewpoint": "Manzara",
+      "stay": "Mehmonxona",
+      "nearby": "Atrofda",
+      "guide": "AI gid"
+    },
+    "badgeWeekly": "Haftaning mashhuri",
+    "badgeNew": "Yangi joy",
+    "pause": "Avtomatik aylanishni to'xtatish",
+    "play": "Avtomatik aylanishni boshlash",
+    "taglines": {
+      "CAFE": "Deraza yonida dam oling",
+      "BEACH": "To'lqin ovozini tinglang",
+      "LAKE": "Ko'l bo'yida nafas rostlang",
+      "RIVER": "Daryo shabadasida sayr",
+      "VIEWPOINT": "Butun manzara bir qarashda",
+      "STAY": "Suv bo'yida bir kecha",
+      "ATTRACTION": "Bugun shu yerga boring"
+    }
+  },
+  "list": {
+    "filtersLabel": "Filtrlar",
+    "count": "{n} ta joy",
+    "noResults": "Hech narsa topilmadi.",
+    "noMatch": "Shartlarga mos joy yo'q.",
+    "startOver": "Boshiga",
+    "clearFilters": "Filtrlarni tozalash",
+    "searchHeading": "“{q}” bo'yicha natijalar",
+    "allSpots": "Barcha joylar",
+    "all": "Hammasi",
+    "moreFilters": "Hudud · Kayfiyat",
+    "region": "Hudud",
+    "mood": "Kayfiyat",
+    "removeFilter": "{name} filtrini olib tashlash",
+    "pagesLabel": "Sahifalar",
+    "prev": "← Oldingi",
+    "next": "Keyingi →"
+  },
+  "rating": {
+    "none": "Hali sharhlar yo'q",
+    "count": "{n} ta sharh"
+  },
+  "spot": {
+    "back": "← Ro'yxat",
+    "reviews": "Sharhlar {n}",
+    "noReviews": "Birinchi sharhni siz qoldiring.",
+    "login": "Kiring",
+    "loginToReview": " va sharh qoldiring.",
+    "like": "Yoqdi",
+    "unlike": "Yoqtirishni bekor qilish",
+    "bookmark": "Saqlash",
+    "unbookmark": "Saqlanganlardan olish",
+    "gallery": {
+      "photo": "{name}, {n}-surat",
+      "prev": "Oldingi surat",
+      "next": "Keyingi surat",
+      "show": "{n}-suratni ko'rish"
+    },
+    "directions": {
+      "title": "Qanday borish mumkin",
+      "copy": "Manzilni nusxalash",
+      "copied": "Nusxalandi",
+      "kakao": "KakaoMap yo'nalishi",
+      "naver": "Naver Map",
+      "google": "Google Maps"
+    },
+    "checkPrice": "Narx va bron",
+    "naverSearch": "Naver qidiruv",
+    "googleSearch": "Google qidiruv",
+    "priceNote": "Narx va bronni har bir saytda tekshiring"
+  },
+  "review": {
+    "editMine": "Sharhimni tahrirlash",
+    "deleting": "O'chirilmoqda…",
+    "delete": "O'chirish",
+    "ratingLegend": "Baho",
+    "placeholder": "Bu joy sizga qanday yoqdi?",
+    "saving": "Saqlanmoqda…",
+    "saveEdit": "Saqlash",
+    "submit": "Sharh qoldirish",
+    "cancel": "Bekor qilish"
+  },
+  "auth": {
+    "loginTitle": "Kirish · WeLocation",
+    "signupTitle": "Ro'yxatdan o'tish · WeLocation",
+    "login": "Kirish",
+    "signup": "Ro'yxatdan o'tish",
+    "email": "Email",
+    "nickname": "Taxallus",
+    "password": "Parol",
+    "passwordHint": "(kamida 8 belgi)",
+    "wait": "Biroz kuting…",
+    "signupSubmit": "Ro'yxatdan o'tish",
+    "newHere": "Birinchi marta keldingizmi?",
+    "haveAccount": "Hisobingiz bormi?"
+  },
+  "errors": {
+    "tooMany": "So'rovlar juda ko'p. Birozdan keyin qayta urinib ko'ring.",
+    "server": "Serverda muammo bor. Birozdan keyin qayta urinib ko'ring.",
+    "checkCredentials": "Email va parolni tekshiring.",
+    "wrongCredentials": "Email yoki parol noto'g'ri.",
+    "loginFailed": "Kirib bo'lmadi.",
+    "badEmail": "Email manzili noto'g'ri formatda.",
+    "nicknameLength": "Taxallus 1 dan 30 belgigacha bo'lishi kerak.",
+    "passwordShort": "Parol kamida 8 belgidan iborat bo'lishi kerak.",
+    "passwordLong": "Parol juda uzun. Biroz qisqartiring.",
+    "emailTaken": "Bu email allaqachon ro'yxatdan o'tgan.",
+    "checkInput": "Kiritilgan ma'lumotlarni qayta tekshiring.",
+    "signupFailed": "Ro'yxatdan o'tib bo'lmadi.",
+    "actionFailed": "Amalni bajarib bo'lmadi.",
+    "pickRating": "Baho tanlang.",
+    "reviewLength": "Sharh 1 dan 1000 belgigacha bo'lishi kerak.",
+    "reviewExists": "Bu joyga allaqachon sharh qoldirgansiz. Mavjud sharhingizni tahrirlang.",
+    "notYourReview": "Faqat o'z sharhingizni tahrirlay olasiz.",
+    "reviewSaveFailed": "Sharhni saqlab bo'lmadi.",
+    "reviewDeleteFailed": "Sharhni o'chirib bo'lmadi."
+  },
+  "nearby": {
+    "metaTitle": "Yaqindagi joylar · WeLocation",
+    "metaDescription": "Turgan joyingizga yaqin kafelar, plyajlar, ko'llar va tomosha maydonchalari, masofa bo'yicha.",
+    "title": "Yaqindagi joylar",
+    "privacy": "Joylashuvingiz faqat shu qidiruv uchun ishlatiladi va saqlanmaydi. Manzil satrida taxminan 100 m gacha yaxlitlangan koordinatalar qoladi.",
+    "radius": "Radius",
+    "kind": "Turi",
+    "all": "Hammasi",
+    "outsideKorea": "Bu joylashuv bo'yicha joy topilmadi. WeLocation faqat Koreyadagi joylarni ko'rsatadi.",
+    "hint": "“Atrofni qidirish” tugmasini bosing, eng yaqin joylarni ko'rsatamiz.",
+    "browseAll": "Barcha joylarni ko'rish",
+    "none": "{r} km radiusda joy yo'q.",
+    "noneOfKind": "{r} km radiusda “{kind}” toifasida joy yo'q.",
+    "widen": "{r} km gacha kengaytirish",
+    "allKinds": "Barcha turlarni ko'rish",
+    "summary": "{r} km radius · eng yaqinlari avval ({n})",
+    "max": " (ko'pi bilan 50 ta)",
+    "distance": "Masofa",
+    "locate": {
+      "find": "Atrofni qidirish",
+      "again": "Joriy joylashuvdan qayta topish",
+      "busy": "Joylashuv aniqlanmoqda…",
+      "unsupported": "Bu brauzer joylashuvni aniqlay olmaydi.",
+      "denied": "Joylashuvga ruxsat berilmadi. Brauzer sozlamalarida ruxsat bering.",
+      "unavailable": "Hozir joylashuvni aniqlab bo'lmadi. Birozdan keyin qayta urinib ko'ring.",
+      "timeout": "Joylashuvni aniqlash vaqti tugadi. Qayta urinib ko'ring."
+    }
+  },
+  "ranking": {
+    "metaTitle": "Bu haftaning mashhur joylari · WeLocation",
+    "metaDescription": "Bu hafta eng ko'p yoqtirilgan 10 ta joy.",
+    "title": "Bu haftaning mashhur joylari",
+    "basis": "Dushanba 00:00 dan beri yoqtirishlar bo'yicha",
+    "empty": "Bu hafta hali hech bir joy yoqtirilmagan.",
+    "rank": "{n}-o'rin",
+    "weeklyLikes": "Haftalik yoqtirishlar"
+  },
+  "guide": {
+    "page": {
+      "metaTitle": "AI gid · WeLocation",
+      "metaDescription": "Qanday joy kerakligini yozing, WeLocation'dagi joylardan tanlab beramiz.",
+      "title": "AI gid",
+      "intro": "Qanday joy qidirayotganingizni yozing. Faqat WeLocation'dagi joylardan tanlab beramiz.",
+      "loginHint": "AI giddan foydalanish uchun tizimga kiring.",
+      "login": "Kirish"
+    },
+    "form": {
+      "questionLabel": "Savol",
+      "placeholder": "Pusanda dengiz ko'rinadigan sokin kafe tavsiya qil",
+      "limits": "{n} belgigacha · kunlik savollar soni cheklangan",
+      "asking": "Qidirilmoqda…",
+      "ask": "So'rash",
+      "waiting": "Joylar qidirilmoqda. Taxminan 30 soniya ketishi mumkin.",
+      "loginNeeded": "Tizimga kirish kerak.",
+      "loginAndAsk": "Kirib, qayta so'rash",
+      "route": "Tavsiya etilgan yo'nalish",
+      "fromPrevious": "Oldingi joydan {d}",
+      "straightLine": "Masofa to'g'ri chiziq bo'yicha.",
+      "noPicks": "Mos joy topilmadi. Boshqa hudud yoki turni so'rab ko'ring."
+    },
+    "errors": {
+      "empty": "Savolni kiriting.",
+      "tooLong": "Savol {n} belgigacha bo'lishi mumkin.",
+      "connect": "Serverga ulanib bo'lmadi. Birozdan keyin qayta urinib ko'ring.",
+      "quota": "Bugungi AI gid limiti tugadi. Ertaga qayta keling.",
+      "unavailable": "AI gid hozir ishlamayapti. Birozdan keyin qayta urinib ko'ring.",
+      "badRequest": "Savolni qayta tekshiring. ({n} belgigacha)",
+      "failed": "Javob olib bo'lmadi. Qayta urinib ko'ring."
+    }
+  },
+  "bookmarks": {
+    "metaTitle": "Saqlangan · WeLocation",
+    "title": "Saqlangan {n}",
+    "empty": "Hali hech qanday joy saqlamagansiz.",
+    "prev": "Oldingi",
+    "next": "Keyingi"
+  },
+  "notFound": {
+    "message": "Bunday joy topilmadi.",
+    "back": "Ro'yxatga"
+  },
+  "error": {
+    "message": "Hozir joy ma'lumotlarini yuklab bo'lmadi.",
+    "retry": "Qayta urinish"
+  }
+}

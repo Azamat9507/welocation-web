@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "title": "WeLocation · Places that comfort",
+    "description": "Cafés and viewpoints by the sea, lakes and rivers. Calming places across Korea, all in one place."
+  },
+  "header": {
+    "searchPlaceholder": "Where do you want to unwind?",
+    "searchLabel": "Search places",
+    "searchButton": "Search",
+    "bookmarks": "Saved",
+    "my": "Me",
+    "logout": "Log out",
+    "language": "Language"
+  },
+  "tabs": {
+    "home": "Home",
+    "nearby": "Nearby",
+    "ranking": "Popular",
+    "guide": "AI Guide"
+  },
+  "common": {
+    "loading": "Loading…",
+    "photoCredit": "Photo: Korea Tourism Organization",
+    "footerCredit": "Place info and photos: Korea Tourism Organization (KOGL)",
+    "browseSpots": "Browse places"
+  },
+  "categories": {
+    "CAFE": "Cafés",
+    "BEACH": "Beaches",
+    "LAKE": "Lakes",
+    "RIVER": "Rivers",
+    "VIEWPOINT": "Viewpoints",
+    "STAY": "Stays",
+    "ATTRACTION": "Sights"
+  },
+  "regions": {
+    "SEOUL": "Seoul",
+    "BUSAN": "Busan",
+    "DAEGU": "Daegu",
+    "INCHEON": "Incheon",
+    "GWANGJU": "Gwangju",
+    "DAEJEON": "Daejeon",
+    "ULSAN": "Ulsan",
+    "SEJONG": "Sejong",
+    "GYEONGGI": "Gyeonggi",
+    "GANGWON": "Gangwon",
+    "CHUNGBUK": "N. Chungcheong",
+    "CHUNGNAM": "S. Chungcheong",
+    "JEONBUK": "N. Jeolla",
+    "JEONNAM": "S. Jeolla",
+    "GYEONGBUK": "N. Gyeongsang",
+    "GYEONGNAM": "S. Gyeongsang",
+    "JEJU": "Jeju"
+  },
+  "tags": {
+    "OCEAN_VIEW": "Ocean view",
+    "LAKE_VIEW": "Lake view",
+    "RIVER_VIEW": "River view",
+    "NIGHT_VIEW": "Night view",
+    "ROOFTOP": "Rooftop",
+    "PET_FRIENDLY": "Pet friendly",
+    "PARKING": "Parking",
+    "KIDS": "Kid friendly"
+  },
+  "home": {
+    "noticeLabel": "Notice",
+    "notice": "New places and photos from the Korea Tourism Organization, updated every night",
+    "carouselLabel": "Featured places",
+    "prevSlide": "Previous place",
+    "nextSlide": "Next place",
+    "weekly": "Popular this week",
+    "oceanCafes": "Cafés with a sea view",
+    "seaViews": "Sea views",
+    "stays": "Stays by the water",
+    "newest": "Just added",
+    "seeAll": "See all ›",
+    "tilesLabel": "Categories",
+    "tiles": {
+      "cafe": "Cafés",
+      "beach": "Sea",
+      "lake": "Lakes",
+      "river": "Rivers",
+      "viewpoint": "Views",
+      "stay": "Stays",
+      "nearby": "Nearby",
+      "guide": "AI Guide"
+    },
+    "badgeWeekly": "Popular this week",
+    "badgeNew": "Just added",
+    "pause": "Pause slideshow",
+    "play": "Play slideshow",
+    "taglines": {
+      "CAFE": "Slow down by the window",
+      "BEACH": "Go hear the waves",
+      "LAKE": "Catch your breath by the lake",
+      "RIVER": "Walk in the river breeze",
+      "VIEWPOINT": "The whole view at a glance",
+      "STAY": "A night by the water",
+      "ATTRACTION": "Your trip for today"
+    }
+  },
+  "list": {
+    "filtersLabel": "Filters",
+    "count": "{n} found",
+    "noResults": "No results found.",
+    "noMatch": "No places match these filters.",
+    "startOver": "Start over",
+    "clearFilters": "Clear filters",
+    "searchHeading": "Results for “{q}”",
+    "allSpots": "All places",
+    "all": "All",
+    "moreFilters": "Region · Mood",
+    "region": "Region",
+    "mood": "Mood",
+    "removeFilter": "Remove {name} filter",
+    "pagesLabel": "Pages",
+    "prev": "← Prev",
+    "next": "Next →"
+  },
+  "rating": {
+    "none": "No reviews yet",
+    "count": "Reviews {n}"
+  },
+  "spot": {
+    "back": "← Back",
+    "reviews": "Reviews {n}",
+    "noReviews": "Be the first to leave a review.",
+    "login": "Log in",
+    "loginToReview": " to leave a review.",
+    "like": "Like",
+    "unlike": "Unlike",
+    "bookmark": "Save",
+    "unbookmark": "Unsave",
+    "gallery": {
+      "photo": "{name} photo {n}",
+      "prev": "Previous photo",
+      "next": "Next photo",
+      "show": "Show photo {n}"
+    },
+    "directions": {
+      "title": "Getting there",
+      "copy": "Copy address",
+      "copied": "Copied",
+      "kakao": "KakaoMap directions",
+      "naver": "Naver Map",
+      "google": "Google Maps"
+    },
+    "checkPrice": "Prices and booking",
+    "naverSearch": "Naver search",
+    "googleSearch": "Google search",
+    "priceNote": "Please check prices and booking on each site"
+  },
+  "review": {
+    "editMine": "Edit my review",
+    "deleting": "Deleting…",
+    "delete": "Delete",
+    "ratingLegend": "Rating",
+    "placeholder": "How was this place?",
+    "saving": "Saving…",
+    "saveEdit": "Save changes",
+    "submit": "Post review",
+    "cancel": "Cancel"
+  },
+  "auth": {
+    "loginTitle": "Log in · WeLocation",
+    "signupTitle": "Sign up · WeLocation",
+    "login": "Log in",
+    "signup": "Sign up",
+    "email": "Email",
+    "nickname": "Nickname",
+    "password": "Password",
+    "passwordHint": "(8+ characters)",
+    "wait": "One moment…",
+    "signupSubmit": "Create account",
+    "newHere": "New here?",
+    "haveAccount": "Already have an account?"
+  },
+  "errors": {
+    "tooMany": "Too many requests. Please try again in a moment.",
+    "server": "Something went wrong on our end. Please try again in a moment.",
+    "checkCredentials": "Please check your email and password.",
+    "wrongCredentials": "Incorrect email or password.",
+    "loginFailed": "Couldn't log you in.",
+    "badEmail": "That doesn't look like an email address.",
+    "nicknameLength": "Nickname must be 1 to 30 characters.",
+    "passwordShort": "Password must be at least 8 characters.",
+    "passwordLong": "That password is too long. Please shorten it.",
+    "emailTaken": "This email is already registered.",
+    "checkInput": "Please check what you entered.",
+    "signupFailed": "Couldn't create your account.",
+    "actionFailed": "Something went wrong.",
+    "pickRating": "Please choose a rating.",
+    "reviewLength": "Reviews must be 1 to 1000 characters.",
+    "reviewExists": "You've already reviewed this place. Please edit your existing review.",
+    "notYourReview": "You can only edit your own review.",
+    "reviewSaveFailed": "Couldn't save your review.",
+    "reviewDeleteFailed": "Couldn't delete your review."
+  },
+  "nearby": {
+    "metaTitle": "Places near you · WeLocation",
+    "metaDescription": "Cafés, beaches, lakes and viewpoints close to where you are, sorted by distance.",
+    "title": "Places near you",
+    "privacy": "Your location is used only for this search and never stored. The address bar keeps coordinates rounded to about 100 m.",
+    "radius": "Radius",
+    "kind": "Type",
+    "all": "All",
+    "outsideKorea": "We can't find places here. WeLocation only covers places in Korea.",
+    "hint": "Tap “Find nearby” to see places closest to you.",
+    "browseAll": "Browse all places",
+    "none": "No places within {r} km.",
+    "noneOfKind": "No {kind} within {r} km.",
+    "widen": "Search within {r} km",
+    "allKinds": "Show all types",
+    "summary": "Within {r} km · nearest first ({n})",
+    "max": " (up to 50)",
+    "distance": "Distance",
+    "locate": {
+      "find": "Find nearby",
+      "again": "Search from my location again",
+      "busy": "Finding your location…",
+      "unsupported": "This browser doesn't support location.",
+      "denied": "Location access was denied. Please allow it in your browser settings.",
+      "unavailable": "Can't get your location right now. Please try again in a moment.",
+      "timeout": "Finding your location took too long. Please try again."
+    }
+  },
+  "ranking": {
+    "metaTitle": "Popular this week · WeLocation",
+    "metaDescription": "The 10 most liked places this week.",
+    "title": "Popular this week",
+    "basis": "By likes since Monday 12 AM",
+    "empty": "No places have been liked yet this week.",
+    "rank": "No. {n}",
+    "weeklyLikes": "Likes this week"
+  },
+  "guide": {
+    "page": {
+      "metaTitle": "AI Guide · WeLocation",
+      "metaDescription": "Describe the place you want, and we'll pick from places on WeLocation.",
+      "title": "AI Guide",
+      "intro": "Tell us what kind of place you're looking for. We only pick from places on WeLocation.",
+      "loginHint": "Log in to use the AI Guide.",
+      "login": "Log in"
+    },
+    "form": {
+      "questionLabel": "Question",
+      "placeholder": "A quiet café with a sea view in Busan",
+      "limits": "Up to {n} characters · daily question limit applies",
+      "asking": "Searching…",
+      "ask": "Ask",
+      "waiting": "Finding places for you. This can take about 30 seconds.",
+      "loginNeeded": "Please log in.",
+      "loginAndAsk": "Log in and ask again",
+      "route": "Suggested route",
+      "fromPrevious": "{d} from previous stop",
+      "straightLine": "Distances are in a straight line.",
+      "noPicks": "We couldn't find a matching place. Try asking about a different region or type."
+    },
+    "errors": {
+      "empty": "Please enter a question.",
+      "tooLong": "Questions can be up to {n} characters.",
+      "connect": "Couldn't reach the server. Please try again in a moment.",
+      "quota": "You've used up today's AI Guide limit. Please come back tomorrow.",
+      "unavailable": "The AI Guide isn't available right now. Please try again in a moment.",
+      "badRequest": "Please check your question. ({n} characters max)",
+      "failed": "Couldn't get an answer. Please try again."
+    }
+  },
+  "bookmarks": {
+    "metaTitle": "Saved · WeLocation",
+    "title": "Saved {n}",
+    "empty": "You haven't saved any places yet.",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "notFound": {
+    "message": "We couldn't find that place.",
+    "back": "Back to list"
+  },
+  "error": {
+    "message": "Can't load place info right now.",
+    "retry": "Try again"
+  }
+}

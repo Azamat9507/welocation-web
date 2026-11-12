@@ -55,23 +55,26 @@ async function HomeSections() {
 
       <HomeCategories />
 
-      {ranked.length > 0 && (
+      {ranked.length >= 4 && (
         <Rail title="이번 주 인기" href="/ranking" spots={ranked.slice(0, 8).map((r) => r.spot)} ranked />
       )}
-      {cafes.spots.length > 0 && <Rail title="바다가 보이는 카페" href={`/${cafes.query}`} spots={cafes.spots} />}
+      {cafes.spots.length > 0 && <Rail title={cafes.title} href={`/${cafes.query}`} spots={cafes.spots} />}
       <Rail title="새로 추가된 장소" href="/?page=1" spots={newest.items.slice(0, 8)} />
     </>
   );
 }
 
-// No cafe carries the ocean-view tag until tags are curated, so fall back to cafes in general
-async function waterCafes(): Promise<{ spots: SpotSummary[]; query: string }> {
+// No cafe carries the ocean-view tag until tags are curated; until then show beaches, so the title stays true
+// and the rail is not a copy of the newest list (which is mostly cafes)
+async function waterCafes(): Promise<{ title: string; spots: SpotSummary[]; query: string }> {
   const tagged: SpotFilter = { category: "CAFE", tag: "OCEAN_VIEW", page: 1 };
   const ocean = await getSpots(tagged, 8).catch(() => null);
-  if (ocean && ocean.items.length >= 4) return { spots: ocean.items, query: filterQuery(tagged) };
-  const any: SpotFilter = { category: "CAFE", page: 1 };
-  const cafes = await getSpots(any, 8).catch(() => null);
-  return { spots: cafes?.items ?? [], query: filterQuery(any) };
+  if (ocean && ocean.items.length >= 4) {
+    return { title: "바다가 보이는 카페", spots: ocean.items, query: filterQuery(tagged) };
+  }
+  const beach: SpotFilter = { category: "BEACH", page: 1 };
+  const beaches = await getSpots(beach, 8).catch(() => null);
+  return { title: "바다 풍경", spots: beaches?.items ?? [], query: filterQuery(beach) };
 }
 
 // Up to 5 of this week's most liked spots with a photo, topped up with the newest ones when fewer than 3

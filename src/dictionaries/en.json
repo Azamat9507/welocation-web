@@ -10,7 +10,10 @@
     "bookmarks": "Saved",
     "my": "Me",
     "logout": "Log out",
-    "language": "Language"
+    "language": "Language",
+    "askAi": "Ask the AI Guide",
+    "searchFor": "Search “{q}”",
+    "askAiFor": "Ask the AI Guide: “{q}”"
   },
   "tabs": {
     "home": "Home",
@@ -115,7 +118,8 @@
     "removeFilter": "Remove {name} filter",
     "pagesLabel": "Pages",
     "prev": "← Prev",
-    "next": "Next →"
+    "next": "Next →",
+    "staysSoon": "Stays near the sea, lakes and rivers are added every night. They will show up here soon."
   },
   "rating": {
     "none": "No reviews yet",
@@ -244,10 +248,8 @@
     },
     "form": {
       "questionLabel": "Question",
-      "placeholder": "A quiet café with a sea view in Busan",
+      "placeholder": "Where, with whom, what mood?",
       "limits": "Up to {n} characters · daily question limit applies",
-      "asking": "Searching…",
-      "ask": "Ask",
       "waiting": "Finding places for you. This can take about 30 seconds.",
       "loginNeeded": "Please log in.",
       "loginAndAsk": "Log in and ask again",
@@ -255,6 +257,17 @@
       "fromPrevious": "{d} from previous stop",
       "straightLine": "Distances are in a straight line.",
       "noPicks": "We couldn't find a matching place. Try asking about a different region or type."
+    },
+    "panel": {
+      "launcher": "AI Guide",
+      "title": "AI Guide",
+      "subtitle": "Picks only from our place data",
+      "reset": "Clear conversation",
+      "close": "Close",
+      "welcome": "Tell me where you'd like to go. I only pick from places on WeLocation.",
+      "independent": "Each question is answered on its own. Earlier messages are not remembered.",
+      "send": "Send",
+      "thinking": "Thinking…"
     },
     "errors": {
       "empty": "Please enter a question.",

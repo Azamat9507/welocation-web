@@ -10,7 +10,10 @@
     "bookmarks": "Saqlangan",
     "my": "Profil",
     "logout": "Chiqish",
-    "language": "Til"
+    "language": "Til",
+    "askAi": "AI giddan so'rash",
+    "searchFor": "“{q}” ni qidirish",
+    "askAiFor": "AI giddan so'rash: “{q}”"
   },
   "tabs": {
     "home": "Bosh sahifa",
@@ -115,7 +118,8 @@
     "removeFilter": "{name} filtrini olib tashlash",
     "pagesLabel": "Sahifalar",
     "prev": "← Oldingi",
-    "next": "Keyingi →"
+    "next": "Keyingi →",
+    "staysSoon": "Dengiz, ko'l va daryo bo'yidagi mehmonxonalar har kecha qo'shiladi. Tez orada shu yerda paydo bo'ladi."
   },
   "rating": {
     "none": "Hali sharhlar yo'q",
@@ -244,10 +248,8 @@
     },
     "form": {
       "questionLabel": "Savol",
-      "placeholder": "Pusanda dengiz ko'rinadigan sokin kafe tavsiya qil",
+      "placeholder": "Qayerga, kim bilan, qanday kayfiyatda?",
       "limits": "{n} belgigacha · kunlik savollar soni cheklangan",
-      "asking": "Qidirilmoqda…",
-      "ask": "So'rash",
       "waiting": "Joylar qidirilmoqda. Taxminan 30 soniya ketishi mumkin.",
       "loginNeeded": "Tizimga kirish kerak.",
       "loginAndAsk": "Kirib, qayta so'rash",
@@ -255,6 +257,17 @@
       "fromPrevious": "Oldingi joydan {d}",
       "straightLine": "Masofa to'g'ri chiziq bo'yicha.",
       "noPicks": "Mos joy topilmadi. Boshqa hudud yoki turni so'rab ko'ring."
+    },
+    "panel": {
+      "launcher": "AI gid",
+      "title": "AI gid",
+      "subtitle": "Faqat joylar bazasidan tavsiya qiladi",
+      "reset": "Suhbatni tozalash",
+      "close": "Yopish",
+      "welcome": "Qayerga borishni xohlayotganingizni yozing. Faqat WeLocation'dagi joylardan tanlayman.",
+      "independent": "Har bir savolga alohida javob beriladi. Oldingi xabarlar eslab qolinmaydi.",
+      "send": "Yuborish",
+      "thinking": "O'ylayapman…"
     },
     "errors": {
       "empty": "Savolni kiriting.",

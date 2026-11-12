@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { currentLocale } from "@/lib/current-locale";
 import { getToken } from "@/lib/session";
-import { GuideForm } from "./guide-form";
+import { Conversation } from "../guide-panel/conversation";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await currentLocale();
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function GuidePage() {
-  const { lang, t } = await currentLocale();
+  const { t } = await currentLocale();
   return (
     <section className="mx-auto max-w-2xl">
       <h1 className="text-xl font-bold">{t.guide.page.title}</h1>
@@ -19,13 +19,10 @@ export default async function GuidePage() {
       <Suspense>
         <LoginHint />
       </Suspense>
-      <GuideForm
-        lang={lang}
-        labels={t.guide.form}
-        rating={t.rating}
-        categories={t.categories}
-        regions={t.regions}
-      />
+      {/* the same conversation as the floating panel, kept in sessionStorage */}
+      <div className="mt-4 flex h-[70dvh] min-h-[26rem] flex-col overflow-hidden rounded-2xl border border-line bg-background">
+        <Conversation />
+      </div>
     </section>
   );
 }

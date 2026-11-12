@@ -192,7 +192,12 @@ function PhotoCredit({ spots, text }: { spots: SpotSummary[]; text: string }) {
 
 async function SpotList({ filter }: { filter: SpotFilter }) {
   const { lang, t } = await currentLocale();
-  const result = await getSpots(filter);
+  // Stays arrive with the nightly sync, and an API that predates the STAY category answers 400:
+  // either way the visitor gets a plain "coming soon" note instead of the error page
+  const stays = filter.category === "STAY";
+  const result = stays
+    ? await getSpots(filter).catch(() => ({ items: [], page: 0, size: 0, totalElements: 0, totalPages: 0 }))
+    : await getSpots(filter);
 
   return (
     <>
@@ -210,7 +215,9 @@ async function SpotList({ filter }: { filter: SpotFilter }) {
         </h1>
       </div>
 
-      {result.items.length === 0 ? (
+      {result.items.length === 0 && stays && !filter.q && !filter.region && !filter.tag ? (
+        <p className="py-10 text-center text-sm text-muted">{t.list.staysSoon}</p>
+      ) : result.items.length === 0 ? (
         <p className="py-10 text-center text-sm text-muted">
           {filter.q ? t.list.noResults : t.list.noMatch}{" "}
           <Link href={`/${lang}`} className="text-accent">

@@ -144,7 +144,11 @@
       "kakao": "카카오맵 길찾기",
       "naver": "네이버 지도",
       "google": "구글 지도"
-    }
+    },
+    "checkPrice": "가격·예약 확인",
+    "naverSearch": "네이버 검색",
+    "googleSearch": "구글 검색",
+    "priceNote": "가격과 예약은 각 사이트에서 확인해 주세요"
   },
   "review": {
     "editMine": "내 리뷰 수정",

@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { getReviews, getSpot, isTourApiImage, type Page, type Review } from "@/lib/api";
 import { findMyReview, getMe, getMyState } from "@/lib/api-auth";
 import { currentLocale } from "@/lib/current-locale";
+import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, intlLocale } from "@/lib/i18n";
 import { Rating } from "../../rating";
 import { Directions } from "./directions";
@@ -70,6 +71,8 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
         labels={t.spot.directions}
       />
 
+      {spot.category === "STAY" && <PriceLinks name={spot.name} address={spot.address} t={t.spot} />}
+
       <Suspense fallback={<div className="mt-3 h-8" />}>
         <Mine spotId={spot.id} likeCount={spot.likeCount ?? 0} />
       </Suspense>
@@ -98,6 +101,35 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
         )}
       </section>
     </article>
+  );
+}
+
+// No prices or booking here: we have no price data, so the visitor is sent to a search for this place
+function PriceLinks({ name, address, t }: { name: string; address: string; t: Dictionary["spot"] }) {
+  // name plus province and city, e.g. "OO호텔 강원특별자치도 강릉시": enough to pick the right place, short enough to match
+  const q = encodeURIComponent(`${name} ${address.split(/\s+/).slice(0, 2).join(" ")}`.trim());
+  const links = [
+    { label: t.naverSearch, href: `https://search.naver.com/search.naver?query=${q}` },
+    { label: t.googleSearch, href: `https://www.google.com/search?q=${q}` },
+  ];
+  return (
+    <section className="mt-2 rounded-xl bg-surface p-3">
+      <h2 className="text-sm font-semibold">{t.checkPrice}</h2>
+      <div className="mt-2 grid grid-cols-2 gap-1.5">
+        {links.map((l) => (
+          <a
+            key={l.label}
+            href={l.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg border border-line px-2 py-2 text-center text-xs font-medium hover:border-accent hover:text-accent"
+          >
+            {l.label}
+          </a>
+        ))}
+      </div>
+      <p className="mt-2 text-xs text-muted">{t.priceNote}</p>
+    </section>
   );
 }
 

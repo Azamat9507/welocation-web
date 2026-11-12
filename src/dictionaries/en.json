@@ -144,7 +144,11 @@
       "kakao": "KakaoMap directions",
       "naver": "Naver Map",
       "google": "Google Maps"
-    }
+    },
+    "checkPrice": "Prices and booking",
+    "naverSearch": "Naver search",
+    "googleSearch": "Google search",
+    "priceNote": "Please check prices and booking on each site"
   },
   "review": {
     "editMine": "Edit my review",

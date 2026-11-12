@@ -144,7 +144,11 @@
       "kakao": "KakaoMap yo'nalishi",
       "naver": "Naver Map",
       "google": "Google Maps"
-    }
+    },
+    "checkPrice": "Narx va bron",
+    "naverSearch": "Naver qidiruv",
+    "googleSearch": "Google qidiruv",
+    "priceNote": "Narx va bronni har bir saytda tekshiring"
   },
   "review": {
     "editMine": "Sharhimni tahrirlash",

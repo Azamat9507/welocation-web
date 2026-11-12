@@ -144,7 +144,11 @@
       "kakao": "Маршрут в KakaoMap",
       "naver": "Naver Map",
       "google": "Google Maps"
-    }
+    },
+    "checkPrice": "Цены и бронирование",
+    "naverSearch": "Поиск Naver",
+    "googleSearch": "Поиск Google",
+    "priceNote": "Цены и бронирование уточняйте на каждом сайте"
   },
   "review": {
     "editMine": "Изменить мой отзыв",

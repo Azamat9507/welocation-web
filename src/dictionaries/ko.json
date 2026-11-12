@@ -81,6 +81,18 @@
       "viewpoint": "전망대",
       "nearby": "내 주변",
       "guide": "AI 가이드"
+    },
+    "badgeWeekly": "이번 주 인기",
+    "badgeNew": "새로 추가된 장소",
+    "pause": "자동 넘김 멈추기",
+    "play": "자동 넘김 시작",
+    "taglines": {
+      "CAFE": "창가에 앉아 쉬어 가요",
+      "BEACH": "파도 소리 들으러 가요",
+      "LAKE": "잔잔한 호수에서 숨 고르기",
+      "RIVER": "강바람 맞으며 걷기",
+      "VIEWPOINT": "탁 트인 풍경을 한눈에",
+      "ATTRACTION": "오늘은 여기로 떠나요"
     }
   },
   "list": {

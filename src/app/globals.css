@@ -30,4 +30,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-ui);
   word-break: keep-all;
+  /* the full-bleed home banner is 100vw wide, which counts the scrollbar on systems that show one */
+  overflow-x: clip;
 }

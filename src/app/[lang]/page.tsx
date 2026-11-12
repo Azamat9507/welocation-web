@@ -60,6 +60,8 @@ async function HomeSections() {
             carousel: t.home.carouselLabel,
             prev: t.home.prevSlide,
             next: t.home.nextSlide,
+            pause: t.home.pause,
+            play: t.home.play,
             photoCredit: t.common.photoCredit,
           }}
         />
@@ -104,16 +106,21 @@ async function waterCafes(t: Dictionary): Promise<{ title: string; spots: SpotSu
 
 // Up to 5 of this week's most liked spots with a photo, topped up with the newest ones when fewer than 3
 function heroSlides(t: Dictionary, ranked: SpotSummary[], newest: SpotSummary[]): HeroSlide[] {
-  const picked = ranked.filter((s) => s.thumbnailUrl).slice(0, 5);
+  const picked = ranked
+    .filter((s) => s.thumbnailUrl)
+    .slice(0, 5)
+    .map((s) => ({ s, badge: t.home.badgeWeekly }));
   if (picked.length < 3) {
     for (const s of newest) {
       if (picked.length >= 5) break;
-      if (s.thumbnailUrl && !picked.some((p) => p.id === s.id)) picked.push(s);
+      if (s.thumbnailUrl && !picked.some((p) => p.s.id === s.id)) picked.push({ s, badge: t.home.badgeNew });
     }
   }
-  return picked.map((s) => ({
+  return picked.map(({ s, badge }) => ({
     id: s.id,
+    badge,
     name: s.name,
+    tagline: t.home.taglines[s.category],
     meta: `${t.categories[s.category]} · ${t.regions[s.region]}`,
     imageUrl: s.thumbnailUrl!,
     tourApiPhoto: isTourApiImage(s.thumbnailUrl!),

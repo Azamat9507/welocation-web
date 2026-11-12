@@ -81,6 +81,18 @@
       "viewpoint": "Views",
       "nearby": "Nearby",
       "guide": "AI Guide"
+    },
+    "badgeWeekly": "Popular this week",
+    "badgeNew": "Just added",
+    "pause": "Pause slideshow",
+    "play": "Play slideshow",
+    "taglines": {
+      "CAFE": "Slow down by the window",
+      "BEACH": "Go hear the waves",
+      "LAKE": "Catch your breath by the lake",
+      "RIVER": "Walk in the river breeze",
+      "VIEWPOINT": "The whole view at a glance",
+      "ATTRACTION": "Your trip for today"
     }
   },
   "list": {

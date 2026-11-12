@@ -81,6 +81,18 @@
       "viewpoint": "Manzara",
       "nearby": "Atrofda",
       "guide": "AI gid"
+    },
+    "badgeWeekly": "Haftaning mashhuri",
+    "badgeNew": "Yangi joy",
+    "pause": "Avtomatik aylanishni to'xtatish",
+    "play": "Avtomatik aylanishni boshlash",
+    "taglines": {
+      "CAFE": "Deraza yonida dam oling",
+      "BEACH": "To'lqin ovozini tinglang",
+      "LAKE": "Ko'l bo'yida nafas rostlang",
+      "RIVER": "Daryo shabadasida sayr",
+      "VIEWPOINT": "Butun manzara bir qarashda",
+      "ATTRACTION": "Bugun shu yerga boring"
     }
   },
   "list": {

@@ -13,7 +13,13 @@
     "language": "Til",
     "askAi": "AI giddan so'rash",
     "searchFor": "“{q}” ni qidirish",
-    "askAiFor": "AI giddan so'rash: “{q}”"
+    "askAiFor": "AI giddan so'rash: “{q}”",
+    "allCategories": "Barcha toifalar",
+    "menuClose": "Yopish",
+    "menuKinds": "Turi",
+    "menuRegions": "Hudud",
+    "menuThemes": "Mavzu",
+    "menuServices": "Xizmatlar"
   },
   "tabs": {
     "home": "Bosh sahifa",

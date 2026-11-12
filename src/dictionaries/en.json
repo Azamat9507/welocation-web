@@ -13,7 +13,13 @@
     "language": "Language",
     "askAi": "Ask the AI Guide",
     "searchFor": "Search “{q}”",
-    "askAiFor": "Ask the AI Guide: “{q}”"
+    "askAiFor": "Ask the AI Guide: “{q}”",
+    "allCategories": "All categories",
+    "menuClose": "Close",
+    "menuKinds": "Type",
+    "menuRegions": "Region",
+    "menuThemes": "Theme",
+    "menuServices": "Services"
   },
   "tabs": {
     "home": "Home",

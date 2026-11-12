@@ -13,7 +13,13 @@
     "language": "Язык",
     "askAi": "Спросить AI-гида",
     "searchFor": "Искать «{q}»",
-    "askAiFor": "Спросить AI-гида: «{q}»"
+    "askAiFor": "Спросить AI-гида: «{q}»",
+    "allCategories": "Все категории",
+    "menuClose": "Закрыть",
+    "menuKinds": "Тип",
+    "menuRegions": "Регион",
+    "menuThemes": "Тема",
+    "menuServices": "Сервисы"
   },
   "tabs": {
     "home": "Главная",

@@ -13,7 +13,13 @@
     "language": "언어",
     "askAi": "AI 가이드에게 묻기",
     "searchFor": "‘{q}’ 검색",
-    "askAiFor": "AI 가이드에게 묻기: ‘{q}’"
+    "askAiFor": "AI 가이드에게 묻기: ‘{q}’",
+    "allCategories": "전체 카테고리",
+    "menuClose": "닫기",
+    "menuKinds": "종류",
+    "menuRegions": "지역",
+    "menuThemes": "테마",
+    "menuServices": "서비스"
   },
   "tabs": {
     "home": "홈",

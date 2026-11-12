@@ -1,8 +1,8 @@
 # welocation-web
 
 Web client for WeLocation (위로케이션), a guide to cafés, beaches, lakes, rivers and viewpoints in Korea.
-Data comes from the `welocation-api` Spring Boot service, which syncs places from the Korea Tourism
-Organization TourAPI.
+Data comes from the [welocation-api](https://github.com/Azamat9507/welocation-api) Spring Boot service,
+which syncs places from the Korea Tourism Organization TourAPI.
 
 ## Run
 

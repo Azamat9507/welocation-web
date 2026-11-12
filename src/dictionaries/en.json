@@ -40,6 +40,7 @@
     "RIVER": "Rivers",
     "VIEWPOINT": "Viewpoints",
     "STAY": "Stays",
+    "LEISURE": "Activities",
     "ATTRACTION": "Sights"
   },
   "regions": {
@@ -92,7 +93,8 @@
       "viewpoint": "Views",
       "stay": "Stays",
       "nearby": "Nearby",
-      "guide": "AI Guide"
+      "guide": "AI Guide",
+      "leisure": "Activities"
     },
     "badgeWeekly": "Popular this week",
     "badgeNew": "Just added",
@@ -105,6 +107,7 @@
       "RIVER": "Walk in the river breeze",
       "VIEWPOINT": "The whole view at a glance",
       "STAY": "A night by the water",
+      "LEISURE": "A day of thrills",
       "ATTRACTION": "Your trip for today"
     }
   },

@@ -40,6 +40,7 @@
     "RIVER": "Daryolar",
     "VIEWPOINT": "Manzaralar",
     "STAY": "Mehmonxonalar",
+    "LEISURE": "Ko'ngilochar",
     "ATTRACTION": "Diqqatga sazovor"
   },
   "regions": {
@@ -92,7 +93,8 @@
       "viewpoint": "Manzara",
       "stay": "Mehmonxona",
       "nearby": "Atrofda",
-      "guide": "AI gid"
+      "guide": "AI gid",
+      "leisure": "Ko'ngilochar"
     },
     "badgeWeekly": "Haftaning mashhuri",
     "badgeNew": "Yangi joy",
@@ -105,6 +107,7 @@
       "RIVER": "Daryo shabadasida sayr",
       "VIEWPOINT": "Butun manzara bir qarashda",
       "STAY": "Suv bo'yida bir kecha",
+      "LEISURE": "Maroqli dam olish kuni",
       "ATTRACTION": "Bugun shu yerga boring"
     }
   },

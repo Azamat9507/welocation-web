@@ -2,7 +2,7 @@
 export const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:8080";
 
 // Labels for these keys live in the dictionaries (categories, regions, tags)
-export const CATEGORIES = ["CAFE", "BEACH", "LAKE", "RIVER", "VIEWPOINT", "STAY", "ATTRACTION"] as const;
+export const CATEGORIES = ["CAFE", "BEACH", "LAKE", "RIVER", "VIEWPOINT", "STAY", "LEISURE", "ATTRACTION"] as const;
 
 export const REGIONS = [
   "SEOUL",

@@ -40,6 +40,7 @@
     "RIVER": "강",
     "VIEWPOINT": "전망대",
     "STAY": "숙소",
+    "LEISURE": "놀거리",
     "ATTRACTION": "명소"
   },
   "regions": {
@@ -92,7 +93,8 @@
       "viewpoint": "전망대",
       "stay": "숙소",
       "nearby": "내 주변",
-      "guide": "AI 가이드"
+      "guide": "AI 가이드",
+      "leisure": "놀거리"
     },
     "badgeWeekly": "이번 주 인기",
     "badgeNew": "새로 추가된 장소",
@@ -105,6 +107,7 @@
       "RIVER": "강바람 맞으며 걷기",
       "VIEWPOINT": "탁 트인 풍경을 한눈에",
       "STAY": "물소리 들으며 하룻밤",
+      "LEISURE": "신나게 놀다 가요",
       "ATTRACTION": "오늘은 여기로 떠나요"
     }
   },

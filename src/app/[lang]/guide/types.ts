@@ -1,6 +1,7 @@
 import type { SpotSummary } from "@/lib/api";
 
-// POST /api/guide (GuideDtos on the API): token required, question 1-300 characters (@NotBlank @Size(max = 300)).
+// POST /api/guide (GuideDtos on the API): token required, question 1-300 characters (@NotBlank @Size(max = 300)),
+// optional lang (ko|en|ru|uz) for the language of the answer and reasons.
 // Every fact on a card comes from the database; only `answer` and `reason` are the model's words, shown as plain text.
 export const MAX_QUESTION = 300;
 

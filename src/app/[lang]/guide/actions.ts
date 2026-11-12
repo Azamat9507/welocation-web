@@ -18,7 +18,7 @@ export async function askGuide(_prev: GuideState, form: FormData): Promise<Guide
 
   let r;
   try {
-    r = await call<GuideResponse>("/api/guide", { method: "POST", body: { question } });
+    r = await call<GuideResponse>("/api/guide", { method: "POST", body: { question, lang } });
   } catch {
     return { error: e.connect, question };
   }

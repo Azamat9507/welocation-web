@@ -43,7 +43,7 @@ export function Directions({ name, address, lat, lng, labels }: Props) {
             href={l.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-line px-2 py-2 text-center text-xs font-medium hover:border-accent hover:text-accent"
+            className="flex items-center justify-center rounded-lg border border-line px-2 py-2 text-center text-xs font-medium hover:border-accent hover:text-accent"
           >
             {l.label}
           </a>

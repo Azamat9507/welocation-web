@@ -40,7 +40,7 @@ async function Bookmarks({ searchParams }: { searchParams: PageProps<"/[lang]/me
           </Link>
         </p>
       ) : (
-        <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-x-5 md:grid-cols-3 lg:grid-cols-4">
           {result.items.map((s) => (
             <SpotCard key={s.id} spot={s} />
           ))}

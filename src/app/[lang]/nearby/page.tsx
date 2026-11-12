@@ -180,7 +180,7 @@ function NearbyRow({ lang, t, spot }: { lang: Locale; t: Dictionary; spot: Nearb
 function ChipRow({ label, items }: { label: string; items: { text: string; active: boolean; href: string }[] }) {
   return (
     <div className="flex min-w-0 items-center gap-2">
-      <span className="w-8 shrink-0 text-xs text-muted">{label}</span>
+      <span className="w-12 shrink-0 text-xs text-muted">{label}</span>
       <div className="-mr-4 flex min-w-0 flex-1 gap-1.5 overflow-x-auto pr-4 pb-1">
         {items.map((item) => (
           <Link

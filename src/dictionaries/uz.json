@@ -10,7 +10,10 @@
     "bookmarks": "Saqlangan",
     "my": "Profil",
     "logout": "Chiqish",
-    "language": "Til"
+    "language": "Til",
+    "askAi": "AI giddan so'rash",
+    "searchFor": "“{q}” ni qidirish",
+    "askAiFor": "AI giddan so'rash: “{q}”"
   },
   "tabs": {
     "home": "Bosh sahifa",

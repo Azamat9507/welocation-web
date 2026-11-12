@@ -10,7 +10,10 @@
     "bookmarks": "Избранное",
     "my": "Профиль",
     "logout": "Выйти",
-    "language": "Язык"
+    "language": "Язык",
+    "askAi": "Спросить AI-гида",
+    "searchFor": "Искать «{q}»",
+    "askAiFor": "Спросить AI-гида: «{q}»"
   },
   "tabs": {
     "home": "Главная",

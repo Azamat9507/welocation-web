@@ -10,7 +10,10 @@
     "bookmarks": "Saved",
     "my": "Me",
     "logout": "Log out",
-    "language": "Language"
+    "language": "Language",
+    "askAi": "Ask the AI Guide",
+    "searchFor": "Search “{q}”",
+    "askAiFor": "Ask the AI Guide: “{q}”"
   },
   "tabs": {
     "home": "Home",

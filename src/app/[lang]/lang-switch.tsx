@@ -7,7 +7,7 @@ type Props = { lang: Locale; label: string };
 
 // The proxy reads this cookie, so a later visit to a bare URL keeps the chosen language
 function remember(l: Locale) {
-  document.cookie = `${LOCALE_COOKIE}=${l}; path=/; max-age=31536000; samesite=lax`;
+  document.cookie = `${LOCALE_COOKIE}=${l}; path=/; max-age=31536000; samesite=lax${location.protocol === "https:" ? "; secure" : ""}`;
 }
 
 // Plain <a>: each locale has its own root layout, so switching is a full page load anyway

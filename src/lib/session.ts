@@ -42,5 +42,7 @@ export function safeNext(value: unknown, lang: Locale): string {
   if (typeof value !== "string" || value.length > 300) return home;
   if (!value.startsWith("/") || value.startsWith("//") || value.includes("\\")) return home;
   if (/[\u0000-\u001f]/.test(value)) return home;
+  // a doubled slash or a dot segment later in the path can turn into "//host" once a browser normalizes it
+  if (value.includes("//") || /\/\.\.?(\/|$|\?|#)/.test(value)) return home;
   return splitLocale(value).lang ? value : href(lang, value);
 }

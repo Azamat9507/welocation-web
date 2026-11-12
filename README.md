@@ -28,3 +28,8 @@ browser only talks to this origin.
 Photos are 한국관광공사 공공누리 images, shown unaltered with the source credited.
 
 Next.js 16 (App Router, Cache Components), TypeScript, Tailwind CSS 4.
+
+## Credits
+
+- Place data and photos: Korea Tourism Organization TourAPI (KOGL).
+- Category icons in `public/icons/`: [Microsoft Fluent Emoji](https://github.com/microsoft/fluentui-emoji) 3D set, MIT License, resized to 128px.

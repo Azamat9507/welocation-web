@@ -244,7 +244,12 @@
     "wait": "One moment…",
     "signupSubmit": "Create account",
     "newHere": "New here?",
-    "haveAccount": "Already have an account?"
+    "haveAccount": "Already have an account?",
+    "withKakao": "Continue with Kakao",
+    "withGoogle": "Continue with Google",
+    "orEmail": "or with email",
+    "oauthFailed": "Sign-in didn't finish. Please try again.",
+    "oauthCancelled": "Sign-in was cancelled."
   },
   "errors": {
     "tooMany": "Too many requests. Please try again in a moment.",

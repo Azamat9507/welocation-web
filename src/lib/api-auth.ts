@@ -4,7 +4,8 @@ import { API_ORIGIN, type Page, type Review, type SpotSummary } from "./api";
 import { clientAddress, getToken } from "./session";
 
 // admin only picks which screens to show; the API checks the role again on every admin call
-export type User = { id: number; email: string; nickname: string; admin?: boolean };
+// email is null for a Kakao sign-up that shared no address
+export type User = { id: number; email: string | null; nickname: string; admin?: boolean };
 export type MyReview = { id: number; rating: number; content: string };
 // review has the same shape as a review list item
 export type MyState = { liked: boolean; bookmarked: boolean; review: Review | null };

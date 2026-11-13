@@ -4,7 +4,7 @@ import type { Locale } from "@/lib/i18n";
 // {name} and {email} are filled from OPERATOR (site-footer.tsx).
 export type Policy = { title: string; intro: string; effective: string; note?: string; sections: { h: string; p: string[] }[] };
 
-export const EFFECTIVE = "2026-11-14";
+export const EFFECTIVE = "2026-11-21";
 
 export const POLICY: Record<Locale, Policy> = {
   ko: {
@@ -14,6 +14,7 @@ export const POLICY: Record<Locale, Policy> = {
     sections: [
       { h: "1. 처리하는 개인정보", p: [
         "회원가입: 이메일 주소, 비밀번호, 닉네임. 비밀번호는 복원할 수 없는 방식(BCrypt)으로 바꾸어 저장하며 원문은 저장하지 않습니다.",
+        "Google 또는 카카오로 가입·로그인: 해당 서비스가 주는 회원 고유 번호, 이름(닉네임), 이메일 주소(해당 서비스가 확인한 주소이고 제공에 동의한 경우에만). 이 경우 비밀번호는 받지도 저장하지도 않습니다.",
         "서비스 이용 중: 작성한 리뷰(별점, 내용), 좋아요, 저장한 장소.",
         "자동 수집: 로그인 상태를 유지하는 쿠키(wl_session), 선택한 언어를 기억하는 쿠키(wl_lang), 웹 서버 접속 기록(IP 주소, 접속 시각, 요청한 주소).",
         "'내 주변' 기능의 위치 정보는 그 검색에만 쓰이며 저장하거나 기록하지 않습니다.",
@@ -44,6 +45,7 @@ export const POLICY: Record<Locale, Policy> = {
     sections: [
       { h: "1. What we process", p: [
         "Sign-up: email address, password and nickname. The password is stored only as a one-way hash (BCrypt), never as the text you typed.",
+        "Sign-up or sign-in with Google or Kakao: the account id that service gives us, your name (nickname), and your email address only if that service has verified it and you agreed to share it. No password is received or stored then.",
         "While you use the Service: your reviews (rating and text), likes and saved places.",
         "Automatically: a cookie that keeps you signed in (wl_session), a cookie that remembers your language (wl_lang), and web server access records (IP address, time, requested address).",
         "Your location in 'Nearby' is used for that search only and is never stored or logged.",
@@ -74,6 +76,7 @@ export const POLICY: Record<Locale, Policy> = {
     sections: [
       { h: "1. Какие данные мы обрабатываем", p: [
         "Регистрация: адрес эл. почты, пароль и никнейм. Пароль хранится только в виде необратимого хеша (BCrypt), исходный текст не хранится.",
+        "Регистрация или вход через Google или Kakao: идентификатор аккаунта от этого сервиса, имя (никнейм) и адрес эл. почты, только если сервис его подтвердил и вы согласились им поделиться. Пароль в этом случае не передаётся и не хранится.",
         "При использовании: ваши отзывы (оценка и текст), лайки и сохранённые места.",
         "Автоматически: cookie для входа (wl_session), cookie с выбранным языком (wl_lang) и журнал доступа веб-сервера (IP-адрес, время, запрошенный адрес).",
         "Местоположение в разделе «Рядом» используется только для этого поиска и не сохраняется.",
@@ -104,6 +107,7 @@ export const POLICY: Record<Locale, Policy> = {
     sections: [
       { h: "1. Qanday ma'lumotlar", p: [
         "Ro'yxatdan o'tishda: email manzil, parol va taxallus. Parol faqat qaytarib bo'lmaydigan xesh (BCrypt) ko'rinishida saqlanadi, asl matni saqlanmaydi.",
+        "Google yoki Kakao bilan ro'yxatdan o'tish yoki kirishda: o'sha xizmat beradigan akkaunt ID raqami, ism (taxallus) va email manzil (faqat xizmat uni tasdiqlagan va siz ulashishga rozi bo'lgan bo'lsangiz). Bu holda parol olinmaydi va saqlanmaydi.",
         "Foydalanish davomida: sharhlaringiz (baho va matn), yoqtirishlar va saqlangan joylar.",
         "Avtomatik: kirgan holatni saqlovchi cookie (wl_session), tanlangan tilni eslab qoluvchi cookie (wl_lang) va veb-server kirish yozuvlari (IP manzil, vaqt, so'ralgan manzil).",
         "'Atrofda' bo'limidagi joylashuvingiz faqat o'sha qidiruv uchun ishlatiladi, saqlanmaydi va yozib qo'yilmaydi.",

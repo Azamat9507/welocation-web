@@ -37,6 +37,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // no API routes, build output, or anything with a file extension (favicon, images)
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  // no API routes, sign-in redirects (/auth/<provider>/...), build output, or anything with a file extension
+  matcher: ["/((?!api|auth/|_next|.*\\..*).*)"],
 };

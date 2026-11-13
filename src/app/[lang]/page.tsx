@@ -29,7 +29,9 @@ import { StaysRail } from "./stays-rail";
 export default async function Home({ searchParams }: PageProps<"/[lang]">) {
   const { t } = await currentLocale();
   return (
-    <Suspense fallback={<p className="py-8 text-center text-sm text-muted">{t.common.loading}</p>}>
+    // The fallback holds a screen's height: a short one let the footer show in the first paint, and the
+    // streamed page then pushed it away (Lighthouse CLS 0.142 on mobile)
+    <Suspense fallback={<p className="min-h-[100svh] py-8 text-center text-sm text-muted">{t.common.loading}</p>}>
       <HomeContent searchParams={searchParams} />
     </Suspense>
   );

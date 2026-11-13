@@ -115,6 +115,7 @@ async function Admin({ searchParams }: { searchParams: PageProps<"/[lang]/admin/
             removePhoto: a.removePhoto,
             uploading: a.uploading,
             badPhoto: a.badPhoto,
+            tooManyPhotos: a.tooManyPhotos,
             deleteSpot: a.deleteSpot,
             deleteConfirm: a.deleteConfirm,
             failed: a.failed,

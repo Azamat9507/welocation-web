@@ -1,8 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import type { Locale } from "@/lib/i18n";
-import { deleteSpot, removePhoto, uploadPhoto } from "./actions";
+import { deleteSpot, removePhoto } from "./actions";
 
 type Labels = {
   photos: string;
@@ -10,6 +11,7 @@ type Labels = {
   removePhoto: string;
   uploading: string;
   badPhoto: string;
+  tooManyPhotos: string;
   deleteSpot: string;
   deleteConfirm: string;
   failed: string;
@@ -40,6 +42,7 @@ async function shrink(file: File): Promise<Blob | null> {
 }
 
 export function Photos({ spotId, images, lang, labels }: { spotId: number; images: string[]; lang: Locale; labels: Labels }) {
+  const router = useRouter();
   const [busy, start] = useTransition();
   const [error, setError] = useState<string>();
   // deleting takes two clicks, so a stray tap can't remove a place
@@ -56,12 +59,14 @@ export function Photos({ spotId, images, lang, labels }: { spotId: number; image
         }
         const form = new FormData();
         form.set("file", blob, "photo.jpg");
-        const r = await uploadPhoto(spotId, lang, form);
-        if (r.error) {
-          setError(r.error);
-          return;
+        const res = await fetch(`/api/admin/photos/${spotId}`, { method: "POST", body: form }).catch(() => null);
+        if (!res?.ok) {
+          const code = res ? ((await res.json().catch(() => ({}))) as { error?: string }).error : undefined;
+          setError(code === "tooMany" ? labels.tooManyPhotos : code === "photo" || code === "size" ? labels.badPhoto : labels.failed);
+          break;
         }
       }
+      router.refresh();
     });
 
   return (

@@ -76,23 +76,6 @@ export async function deleteSpot(spotIdArg: number, langArg: unknown): Promise<P
   redirect(href(lang, "/admin/spots"));
 }
 
-// The browser has already shrunk the photo to a JPEG; the API decodes and writes it again anyway
-export async function uploadPhoto(spotIdArg: number, langArg: unknown, form: FormData): Promise<PhotoState> {
-  const spotId = idOf(spotIdArg);
-  const t = (await getDictionary(toLocale(langArg))).admin;
-  const file = form.get("file");
-  if (!(file instanceof File) || file.size === 0 || file.size > 5 * 1024 * 1024) return { error: t.badPhoto };
-  const upload = new FormData();
-  upload.set("file", file, "photo.jpg");
-  const r = await call(`/api/admin/spots/${spotId}/photos`, { method: "POST", form: upload });
-  if (!r.ok) {
-    if (r.status === 400 && r.detail?.includes("at most")) return { error: t.tooManyPhotos };
-    return { error: r.status === 400 ? t.badPhoto : t.failed };
-  }
-  refresh();
-  return {};
-}
-
 export async function removePhoto(spotIdArg: number, url: unknown, langArg: unknown): Promise<PhotoState> {
   const spotId = idOf(spotIdArg);
   const t = (await getDictionary(toLocale(langArg))).admin;

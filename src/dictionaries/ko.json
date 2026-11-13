@@ -318,7 +318,9 @@
     "source": "영상: YouTube",
     "seeAll": "쇼츠 전체 보기",
     "heading": "짧은 영상",
-    "more": "영상 더 보기"
+    "more": "영상 더 보기",
+    "close": "영상 닫기",
+    "thumb": "영상"
   },
   "admin": {
     "title": "쇼츠 관리",

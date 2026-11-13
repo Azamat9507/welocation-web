@@ -2,14 +2,32 @@
 
 import { useRef, useState } from "react";
 import { fill } from "@/lib/i18n";
+import { ShortsOverlay } from "../../shorts-player";
 
 // Swipe on phones, arrows on desktop. Photos are shown whole and unaltered (공공누리 Type3 allows no changes), letterboxed on sand.
 type Labels = { photo: string; prev: string; next: string; show: string };
 
+// The spot's Shorts video. Phones only: it opens from a card at the start of the thumbnail row; wider screens
+// show the player beside the gallery instead (on the spot page).
+export type GalleryVideo = { videoId: string; title: string; play: string; close: string; thumb: string; seeAll: { href: string; label: string } };
+
 // credit is the source line to show, or null when no photo needs one
-export function Gallery({ images, name, credit, labels }: { images: string[]; name: string; credit: string | null; labels: Labels }) {
+export function Gallery({
+  images,
+  name,
+  credit,
+  labels,
+  video,
+}: {
+  images: string[];
+  name: string;
+  credit: string | null;
+  labels: Labels;
+  video?: GalleryVideo;
+}) {
   const strip = useRef<HTMLUListElement>(null);
   const [index, setIndex] = useState(0);
+  const [watching, setWatching] = useState(false);
   const many = images.length > 1;
 
   const go = (i: number) => {
@@ -65,9 +83,28 @@ export function Gallery({ images, name, credit, labels }: { images: string[]; na
           </>
         )}
       </div>
-      {many && (
-        <ul className="mt-2 flex gap-1.5 overflow-x-auto [scrollbar-width:none]">
-          {images.map((src, i) => (
+      {(many || video) && (
+        <ul className={`mt-2 flex gap-1.5 overflow-x-auto [scrollbar-width:none] ${many ? "" : "md:hidden"}`}>
+          {video && (
+            <li className="shrink-0 md:hidden">
+              <button
+                type="button"
+                onClick={() => setWatching(true)}
+                aria-label={video.play}
+                className="relative block h-14 w-12 overflow-hidden rounded-md bg-black text-white"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element -- thumbnail of the spot's own photo */}
+                <img src={images[0]} alt="" loading="lazy" className="h-full w-full object-cover opacity-60" />
+                <span className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 text-[10px] font-semibold">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4" fill="currentColor">
+                    <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+                  </svg>
+                  {video.thumb}
+                </span>
+              </button>
+            </li>
+          )}
+          {many && images.map((src, i) => (
             <li key={src} className="shrink-0">
               <button
                 type="button"
@@ -83,6 +120,7 @@ export function Gallery({ images, name, credit, labels }: { images: string[]; na
         </ul>
       )}
       {credit && <figcaption className="mt-1 text-right text-xs text-muted">{credit}</figcaption>}
+      {video && watching && <ShortsOverlay video={video} onClose={() => setWatching(false)} />}
     </figure>
   );
 }

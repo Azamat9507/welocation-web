@@ -318,7 +318,9 @@
     "source": "Video: YouTube",
     "seeAll": "Barcha Shorts",
     "heading": "Qisqa video",
-    "more": "Yana videolar"
+    "more": "Yana videolar",
+    "close": "Videoni yopish",
+    "thumb": "Video"
   },
   "admin": {
     "title": "Shorts boshqaruvi",

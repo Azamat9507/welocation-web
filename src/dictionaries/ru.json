@@ -318,7 +318,9 @@
     "source": "Видео: YouTube",
     "seeAll": "Все Shorts",
     "heading": "Короткое видео",
-    "more": "Ещё видео"
+    "more": "Ещё видео",
+    "close": "Закрыть видео",
+    "thumb": "Видео"
   },
   "admin": {
     "title": "Управление Shorts",

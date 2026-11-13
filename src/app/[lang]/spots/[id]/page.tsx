@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { getReviews, getSpot, isTourApiImage, type Page, type Review } from "@/lib/api";
+import { getReviews, getSpot, isTourApiImage, isVideoId, type Page, type Review } from "@/lib/api";
 import { findMyReview, getMe, getMyState } from "@/lib/api-auth";
 import { currentLocale } from "@/lib/current-locale";
 import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, intlLocale } from "@/lib/i18n";
 import { Rating } from "../../rating";
+import { ShortsPlayer } from "../../shorts-player";
 import { Directions } from "./directions";
 import { Gallery } from "./gallery";
 import { ReviewForm } from "./review-form";
@@ -73,6 +74,29 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
 
       {spot.category === "STAY" && <PriceLinks name={spot.name} address={spot.address} t={t.spot} />}
 
+      {isVideoId(spot.shortsVideoId) && (
+        <section className="mt-4">
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 className="text-sm font-semibold">{t.shorts.heading}</h2>
+            <Link href={href(lang, `/shorts?start=${spot.id}`)} className="text-xs text-accent">
+              {t.shorts.seeAll}
+            </Link>
+          </div>
+          <ShortsPlayer
+            videoId={spot.shortsVideoId}
+            title={fill(t.shorts.videoTitle, { name: spot.name })}
+            poster={spot.images[0] ?? null}
+            playLabel={fill(t.shorts.play, { name: spot.name })}
+            className="mt-2 w-44 sm:w-56"
+          />
+          <p className="mt-1 text-[11px] text-muted">{t.shorts.source}</p>
+        </section>
+      )}
+
+      <Suspense>
+        <AdminLink spotId={spot.id} name={spot.name} />
+      </Suspense>
+
       <Suspense fallback={<div className="mt-3 h-8" />}>
         <Mine spotId={spot.id} likeCount={spot.likeCount ?? 0} />
       </Suspense>
@@ -130,6 +154,21 @@ function PriceLinks({ name, address, t }: { name: string; address: string; t: Di
       </div>
       <p className="mt-2 text-xs text-muted">{t.priceNote}</p>
     </section>
+  );
+}
+
+// admins get a shortcut to attach a video to this spot; everyone else sees nothing
+async function AdminLink({ spotId, name }: { spotId: number; name: string }) {
+  const { lang, t } = await currentLocale();
+  const me = await getMe().catch(() => null);
+  if (!me?.admin) return null;
+  return (
+    <Link
+      href={href(lang, `/admin/shorts?q=${encodeURIComponent(name.slice(0, 50))}#spot-${spotId}`)}
+      className="mt-3 inline-block text-xs text-accent"
+    >
+      {t.admin.manage}
+    </Link>
   );
 }
 

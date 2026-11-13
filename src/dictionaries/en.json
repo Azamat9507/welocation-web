@@ -25,7 +25,8 @@
     "home": "Home",
     "nearby": "Nearby",
     "ranking": "Popular",
-    "guide": "AI Guide"
+    "guide": "AI Guide",
+    "shorts": "Shorts"
   },
   "common": {
     "loading": "Loading…",
@@ -302,5 +303,39 @@
   "error": {
     "message": "Can't load place info right now.",
     "retry": "Try again"
+  },
+  "shorts": {
+    "metaTitle": "Shorts · WeLocation",
+    "metaDescription": "Short videos of places to visit in Korea.",
+    "title": "Shorts",
+    "empty": "No videos yet.",
+    "play": "Play the {name} video",
+    "openSpot": "See the place",
+    "prev": "Previous video",
+    "next": "Next video",
+    "feed": "Shorts videos",
+    "videoTitle": "{name} Shorts video",
+    "source": "Video: YouTube",
+    "seeAll": "All Shorts",
+    "heading": "Short video",
+    "more": "More videos"
+  },
+  "admin": {
+    "title": "Manage Shorts",
+    "hint": "Only add videos from official channels or with the owner's permission.",
+    "searchLabel": "Search places",
+    "searchPlaceholder": "Place name or address",
+    "searchButton": "Search",
+    "listed": "{n} videos added",
+    "urlLabel": "YouTube link for {name}",
+    "urlPlaceholder": "YouTube Shorts link",
+    "save": "Save",
+    "remove": "Remove",
+    "badUrl": "That is not a YouTube video link.",
+    "failed": "Could not save. Please try again.",
+    "saved": "Saved.",
+    "noResults": "No places found.",
+    "menuLink": "Manage Shorts",
+    "manage": "Add or change Shorts"
   }
 }

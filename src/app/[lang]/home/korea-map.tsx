@@ -37,7 +37,7 @@ export function KoreaMap({ lang, t, map }: { lang: Locale; t: Dictionary; map: S
     .sort((a, b) => b.n - a.n);
 
   return (
-    <section aria-labelledby="korea-map-title" className="mt-7 overflow-hidden rounded-3xl bg-[#0d1b2a] text-white">
+    <section aria-labelledby="korea-map-title" className="mt-12 overflow-hidden rounded-3xl sm:mt-14 bg-[#0d1b2a] text-white">
       <div className="grid gap-2 p-4 sm:p-6 md:grid-cols-[1fr_1.2fr] md:items-center md:gap-6">
         {/* min-w-0: the phone's sideways chip row must not widen the grid column */}
         <div className="min-w-0">

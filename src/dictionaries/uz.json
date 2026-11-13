@@ -143,7 +143,29 @@
     "top10Weekly": "Bu haftaning TOP 10",
     "top10WeeklyNote": "Dushanba 00:00 dan beri yoqtirishlar bo'yicha",
     "top10Picks": "WeLocation tanlovi: TOP 10",
-    "top10PicksNote": "Bu yoqtirishlar reytingi emas, joylarni WeLocation tanlagan. Yoqtirishlar ko'paygach, haftalik reytingga o'tadi."
+    "top10PicksNote": "Bu yoqtirishlar reytingi emas, joylarni WeLocation tanlagan. Yoqtirishlar ko'paygach, haftalik reytingga o'tadi.",
+    "themesTitle": "Mavzu bo'yicha sayohat",
+    "themesNote": "Bugungi kayfiyatga mos sayohatni tanlang",
+    "themeSea": "To'lqinlar shovqini",
+    "themeSeaLine": "Koreya bo'ylab plyajlar va dengiz manzaralari",
+    "themeLeisure": "Harakatdagi kun",
+    "themeLeisureLine": "Karting, rafting, survival o'yinlari",
+    "themeAi": "Istalgan narsani so'rang",
+    "themeAiLine": "AI gid siz uchun joy tanlaydi",
+    "seaNote": "Viloyatni tanlab, dengiz manzaralarini ko'ring",
+    "collectionHeading": "To'plamlar",
+    "collectionNote": "Bitta mavzu atrofida yig'ilgan joylar",
+    "more": "Batafsil",
+    "leisureTitle": "Faol dam olish",
+    "leisureNote": "Mashg'ulot turini tanlang",
+    "staysNote": "Suv bo'yida tunash mumkin bo'lgan joylar",
+    "newestNote": "Oxirgi qo'shilganlar birinchi",
+    "popularRegions": "Mashhur hududlar",
+    "allIn": "{region}: hammasi",
+    "themeCafe": "Deraza yonida qahva",
+    "themeCafeLine": "Manzarali kafelar",
+    "viewTitle": "Yuqoridan manzara",
+    "viewLine": "Tomosha maydonchalaridan keng manzara"
   },
   "list": {
     "filtersLabel": "Filtrlar",
@@ -406,5 +428,19 @@
     "needRegion": "Manzilda viloyat yo'q. Hududni tanlang.",
     "view": "Sahifani ochish",
     "deleteConfirm": "O'chirish uchun yana bosing"
+  },
+  "footer": {
+    "tagline": "Ko'ngilga taskin beradigan joylar",
+    "languages": "Til",
+    "linksLabel": "Sayt havolalari",
+    "privacy": "Shaxsiy ma'lumotlar siyosati",
+    "contact": "Bog'lanish",
+    "guide": "AI gid",
+    "ranking": "Hafta mashhurlari",
+    "shorts": "Shorts",
+    "operator": "Operator",
+    "email": "Email",
+    "sources": "Ayrim koordinatalar: © OpenStreetMap ishtirokchilari (ODbL) · Ikonkalar: Microsoft Fluent Emoji (MIT) · Shrift: Pretendard (OFL) · Videolar: YouTube",
+    "backToTop": "Yuqoriga"
   }
 }

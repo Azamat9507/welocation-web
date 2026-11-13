@@ -10,8 +10,10 @@ import {
   getWeeklyRanking,
   isTourApiImage,
   parseFilter,
+  type Activity,
   type Region,
   type SpotFilter,
+  type SpotMap,
   type SpotSummary,
 } from "@/lib/api";
 import { currentLocale } from "@/lib/current-locale";
@@ -21,10 +23,14 @@ import { getPicks } from "@/lib/picks";
 import { getSpotMap } from "@/lib/spot-map";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
 import { HomeCategories } from "./home-categories";
+import { ChipRail } from "./home/chip-rail";
+import { Collection } from "./home/collection";
 import { KoreaMap } from "./home/korea-map";
+import { PopularRegions } from "./home/popular-regions";
+import { LATER, SectionHead } from "./home/section-head";
+import { ThemeCards } from "./home/theme-cards";
 import { PICKS, TopTen } from "./home/top-ten";
 import { SpotCard } from "./spot-card";
-import { StaysRail } from "./stays-rail";
 
 export default async function Home({ searchParams }: PageProps<"/[lang]">) {
   const { t } = await currentLocale();
@@ -47,12 +53,16 @@ async function HomeContent({ searchParams }: { searchParams: PageProps<"/[lang]"
 
 async function HomeSections() {
   const { lang, t } = await currentLocale();
-  const [ranking, newest, cafes, stays, map, picks] = await Promise.all([
+  const [ranking, newest, beaches, stays, leisure, cafes, views, map, picks] = await Promise.all([
     getWeeklyRanking().catch(() => null),
-    getSpots({ page: 1 }, 12),
-    waterCafes(t),
+    // the banner takes its fallback slides from the first of these; the rest feed "newest" after the dedupe (50 = API max)
+    getSpots({ page: 1 }, 50),
+    getSpots({ category: "BEACH", page: 1 }, 30).catch(() => null),
     // API builds before the STAY category answer 400; the rail just stays hidden then
     getSpots({ category: "STAY", page: 1 }, 30).catch(() => null),
+    getSpots({ category: "LEISURE", page: 1 }, 30).catch(() => null),
+    getSpots({ category: "CAFE", page: 1 }, 8).catch(() => null),
+    getSpots({ q: "전망대", page: 1 }, 12).catch(() => null),
     getSpotMap(),
     getPicks(PICKS),
   ]);
@@ -62,8 +72,29 @@ async function HomeSections() {
   const slides = heroSlides(
     t,
     ranked.map((r) => r.spot),
-    newest.items,
+    newest.items.slice(0, 12),
   );
+  const h = t.home;
+  // a photo from a real spot of each theme, not the first one (that one already leads its own row)
+  const photoOf = (items: SpotSummary[] | undefined, skip = 4) =>
+    (items ?? []).filter((s) => s.thumbnailUrl).at(skip)?.thumbnailUrl ?? (items ?? []).find((s) => s.thumbnailUrl)?.thumbnailUrl ?? null;
+
+  // Sections lower down skip spots already shown higher up (the banner included), so no card appears twice
+  const shown = new Set<number>(slides.map((sl) => sl.id));
+  const take = (items: SpotSummary[] | undefined, n: number) => {
+    const left = (items ?? []).filter((s) => !shown.has(s.id));
+    left.slice(0, n).forEach((s) => shown.add(s.id));
+    return left;
+  };
+  const seaSpots = take(beaches?.items, 8);
+  // a collection shows only spots with a photo; a grey tile there looks broken
+  const viewPhotos = take(views?.items.filter((s) => s.thumbnailUrl), 5).slice(0, 5);
+  const viewCover = viewPhotos[0];
+  const viewRest = viewPhotos.slice(1, 5);
+  const leisureSpots = take(leisure?.items, 8);
+  const staySpots = take(stays?.items, 8);
+  const weeklyRail = !weeklyTop && ranked.length >= 4 ? take(ranked.map((r) => r.spot), 8) : [];
+  const fresh = take(newest.items, 8).slice(0, 8);
 
   return (
     <>
@@ -95,44 +126,108 @@ async function HomeSections() {
         <TopTen
           lang={lang}
           t={t}
-          title={t.home.top10Weekly}
-          note={t.home.top10WeeklyNote}
+          title={h.top10Weekly}
+          note={h.top10WeeklyNote}
           seeAll={href(lang, "/ranking")}
           spots={ranked.slice(0, 10).map((r) => r.spot)}
         />
       ) : (
-        picks.length >= 5 && <TopTen lang={lang} t={t} title={t.home.top10Picks} note={t.home.top10PicksNote} spots={picks} />
+        picks.length >= 5 && <TopTen lang={lang} t={t} title={h.top10Picks} note={h.top10PicksNote} spots={picks} />
       )}
 
-      {!weeklyTop && ranked.length >= 4 && (
-        <Rail
+      <ThemeCards
+        title={h.themesTitle}
+        note={h.themesNote}
+        credit={t.common.photoCredit}
+        themes={[
+          { href: href(lang, "/?category=BEACH"), title: h.themeSea, line: h.themeSeaLine, imageUrl: photoOf(beaches?.items) },
+          { href: href(lang, "/?category=CAFE"), title: h.themeCafe, line: h.themeCafeLine, imageUrl: photoOf(cafes?.items, 1) },
+          { href: href(lang, "/?category=LEISURE"), title: h.themeLeisure, line: h.themeLeisureLine, imageUrl: photoOf(leisure?.items) },
+          { href: href(lang, "/guide"), title: h.themeAi, line: h.themeAiLine, imageUrl: null, ai: true },
+        ]}
+      />
+
+      {seaSpots.length >= 4 && (
+        <ByKey
           t={t}
-          title={t.home.weekly}
-          href={href(lang, "/ranking")}
-          spots={ranked.slice(0, 8).map((r) => r.spot)}
-          ranked
+          title={h.seaViews}
+          note={h.seaNote}
+          spots={seaSpots}
+          keyOf={(s) => s.region}
+          labelOf={(k) => t.regions[k as Region]}
+          chipsLabel={t.list.region}
+          listHref={(k) => href(lang, `/${filterQuery({ category: "BEACH", region: (k || undefined) as Region | undefined })}`)}
+          portrait
         />
       )}
-      {cafes.spots.length > 0 && (
-        <Rail t={t} title={cafes.title} href={href(lang, `/${cafes.query}`)} spots={cafes.spots} />
+
+      {viewCover && viewRest.length >= 2 && (
+        <Collection
+          heading={h.collectionHeading}
+          note={h.collectionNote}
+          title={h.viewTitle}
+          line={h.viewLine}
+          more={h.more}
+          href={href(lang, `/${filterQuery({ q: "전망대" })}`)}
+          cover={viewCover}
+          spots={viewRest}
+          credit={t.common.photoCredit}
+        />
       )}
-      {stays && stays.items.length >= 4 && <Stays lang={lang} t={t} spots={stays.items} />}
-      <Rail t={t} title={t.home.newest} href={href(lang, "/?page=1")} spots={newest.items.slice(0, 8)} />
+
+      {leisureSpots.length >= 4 && (
+        <ByKey
+          t={t}
+          title={h.leisureTitle}
+          note={h.leisureNote}
+          spots={leisureSpots}
+          keyOf={(s) => s.activity ?? ""}
+          labelOf={(k) => t.activities[k as Activity]}
+          chipsLabel={t.list.activity}
+          listHref={(k) => href(lang, `/${filterQuery({ category: "LEISURE", activity: (k || undefined) as Activity | undefined })}`)}
+        />
+      )}
+
+      {staySpots.length >= 4 && (
+        <ByKey
+          t={t}
+          title={h.stays}
+          note={h.staysNote}
+          spots={staySpots}
+          keyOf={(s) => s.region}
+          labelOf={(k) => t.regions[k as Region]}
+          chipsLabel={t.list.region}
+          listHref={(k) => href(lang, `/${filterQuery({ category: "STAY", region: (k || undefined) as Region | undefined })}`)}
+          portrait
+        />
+      )}
+
+      {weeklyRail.length >= 4 && (
+        <Rail t={t} title={h.weekly} note={t.ranking.basis} href={href(lang, "/ranking")} spots={weeklyRail.slice(0, 8)} />
+      )}
+      {fresh.length >= 4 && <Rail t={t} title={h.newest} note={h.newestNote} href={href(lang, "/?page=1")} spots={fresh} />}
+
+      {map && <PopularRegions title={h.popularRegions} tabsLabel={t.list.region} panels={regionPanels(lang, t, map)} />}
     </>
   );
 }
 
-// No cafe carries the ocean-view tag until tags are curated; until then show beaches, so the title stays true
-// and the rail is not a copy of the newest list (which is mostly cafes)
-async function waterCafes(t: Dictionary): Promise<{ title: string; spots: SpotSummary[]; query: string }> {
-  const tagged: SpotFilter = { category: "CAFE", tag: "OCEAN_VIEW", page: 1 };
-  const ocean = await getSpots(tagged, 8).catch(() => null);
-  if (ocean && ocean.items.length >= 4) {
-    return { title: t.home.oceanCafes, spots: ocean.items, query: filterQuery(tagged) };
-  }
-  const beach: SpotFilter = { category: "BEACH", page: 1 };
-  const beaches = await getSpots(beach, 8).catch(() => null);
-  return { title: t.home.seaViews, spots: beaches?.items ?? [], query: filterQuery(beach) };
+// The regions with the most places, each with links to its kinds of places
+function regionPanels(lang: Locale, t: Dictionary, map: SpotMap) {
+  return (Object.entries(map.regions) as [Region, number][])
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([r]) => ({
+      value: r,
+      label: t.regions[r],
+      links: [
+        { href: href(lang, `/${filterQuery({ region: r })}`), label: fill(t.home.allIn, { region: t.regions[r] }) },
+        ...CATEGORIES.map((c) => ({
+          href: href(lang, `/${filterQuery({ region: r, category: c })}`),
+          label: `${t.regions[r]} ${t.categories[c]}`,
+        })),
+      ],
+    }));
 }
 
 // Up to 5 of this week's most liked spots with a photo, topped up with the newest ones when fewer than 3
@@ -158,17 +253,12 @@ function heroSlides(t: Dictionary, ranked: SpotSummary[], newest: SpotSummary[])
   }));
 }
 
-type RailProps = { t: Dictionary; title: string; href: string; spots: SpotSummary[]; ranked?: boolean };
+type RailProps = { t: Dictionary; title: string; note?: string; href: string; spots: SpotSummary[]; ranked?: boolean };
 
-function Rail({ t, title, href, spots, ranked }: RailProps) {
+function Rail({ t, title, note, href, spots, ranked }: RailProps) {
   return (
-    <section className="mt-7">
-      <div className="mb-3 flex items-baseline justify-between">
-        <h2 className="text-lg font-bold tracking-tight">{title}</h2>
-        <Link href={href} className="shrink-0 text-sm text-muted hover:text-foreground">
-          {t.home.seeAll}
-        </Link>
-      </div>
+    <section className={LATER}>
+      <SectionHead title={title} note={note} href={href} seeAll={t.home.seeAll} />
       <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden">
         {spots.map((spot, i) => (
           <SpotCard
@@ -184,30 +274,43 @@ function Rail({ t, title, href, spots, ranked }: RailProps) {
   );
 }
 
-// Region chips come from the fetched stays, most common first, so a chip never leads to an empty row
-function Stays({ lang, t, spots }: { lang: Locale; t: Dictionary; spots: SpotSummary[] }) {
-  const counts = new Map<Region, number>();
-  for (const s of spots) counts.set(s.region, (counts.get(s.region) ?? 0) + 1);
-  const regions = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5).map(([r]) => r);
-  const listHref = (region?: Region) => href(lang, `/${filterQuery({ category: "STAY", region })}`);
+type ByKeyProps = {
+  t: Dictionary;
+  title: string;
+  note: string;
+  spots: SpotSummary[];
+  keyOf: (s: SpotSummary) => string;
+  labelOf: (key: string) => string;
+  chipsLabel: string;
+  listHref: (key: string) => string;
+  portrait?: boolean;
+};
+
+// A row with chips (regions, activities) taken from the fetched spots, most common first, so a chip never
+// leads to an empty row; spots without a key (no activity yet) only show under "all"
+function ByKey({ t, title, note, spots, keyOf, labelOf, chipsLabel, listHref, portrait }: ByKeyProps) {
+  const counts = new Map<string, number>();
+  for (const s of spots) {
+    const k = keyOf(s);
+    if (k) counts.set(k, (counts.get(k) ?? 0) + 1);
+  }
+  const keys = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6).map(([k]) => k);
   return (
-    <>
-      <StaysRail
-        title={t.home.stays}
+    <div className={LATER}>
+      <ChipRail
+        title={title}
+        note={note}
         seeAll={t.home.seeAll}
-        chipsLabel={t.list.region}
-        chips={[
-          { value: "", label: t.list.all, href: listHref() },
-          ...regions.map((r) => ({ value: r, label: t.regions[r], href: listHref(r) })),
-        ]}
+        chipsLabel={chipsLabel}
+        chips={[{ value: "", label: t.list.all, href: listHref("") }, ...keys.map((k) => ({ value: k, label: labelOf(k), href: listHref(k) }))]}
         items={spots.map((s) => ({
           id: s.id,
-          region: s.region,
-          card: <SpotCard spot={s} className="w-[40%] shrink-0 snap-start sm:w-[28%] md:w-auto" />,
+          key: keyOf(s),
+          card: <SpotCard spot={s} portrait={portrait} className="w-[40%] shrink-0 snap-start sm:w-[28%] md:w-auto" />,
         }))}
       />
       <PhotoCredit spots={spots} text={t.common.photoCredit} />
-    </>
+    </div>
   );
 }
 

@@ -10,10 +10,11 @@ export type MyReview = { id: number; rating: number; content: string };
 export type MyState = { liked: boolean; bookmarked: boolean; review: Review | null };
 export type ApiResult<T> = { ok: true; status: number; data: T } | { ok: false; status: number; detail?: string };
 
-type Options = { method?: string; body?: unknown; token?: string | null };
+// form: a multipart upload (admin photos); fetch sets its Content-Type with the boundary
+type Options = { method?: string; body?: unknown; form?: FormData; token?: string | null };
 
 // One place that talks to the API on behalf of the visitor
-export async function call<T>(path: string, { method = "GET", body, token }: Options = {}): Promise<ApiResult<T>> {
+export async function call<T>(path: string, { method = "GET", body, form, token }: Options = {}): Promise<ApiResult<T>> {
   const headers: Record<string, string> = { Accept: "application/json" };
   if (body !== undefined) headers["Content-Type"] = "application/json";
   const auth = token === undefined ? await getToken() : token;
@@ -24,7 +25,7 @@ export async function call<T>(path: string, { method = "GET", body, token }: Opt
   const res = await fetch(API_ORIGIN + path, {
     method,
     headers,
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: form ?? (body === undefined ? undefined : JSON.stringify(body)),
     cache: "no-store",
   });
   const text = await res.text();

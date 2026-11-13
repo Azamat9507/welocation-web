@@ -76,7 +76,8 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
       )}
 
       <p className="mt-3 text-xs text-muted">
-        {t.categories[spot.category]} · {t.regions[spot.region]}
+        {t.categories[spot.category]}
+        {spot.activity && <> · {t.activities[spot.activity]}</>} · {t.regions[spot.region]}
       </p>
       <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{spot.name}</h1>
       <div className="mt-1 flex items-center gap-3">
@@ -102,6 +103,7 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
       />
 
       {spot.category === "STAY" && <PriceLinks name={spot.name} address={spot.address} t={t.spot} />}
+      {spot.activity === "SURVIVAL" && <p className="mt-2 text-xs text-muted">{t.spot.survivalNote}</p>}
 
       {video && spot.images.length === 0 && (
         <section className="mt-4">
@@ -117,7 +119,7 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
       )}
 
       <Suspense>
-        <AdminLink spotId={spot.id} name={spot.name} />
+        <AdminLink spotId={spot.id} name={spot.name} manual={!!spot.manual} />
       </Suspense>
 
       <Suspense fallback={<div className="mt-3 h-8" />}>
@@ -181,17 +183,21 @@ function PriceLinks({ name, address, t }: { name: string; address: string; t: Di
 }
 
 // admins get a shortcut to attach a video to this spot; everyone else sees nothing
-async function AdminLink({ spotId, name }: { spotId: number; name: string }) {
+async function AdminLink({ spotId, name, manual }: { spotId: number; name: string; manual: boolean }) {
   const { lang, t } = await currentLocale();
   const me = await getMe().catch(() => null);
   if (!me?.admin) return null;
   return (
-    <Link
-      href={href(lang, `/admin/shorts?q=${encodeURIComponent(name.slice(0, 50))}#spot-${spotId}`)}
-      className="mt-3 inline-block text-xs text-accent"
-    >
-      {t.admin.manage}
-    </Link>
+    <p className="mt-3 flex gap-4 text-xs">
+      <Link href={href(lang, `/admin/shorts?q=${encodeURIComponent(name.slice(0, 50))}#spot-${spotId}`)} className="text-accent">
+        {t.admin.manage}
+      </Link>
+      {manual && (
+        <Link href={href(lang, `/admin/spots?edit=${spotId}`)} className="text-accent">
+          {t.admin.editSpot}
+        </Link>
+      )}
+    </p>
   );
 }
 

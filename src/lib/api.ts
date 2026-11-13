@@ -26,7 +26,27 @@ export const REGIONS = [
 
 export const TAGS = ["OCEAN_VIEW", "LAKE_VIEW", "RIVER_VIEW", "NIGHT_VIEW", "ROOFTOP", "PET_FRIENDLY", "PARKING", "KIDS"] as const;
 
+// What a LEISURE spot is for (SpotDtos activity); the API orders them the same way
+export const ACTIVITIES = [
+  "KART",
+  "SHOOTING",
+  "ARCHERY",
+  "PAINTBALL",
+  "SURVIVAL",
+  "ATV",
+  "OFF_ROAD",
+  "BUNGEE",
+  "JET_SKI",
+  "KAYAK",
+  "RAFTING",
+  "SKYDIVING",
+  "PARAGLIDING",
+  "BALLOON",
+  "THEME_PARK",
+] as const;
+
 export type Category = (typeof CATEGORIES)[number];
+export type Activity = (typeof ACTIVITIES)[number];
 export type Region = (typeof REGIONS)[number];
 export type Tag = (typeof TAGS)[number];
 
@@ -34,6 +54,8 @@ export type SpotSummary = {
   id: number;
   name: string;
   category: Category;
+  // LEISURE only; missing from API builds before activities
+  activity?: Activity | null;
   region: Region;
   address: string;
   thumbnailUrl: string | null;
@@ -51,6 +73,8 @@ export type SpotDetail = Omit<SpotSummary, "thumbnailUrl"> & {
   images: string[];
   // YouTube Shorts id an admin attached; missing from API builds before Shorts
   shortsVideoId?: string | null;
+  // added by an admin, not from TourAPI: the photos are ours and the spot can be edited
+  manual?: boolean;
 };
 
 // GET /api/spots/shorts (SpotDtos.ShortsItem)
@@ -104,7 +128,7 @@ export type WeeklyRanking = {
   items: RankedSpot[];
 };
 
-export type SpotFilter = { region?: Region; category?: Category; tag?: Tag; q?: string; page: number };
+export type SpotFilter = { region?: Region; category?: Category; activity?: Activity; tag?: Tag; q?: string; page: number };
 
 // The API answers 400 above this length
 export const SEARCH_MAX_LENGTH = 50;
@@ -118,6 +142,7 @@ export function parseFilter(q: Record<string, string | string[] | undefined>): S
   return {
     region: pick(one(q.region), REGIONS),
     category: pick(one(q.category), CATEGORIES),
+    activity: pick(one(q.activity), ACTIVITIES),
     tag: pick(one(q.tag), TAGS),
     q: one(q.q)?.trim().slice(0, SEARCH_MAX_LENGTH).trim() || undefined,
     page: Number.isInteger(page) && page >= 1 && page <= 10_000 ? page : 1,
@@ -128,6 +153,7 @@ export function filterQuery(f: Partial<SpotFilter>): string {
   const p = new URLSearchParams();
   if (f.region) p.set("region", f.region);
   if (f.category) p.set("category", f.category);
+  if (f.activity) p.set("activity", f.activity);
   if (f.tag) p.set("tag", f.tag);
   if (f.q) p.set("q", f.q);
   if (f.page && f.page > 1) p.set("page", String(f.page));
@@ -146,6 +172,7 @@ export async function getSpots(f: SpotFilter, size = 20): Promise<Page<SpotSumma
   const p = new URLSearchParams({ page: String(f.page - 1), size: String(size) });
   if (f.region) p.set("region", f.region);
   if (f.category) p.set("category", f.category);
+  if (f.activity) p.set("activity", f.activity);
   if (f.tag) p.set("tag", f.tag);
   if (f.q) p.set("q", f.q);
   return (await get<Page<SpotSummary>>(`/api/spots?${p}`))!;

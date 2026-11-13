@@ -24,7 +24,7 @@ export async function SpotCard({ spot, rank, className = "" }: { spot: SpotSumma
           )}
         </div>
         <p className="mt-2 text-xs text-muted">
-          {t.categories[spot.category]} · {t.regions[spot.region]}
+          {spot.activity ? t.activities[spot.activity] : t.categories[spot.category]} · {t.regions[spot.region]}
         </p>
         <h3 className="truncate text-[15px] font-semibold tracking-tight group-hover:text-accent">{spot.name}</h3>
         {(spot.averageRating !== null || !!spot.likeCount) && (

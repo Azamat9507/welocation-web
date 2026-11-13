@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import {
+  ACTIVITIES,
   CATEGORIES,
   REGIONS,
   TAGS,
@@ -34,7 +35,7 @@ async function HomeContent({ searchParams }: { searchParams: PageProps<"/[lang]"
   const query = await searchParams;
   const filter = parseFilter(query);
   // "/?page=1" is the full list without filters; the bare "/" is the curated home
-  const listMode = !!(filter.region || filter.category || filter.tag || filter.q) || query.page !== undefined;
+  const listMode = !!(filter.region || filter.category || filter.activity || filter.tag || filter.q) || query.page !== undefined;
   return listMode ? <SpotList filter={filter} /> : <HomeSections />;
 }
 
@@ -203,6 +204,7 @@ async function SpotList({ filter }: { filter: SpotFilter }) {
     <>
       <nav aria-label={t.list.filtersLabel}>
         <CategoryTabs lang={lang} t={t} filter={filter} />
+        {filter.category === "LEISURE" && <ActivityChips lang={lang} t={t} filter={filter} />}
         <MoreFilters lang={lang} t={t} filter={filter} />
       </nav>
 
@@ -240,7 +242,11 @@ async function SpotList({ filter }: { filter: SpotFilter }) {
 
 function heading(t: Dictionary, f: SpotFilter) {
   if (f.q) return fill(t.list.searchHeading, { q: f.q });
-  const parts = [f.region && t.regions[f.region], f.tag && t.tags[f.tag], f.category && t.categories[f.category]];
+  const parts = [
+    f.region && t.regions[f.region],
+    f.tag && t.tags[f.tag],
+    f.activity ? t.activities[f.activity] : f.category && t.categories[f.category],
+  ];
   const text = parts.filter(Boolean).join(" ");
   return text || t.list.allSpots;
 }
@@ -253,7 +259,7 @@ function CategoryTabs({ lang, t, filter }: ListProps) {
     return (
       <Link
         key={value ?? "all"}
-        href={href(lang, `/${filterQuery({ ...filter, category: value, page: 1 })}`)}
+        href={href(lang, `/${filterQuery({ ...filter, category: value, activity: undefined, page: 1 })}`)}
         aria-current={active ? "true" : undefined}
         className={`shrink-0 border-b-2 pb-1.5 text-[15px] ${
           active ? "border-foreground font-semibold" : "border-transparent text-muted hover:text-foreground"
@@ -267,6 +273,29 @@ function CategoryTabs({ lang, t, filter }: ListProps) {
     <div className="-mx-4 flex min-w-0 gap-5 overflow-x-auto border-b border-line px-4">
       {tab(undefined, t.list.all)}
       {CATEGORIES.map((c) => tab(c, t.categories[c]))}
+    </div>
+  );
+}
+
+// Things to do by type, one scrolling row so phones stay compact
+function ActivityChips({ lang, t, filter }: ListProps) {
+  const chip = (value: SpotFilter["activity"], text: string) => {
+    const on = filter.activity === value;
+    return (
+      <Link
+        key={value ?? "all"}
+        href={href(lang, `/${filterQuery({ ...filter, activity: value, page: 1 })}`)}
+        aria-current={on ? "true" : undefined}
+        className={`shrink-0 rounded-full px-3 py-1 text-sm ${on ? "bg-foreground text-surface" : "bg-surface hover:bg-sand"}`}
+      >
+        {text}
+      </Link>
+    );
+  };
+  return (
+    <div aria-label={t.list.activity} className="-mx-4 mt-3 flex gap-1.5 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {chip(undefined, t.list.all)}
+      {ACTIVITIES.map((a) => chip(a, t.activities[a]))}
     </div>
   );
 }

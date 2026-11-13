@@ -44,6 +44,23 @@
     "LEISURE": "놀거리",
     "ATTRACTION": "명소"
   },
+  "activities": {
+    "KART": "카트",
+    "SHOOTING": "사격장",
+    "ARCHERY": "활쏘기",
+    "PAINTBALL": "페인트볼",
+    "SURVIVAL": "서바이벌",
+    "ATV": "ATV",
+    "OFF_ROAD": "오프로드",
+    "BUNGEE": "번지점프",
+    "JET_SKI": "제트스키",
+    "KAYAK": "카약·카누",
+    "RAFTING": "래프팅",
+    "SKYDIVING": "스카이다이빙",
+    "PARAGLIDING": "패러글라이딩",
+    "BALLOON": "열기구",
+    "THEME_PARK": "테마파크"
+  },
   "regions": {
     "SEOUL": "서울",
     "BUSAN": "부산",
@@ -129,7 +146,8 @@
     "pagesLabel": "페이지",
     "prev": "← 이전",
     "next": "다음 →",
-    "staysSoon": "바다와 호수, 강 가까운 숙소는 매일 밤 업데이트돼요. 곧 여기에서 볼 수 있어요."
+    "staysSoon": "바다와 호수, 강 가까운 숙소는 매일 밤 업데이트돼요. 곧 여기에서 볼 수 있어요.",
+    "activity": "즐길 거리"
   },
   "rating": {
     "none": "아직 리뷰가 없어요",
@@ -162,7 +180,8 @@
     "checkPrice": "가격·예약 확인",
     "naverSearch": "네이버 검색",
     "googleSearch": "구글 검색",
-    "priceNote": "가격과 예약은 각 사이트에서 확인해 주세요"
+    "priceNote": "가격과 예약은 각 사이트에서 확인해 주세요",
+    "survivalNote": "서바이벌은 페인트볼, BB탄, 레이저 중 무엇인지 업체에 확인해 주세요."
   },
   "review": {
     "editMine": "내 리뷰 수정",
@@ -338,6 +357,38 @@
     "saved": "저장했어요.",
     "noResults": "검색 결과가 없어요.",
     "menuLink": "쇼츠 관리",
-    "manage": "쇼츠 등록·변경"
+    "manage": "쇼츠 등록·변경",
+    "spotsTitle": "직접 등록한 장소",
+    "spotsMenuLink": "장소 등록",
+    "spotsHint": "TourAPI에 없는 장소용입니다. 직접 찍었거나 사용 허락을 받은 사진만 올려 주세요.",
+    "newSpot": "장소 추가",
+    "editSpot": "수정",
+    "name": "이름",
+    "category": "분류",
+    "activity": "즐길 거리",
+    "noActivity": "없음",
+    "region": "지역",
+    "regionAuto": "주소에서 자동",
+    "address": "주소",
+    "findCoords": "좌표 찾기",
+    "coords": "좌표",
+    "coordsHint": "결과를 고르거나 지도에서 \"37.28, 127.02\" 형식으로 붙여 넣으세요.",
+    "checkMap": "카카오맵에서 확인",
+    "noCoords": "이 주소로 좌표를 찾지 못했습니다. 지도에서 복사해 붙여 넣으세요.",
+    "badCoords": "37.28, 127.02처럼 국내 좌표를 입력하세요.",
+    "description": "설명",
+    "saveSpot": "저장",
+    "deleteSpot": "장소 삭제",
+    "deleteBlocked": "리뷰, 좋아요 또는 저장이 있어 삭제할 수 없습니다.",
+    "photos": "사진",
+    "addPhoto": "사진 추가",
+    "removePhoto": "삭제",
+    "uploading": "올리는 중...",
+    "badPhoto": "5MB 이하의 JPEG 또는 PNG 사진을 올려 주세요.",
+    "tooManyPhotos": "사진은 장소당 10장까지입니다.",
+    "noManual": "아직 등록한 장소가 없습니다.",
+    "needRegion": "주소에 시·도가 없습니다. 지역을 골라 주세요.",
+    "view": "페이지 보기",
+    "deleteConfirm": "한 번 더 누르면 삭제됩니다"
   }
 }

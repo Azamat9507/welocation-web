@@ -44,6 +44,23 @@
     "LEISURE": "Activities",
     "ATTRACTION": "Sights"
   },
+  "activities": {
+    "KART": "Karting",
+    "SHOOTING": "Shooting range",
+    "ARCHERY": "Archery",
+    "PAINTBALL": "Paintball",
+    "SURVIVAL": "Survival game",
+    "ATV": "ATV",
+    "OFF_ROAD": "Off-road",
+    "BUNGEE": "Bungee jump",
+    "JET_SKI": "Jet ski",
+    "KAYAK": "Kayak and canoe",
+    "RAFTING": "Rafting",
+    "SKYDIVING": "Skydiving",
+    "PARAGLIDING": "Paragliding",
+    "BALLOON": "Hot air balloon",
+    "THEME_PARK": "Theme park"
+  },
   "regions": {
     "SEOUL": "Seoul",
     "BUSAN": "Busan",
@@ -129,7 +146,8 @@
     "pagesLabel": "Pages",
     "prev": "← Prev",
     "next": "Next →",
-    "staysSoon": "Stays near the sea, lakes and rivers are added every night. They will show up here soon."
+    "staysSoon": "Stays near the sea, lakes and rivers are added every night. They will show up here soon.",
+    "activity": "What to do"
   },
   "rating": {
     "none": "No reviews yet",
@@ -162,7 +180,8 @@
     "checkPrice": "Prices and booking",
     "naverSearch": "Naver search",
     "googleSearch": "Google search",
-    "priceNote": "Please check prices and booking on each site"
+    "priceNote": "Please check prices and booking on each site",
+    "survivalNote": "Survival games here may use paint, BB guns or lasers; please check with the place."
   },
   "review": {
     "editMine": "Edit my review",
@@ -338,6 +357,38 @@
     "saved": "Saved.",
     "noResults": "No places found.",
     "menuLink": "Manage Shorts",
-    "manage": "Add or change Shorts"
+    "manage": "Add or change Shorts",
+    "spotsTitle": "Places added by hand",
+    "spotsMenuLink": "Add places",
+    "spotsHint": "For places TourAPI doesn't list. Use only your own photos or ones you may share.",
+    "newSpot": "Add a place",
+    "editSpot": "Edit",
+    "name": "Name",
+    "category": "Category",
+    "activity": "Activity",
+    "noActivity": "None",
+    "region": "Region",
+    "regionAuto": "From the address",
+    "address": "Address",
+    "findCoords": "Find coordinates",
+    "coords": "Coordinates",
+    "coordsHint": "Pick a result, or paste \"37.28, 127.02\" from a map.",
+    "checkMap": "Check on Kakao Map",
+    "noCoords": "No coordinates found for this address. Paste them from a map.",
+    "badCoords": "Enter coordinates in Korea, like 37.28, 127.02.",
+    "description": "Description",
+    "saveSpot": "Save place",
+    "deleteSpot": "Delete place",
+    "deleteBlocked": "Visitors have reviewed, liked or saved this place, so it stays.",
+    "photos": "Photos",
+    "addPhoto": "Add photo",
+    "removePhoto": "Remove",
+    "uploading": "Uploading...",
+    "badPhoto": "Use a JPEG or PNG photo under 5 MB.",
+    "tooManyPhotos": "A place can have up to 10 photos.",
+    "noManual": "No places added yet.",
+    "needRegion": "The address doesn't say the province. Pick a region.",
+    "view": "Open page",
+    "deleteConfirm": "Click again to delete"
   }
 }

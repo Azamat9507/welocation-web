@@ -25,7 +25,8 @@
     "home": "Bosh sahifa",
     "nearby": "Atrofda",
     "ranking": "Mashhur",
-    "guide": "AI gid"
+    "guide": "AI gid",
+    "shorts": "Shorts"
   },
   "common": {
     "loading": "Yuklanmoqda…",
@@ -302,5 +303,39 @@
   "error": {
     "message": "Hozir joy ma'lumotlarini yuklab bo'lmadi.",
     "retry": "Qayta urinish"
+  },
+  "shorts": {
+    "metaTitle": "Shorts · WeLocation",
+    "metaDescription": "Koreyadagi joylar haqida qisqa videolar.",
+    "title": "Shorts",
+    "empty": "Hozircha video yo'q.",
+    "play": "{name} videosini ko'rish",
+    "openSpot": "Joyni ko'rish",
+    "prev": "Oldingi video",
+    "next": "Keyingi video",
+    "feed": "Shorts lentasi",
+    "videoTitle": "{name}: Shorts video",
+    "source": "Video: YouTube",
+    "seeAll": "Barcha Shorts",
+    "heading": "Qisqa video",
+    "more": "Yana videolar"
+  },
+  "admin": {
+    "title": "Shorts boshqaruvi",
+    "hint": "Faqat rasmiy kanallar yoki egasi ruxsat bergan videolarni qo'shing.",
+    "searchLabel": "Joy qidirish",
+    "searchPlaceholder": "Joy nomi yoki manzili",
+    "searchButton": "Qidirish",
+    "listed": "{n} ta video qo'shilgan",
+    "urlLabel": "{name} uchun YouTube havolasi",
+    "urlPlaceholder": "YouTube Shorts havolasi",
+    "save": "Saqlash",
+    "remove": "O'chirish",
+    "badUrl": "Bu YouTube video havolasi emas.",
+    "failed": "Saqlab bo'lmadi. Qaytadan urinib ko'ring.",
+    "saved": "Saqlandi.",
+    "noResults": "Joy topilmadi.",
+    "menuLink": "Shorts boshqaruvi",
+    "manage": "Shorts qo'shish yoki o'zgartirish"
   }
 }

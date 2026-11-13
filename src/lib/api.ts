@@ -49,6 +49,30 @@ export type SpotDetail = Omit<SpotSummary, "thumbnailUrl"> & {
   longitude: number;
   description: string | null;
   images: string[];
+  // YouTube Shorts id an admin attached; missing from API builds before Shorts
+  shortsVideoId?: string | null;
+};
+
+// GET /api/spots/shorts (SpotDtos.ShortsItem)
+export type ShortsItem = {
+  id: number;
+  name: string;
+  category: Category;
+  region: Region;
+  address: string;
+  thumbnailUrl: string | null;
+  videoId: string;
+};
+
+// The API only stores ids of this shape; checked again here because the id ends up in an iframe src
+export const isVideoId = (v: unknown): v is string => typeof v === "string" && /^[A-Za-z0-9_-]{11}$/.test(v);
+
+// youtube-nocookie: no YouTube cookies until the visitor presses play
+export const shortsEmbedUrl = (videoId: string, opts: { autoplay?: boolean; mute?: boolean } = {}) => {
+  const p = new URLSearchParams({ playsinline: "1", rel: "0", loop: "1", playlist: videoId });
+  if (opts.autoplay) p.set("autoplay", "1");
+  if (opts.mute) p.set("mute", "1");
+  return `https://www.youtube-nocookie.com/embed/${videoId}?${p}`;
 };
 
 export type Review = {
@@ -129,6 +153,16 @@ export async function getSpots(f: SpotFilter, size = 20): Promise<Page<SpotSumma
 
 export function getSpot(id: number) {
   return get<SpotDetail>(`/api/spots/${id}`);
+}
+
+// page is 0-based here, like the API's
+export async function getShorts(page = 0, size = 20): Promise<Page<ShortsItem>> {
+  const res = await fetch(`${API_ORIGIN}/api/spots/shorts?page=${page}&size=${size}`, { headers: { Accept: "application/json" } });
+  // an API build without Shorts reads "shorts" as a spot id and answers 400 or 404: no videos then
+  if (res.status === 400 || res.status === 404) return { items: [], page, size, totalElements: 0, totalPages: 0 };
+  if (!res.ok) throw new Error(`API ${res.status} for /api/spots/shorts`);
+  const r = (await res.json()) as Page<ShortsItem>;
+  return { ...r, items: r.items.filter((i) => isVideoId(i.videoId)) };
 }
 
 export function getReviews(id: number) {

@@ -25,7 +25,8 @@
     "home": "Главная",
     "nearby": "Рядом",
     "ranking": "Популярное",
-    "guide": "AI-гид"
+    "guide": "AI-гид",
+    "shorts": "Shorts"
   },
   "common": {
     "loading": "Загрузка…",
@@ -302,5 +303,39 @@
   "error": {
     "message": "Сейчас не удаётся загрузить информацию о местах.",
     "retry": "Повторить"
+  },
+  "shorts": {
+    "metaTitle": "Shorts · WeLocation",
+    "metaDescription": "Короткие видео о местах в Корее.",
+    "title": "Shorts",
+    "empty": "Видео пока нет.",
+    "play": "Смотреть видео: {name}",
+    "openSpot": "Открыть место",
+    "prev": "Предыдущее видео",
+    "next": "Следующее видео",
+    "feed": "Лента Shorts",
+    "videoTitle": "{name}: видео Shorts",
+    "source": "Видео: YouTube",
+    "seeAll": "Все Shorts",
+    "heading": "Короткое видео",
+    "more": "Ещё видео"
+  },
+  "admin": {
+    "title": "Управление Shorts",
+    "hint": "Добавляйте только видео официальных каналов или с разрешения автора.",
+    "searchLabel": "Поиск мест",
+    "searchPlaceholder": "Название или адрес места",
+    "searchButton": "Найти",
+    "listed": "Добавлено видео: {n}",
+    "urlLabel": "Ссылка YouTube для «{name}»",
+    "urlPlaceholder": "Ссылка на YouTube Shorts",
+    "save": "Сохранить",
+    "remove": "Удалить",
+    "badUrl": "Это не ссылка на видео YouTube.",
+    "failed": "Не удалось сохранить. Попробуйте ещё раз.",
+    "saved": "Сохранено.",
+    "noResults": "Места не найдены.",
+    "menuLink": "Управление Shorts",
+    "manage": "Добавить или изменить Shorts"
   }
 }

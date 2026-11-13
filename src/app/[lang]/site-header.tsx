@@ -15,6 +15,7 @@ export async function SiteHeader() {
     { href: "/", label: t.tabs.home },
     { href: "/nearby", label: t.tabs.nearby },
     { href: "/ranking", label: t.tabs.ranking },
+    { href: "/shorts", label: t.tabs.shorts },
     { href: "/guide", label: t.tabs.guide },
   ];
   const menu: MenuColumn[] = [

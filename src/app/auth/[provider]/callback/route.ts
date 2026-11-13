@@ -17,7 +17,8 @@ export async function GET(req: Request, ctx: RouteContext<"/auth/[provider]/call
   const url = new URL(req.url);
   const jar = await cookies();
   const raw = jar.get(ATTEMPT_COOKIE)?.value;
-  jar.delete({ name: ATTEMPT_COOKIE, path: "/auth" });
+  // one use only; expired with the same attributes it was set with, which a __Host- cookie needs
+  jar.set(ATTEMPT_COOKIE, "", { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", path: "/", maxAge: 0 });
 
   let attempt: Attempt | null = null;
   try {
@@ -39,8 +40,8 @@ export async function GET(req: Request, ctx: RouteContext<"/auth/[provider]/call
     method: "POST",
     body: { code, codeVerifier: attempt.verifier },
     token: null,
-  });
-  if (!r.ok) return fail("oauth");
+  }).catch(() => null);
+  if (!r?.ok) return fail("oauth");
   await setSession(r.data.accessToken, r.data.expiresIn);
   return to(safeNext(attempt.next, lang));
 }

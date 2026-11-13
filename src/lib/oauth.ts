@@ -7,7 +7,8 @@ export type Provider = (typeof PROVIDERS)[number];
 export const isProvider = (v: unknown): v is Provider => typeof v === "string" && (PROVIDERS as readonly string[]).includes(v);
 
 // One sign-in attempt, kept in an httpOnly cookie between leaving for the provider and coming back
-export const ATTEMPT_COOKIE = "wl_oauth";
+// __Host- in production for the same reason as the session cookie (lib/session.ts); that prefix requires Path=/
+export const ATTEMPT_COOKIE = process.env.NODE_ENV === "production" ? "__Host-wl_oauth" : "wl_oauth";
 export type Attempt = { provider: Provider; state: string; verifier: string; lang: string; next: string };
 
 const b64url = (b: Buffer) => b.toString("base64url");

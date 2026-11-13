@@ -143,7 +143,29 @@
     "top10Weekly": "이번 주 TOP 10",
     "top10WeeklyNote": "월요일 00:00부터 받은 좋아요 순",
     "top10Picks": "WeLocation 추천 TOP 10",
-    "top10PicksNote": "좋아요 순위가 아닌 WeLocation이 고른 장소예요. 좋아요가 쌓이면 주간 순위로 바뀝니다."
+    "top10PicksNote": "좋아요 순위가 아닌 WeLocation이 고른 장소예요. 좋아요가 쌓이면 주간 순위로 바뀝니다.",
+    "themesTitle": "테마로 떠나기",
+    "themesNote": "오늘 기분에 맞는 여행을 골라 보세요",
+    "themeSea": "파도 소리 들리는 바다",
+    "themeSeaLine": "전국의 해변과 바다 풍경",
+    "themeLeisure": "몸으로 즐기는 하루",
+    "themeLeisureLine": "카트, 래프팅, 서바이벌까지",
+    "themeAi": "무엇이든 물어보세요",
+    "themeAiLine": "AI 가이드가 장소를 골라 드려요",
+    "seaNote": "지역을 골라 바다 풍경을 보세요",
+    "collectionHeading": "테마 컬렉션",
+    "collectionNote": "한 가지 주제로 모은 장소",
+    "more": "자세히 보기",
+    "leisureTitle": "액티비티와 레저",
+    "leisureNote": "종류를 골라 보세요",
+    "staysNote": "물가에서 묵을 수 있는 숙소",
+    "newestNote": "최근 추가된 순",
+    "popularRegions": "인기 지역",
+    "allIn": "{region} 전체",
+    "themeCafe": "창가에서 마시는 커피",
+    "themeCafeLine": "경치 좋은 카페",
+    "viewTitle": "위에서 내려다보는 풍경",
+    "viewLine": "전망대에서 보는 탁 트인 경치"
   },
   "list": {
     "filtersLabel": "필터",
@@ -406,5 +428,19 @@
     "needRegion": "주소에 시·도가 없습니다. 지역을 골라 주세요.",
     "view": "페이지 보기",
     "deleteConfirm": "한 번 더 누르면 삭제됩니다"
+  },
+  "footer": {
+    "tagline": "위로가 되는 장소",
+    "languages": "언어",
+    "linksLabel": "사이트 링크",
+    "privacy": "개인정보처리방침",
+    "contact": "문의",
+    "guide": "AI 가이드",
+    "ranking": "주간 인기",
+    "shorts": "쇼츠",
+    "operator": "운영자",
+    "email": "이메일",
+    "sources": "장소 좌표 일부: © OpenStreetMap 기여자(ODbL) · 아이콘: Microsoft Fluent Emoji(MIT) · 글꼴: Pretendard(OFL) · 영상: YouTube",
+    "backToTop": "맨 위로"
   }
 }

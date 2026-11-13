@@ -3,16 +3,17 @@ import type { SpotSummary } from "@/lib/api";
 import { currentLocale } from "@/lib/current-locale";
 import { CardPhotos } from "./card-photos";
 
-type Props = { spot: SpotSummary; rank?: number; className?: string; swipe?: boolean };
+type Props = { spot: SpotSummary; rank?: number; className?: string; swipe?: boolean; portrait?: boolean };
 
 // swipe: the card sits in a grid, so a sideways swipe can flip its photos (in a scrolling row it would fight the row)
-export async function SpotCard({ spot, rank, className = "", swipe = false }: Props) {
+// portrait: a 3:4 photo instead of a square, for sections that set a different rhythm
+export async function SpotCard({ spot, rank, className = "", swipe = false, portrait = false }: Props) {
   const { lang, t } = await currentLocale();
   const photos = spot.photos?.length ? spot.photos : spot.thumbnailUrl ? [spot.thumbnailUrl] : [];
   return (
     <li className={`min-w-0 ${className}`}>
       <Link href={`/${lang}/spots/${spot.id}`} className="group block">
-        <div className="relative aspect-square overflow-hidden rounded-2xl bg-sand">
+        <div className={`relative overflow-hidden rounded-2xl bg-sand ${portrait ? "aspect-[3/4]" : "aspect-square"}`}>
           {photos.length > 0 ? (
             <CardPhotos photos={photos} swipe={swipe} />
           ) : (

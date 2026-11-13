@@ -2,6 +2,7 @@ import Link from "next/link";
 import { isTourApiImage, type SpotSummary } from "@/lib/api";
 import type { Dictionary } from "@/lib/dictionaries";
 import { href, type Locale } from "@/lib/i18n";
+import { SECTION, SectionHead } from "./section-head";
 
 // Our own picks while there are too few likes for a real weekly top 10 (the home page switches to the
 // ranking once it has 10 spots). Real spots with good licensed galleries, spread over regions and kinds.
@@ -12,16 +13,8 @@ type Props = { lang: Locale; t: Dictionary; title: string; note: string; seeAll?
 // Netflix-style row: a big outlined rank number with the photo leaning on it, scrolled sideways
 export function TopTen({ lang, t, title, note, seeAll, spots }: Props) {
   return (
-    <section className="mt-7">
-      <div className="mb-1 flex items-baseline justify-between gap-3">
-        <h2 className="text-lg font-bold tracking-tight">{title}</h2>
-        {seeAll && (
-          <Link href={seeAll} className="shrink-0 text-sm text-muted hover:text-foreground">
-            {t.home.seeAll}
-          </Link>
-        )}
-      </div>
-      <p className="mb-3 text-xs text-muted">{note}</p>
+    <section className={SECTION}>
+      <SectionHead title={title} note={note} href={seeAll} seeAll={t.home.seeAll} />
       <ol className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-1 sm:gap-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {spots.map((s, i) => (
           <li key={s.id} className="shrink-0 snap-start">

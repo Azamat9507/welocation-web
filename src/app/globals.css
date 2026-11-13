@@ -4,13 +4,14 @@
   --background: #ffffff;
   --surface: #f5f6f7;
   --sand: #eceff1;
-  --foreground: #1c2126;
+  --foreground: #1b1c1f;
   --muted: #6b737c;
   --line: #e6e8eb;
   --accent: #1e5b5e;
   --accent-soft: #e3efee;
-  /* the only typeface on the site */
-  --font-ui: system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  /* the only typeface on the site: Pretendard (OFL, self-hosted in public/fonts, loaded per Unicode block).
+     It has no Cyrillic, so Russian text falls back to the system font. */
+  --font-ui: "Pretendard Variable", system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
 }
 
 @theme inline {

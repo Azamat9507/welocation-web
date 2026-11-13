@@ -143,7 +143,29 @@
     "top10Weekly": "Top 10 this week",
     "top10WeeklyNote": "By likes since Monday 00:00",
     "top10Picks": "WeLocation picks: Top 10",
-    "top10PicksNote": "Chosen by WeLocation, not ranked by likes. This becomes the weekly ranking once likes add up."
+    "top10PicksNote": "Chosen by WeLocation, not ranked by likes. This becomes the weekly ranking once likes add up.",
+    "themesTitle": "Travel by theme",
+    "themesNote": "Pick the trip that fits today's mood",
+    "themeSea": "Where the waves are",
+    "themeSeaLine": "Beaches and sea views all over Korea",
+    "themeLeisure": "A day on the move",
+    "themeLeisureLine": "Go-karts, rafting, survival games",
+    "themeAi": "Ask anything",
+    "themeAiLine": "The AI guide picks places for you",
+    "seaNote": "Choose a region to see its sea views",
+    "collectionHeading": "Collections",
+    "collectionNote": "Places gathered around one theme",
+    "more": "See more",
+    "leisureTitle": "Activities and leisure",
+    "leisureNote": "Choose a kind of activity",
+    "staysNote": "Places to stay by the water",
+    "newestNote": "Most recently added first",
+    "popularRegions": "Popular regions",
+    "allIn": "All of {region}",
+    "themeCafe": "Coffee by the window",
+    "themeCafeLine": "Cafes with a view",
+    "viewTitle": "The view from above",
+    "viewLine": "Wide views from observation decks"
   },
   "list": {
     "filtersLabel": "Filters",
@@ -406,5 +428,19 @@
     "needRegion": "The address doesn't say the province. Pick a region.",
     "view": "Open page",
     "deleteConfirm": "Click again to delete"
+  },
+  "footer": {
+    "tagline": "Places that comfort",
+    "languages": "Language",
+    "linksLabel": "Site links",
+    "privacy": "Privacy policy",
+    "contact": "Contact",
+    "guide": "AI guide",
+    "ranking": "Weekly top",
+    "shorts": "Shorts",
+    "operator": "Operator",
+    "email": "Email",
+    "sources": "Some coordinates: © OpenStreetMap contributors (ODbL) · Icons: Microsoft Fluent Emoji (MIT) · Font: Pretendard (OFL) · Videos: YouTube",
+    "backToTop": "Back to top"
   }
 }

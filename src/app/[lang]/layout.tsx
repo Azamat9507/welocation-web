@@ -4,7 +4,10 @@ import { getDictionary } from "@/lib/dictionaries";
 import { LOCALES, isLocale } from "@/lib/i18n";
 import "../globals.css";
 import { ErrorStrings } from "./error-strings";
+import { FontLoader } from "./font-loader";
 import { GuidePanelProvider } from "./guide-panel/provider";
+import { BackToTop } from "./back-to-top";
+import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
 export function generateStaticParams() {
@@ -24,7 +27,13 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const t = await getDictionary(lang);
   return (
     <html lang={lang} className="h-full antialiased">
+      <head>
+        {/* the site font, off the critical path: FontLoader turns it on after the first paint */}
+        {/* eslint-disable-next-line @next/next/no-css-tags -- on purpose: a bundled stylesheet would block the first paint */}
+        <link id="pretendard" rel="stylesheet" href="/fonts/pretendard/pretendard.css" media="print" />
+      </head>
       <body className="flex min-h-full flex-col">
+        <FontLoader />
         <GuidePanelProvider
           lang={lang}
           labels={{
@@ -39,10 +48,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-4 sm:py-6">
             <ErrorStrings value={t.error}>{children}</ErrorStrings>
           </main>
-          {/* phones: room under the credit line for the floating AI guide button */}
-          <footer className="mt-10 border-t border-line px-4 pt-5 pb-20 text-center text-xs text-muted sm:pb-5">
-            {t.common.footerCredit}
-          </footer>
+          <SiteFooter lang={lang} t={t} />
+          <BackToTop label={t.footer.backToTop} />
         </GuidePanelProvider>
       </body>
     </html>

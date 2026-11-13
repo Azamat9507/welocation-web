@@ -44,6 +44,23 @@
     "LEISURE": "Ko'ngilochar",
     "ATTRACTION": "Diqqatga sazovor"
   },
+  "activities": {
+    "KART": "Karting",
+    "SHOOTING": "O'q otish",
+    "ARCHERY": "Kamondan o'q otish",
+    "PAINTBALL": "Peyntbol",
+    "SURVIVAL": "Survival o'yini",
+    "ATV": "Kvadrotsikl",
+    "OFF_ROAD": "Off-road",
+    "BUNGEE": "Banji-jamping",
+    "JET_SKI": "Gidrotsikl",
+    "KAYAK": "Kayak va kanoe",
+    "RAFTING": "Rafting",
+    "SKYDIVING": "Parashyutdan sakrash",
+    "PARAGLIDING": "Paraplan",
+    "BALLOON": "Havo shari",
+    "THEME_PARK": "Attraksionlar bog'i"
+  },
   "regions": {
     "SEOUL": "Seul",
     "BUSAN": "Pusan",
@@ -129,7 +146,8 @@
     "pagesLabel": "Sahifalar",
     "prev": "← Oldingi",
     "next": "Keyingi →",
-    "staysSoon": "Dengiz, ko'l va daryo bo'yidagi mehmonxonalar har kecha qo'shiladi. Tez orada shu yerda paydo bo'ladi."
+    "staysSoon": "Dengiz, ko'l va daryo bo'yidagi mehmonxonalar har kecha qo'shiladi. Tez orada shu yerda paydo bo'ladi.",
+    "activity": "Nima qilish mumkin"
   },
   "rating": {
     "none": "Hali sharhlar yo'q",
@@ -162,7 +180,8 @@
     "checkPrice": "Narx va bron",
     "naverSearch": "Naver qidiruv",
     "googleSearch": "Google qidiruv",
-    "priceNote": "Narx va bronni har bir saytda tekshiring"
+    "priceNote": "Narx va bronni har bir saytda tekshiring",
+    "survivalNote": "Survival o'yinida bo'yoq, BB yoki lazer bo'lishi mumkin; joyning o'zidan so'rang."
   },
   "review": {
     "editMine": "Sharhimni tahrirlash",
@@ -338,6 +357,38 @@
     "saved": "Saqlandi.",
     "noResults": "Joy topilmadi.",
     "menuLink": "Shorts boshqaruvi",
-    "manage": "Shorts qo'shish yoki o'zgartirish"
+    "manage": "Shorts qo'shish yoki o'zgartirish",
+    "spotsTitle": "Qo'lda qo'shilgan joylar",
+    "spotsMenuLink": "Joy qo'shish",
+    "spotsHint": "TourAPI'da yo'q joylar uchun. Faqat o'zingiz olgan yoki ruxsat berilgan rasmlarni yuklang.",
+    "newSpot": "Joy qo'shish",
+    "editSpot": "Tahrirlash",
+    "name": "Nomi",
+    "category": "Toifa",
+    "activity": "Faoliyat turi",
+    "noActivity": "Yo'q",
+    "region": "Hudud",
+    "regionAuto": "Manzildan",
+    "address": "Manzil",
+    "findCoords": "Koordinatani topish",
+    "coords": "Koordinata",
+    "coordsHint": "Natijani tanlang yoki xaritadan \"37.28, 127.02\" ko'rinishida qo'ying.",
+    "checkMap": "Kakao Map'da tekshirish",
+    "noCoords": "Bu manzil uchun koordinata topilmadi. Xaritadan nusxa olib qo'ying.",
+    "badCoords": "Koreyadagi koordinatani kiriting, masalan 37.28, 127.02.",
+    "description": "Tavsif",
+    "saveSpot": "Saqlash",
+    "deleteSpot": "Joyni o'chirish",
+    "deleteBlocked": "Bu joyga sharh, layk yoki saqlash bor, shuning uchun o'chirilmaydi.",
+    "photos": "Rasmlar",
+    "addPhoto": "Rasm qo'shish",
+    "removePhoto": "O'chirish",
+    "uploading": "Yuklanmoqda...",
+    "badPhoto": "5 MB dan kichik JPEG yoki PNG rasm yuklang.",
+    "tooManyPhotos": "Bir joyga 10 tagacha rasm.",
+    "noManual": "Hali joy qo'shilmagan.",
+    "needRegion": "Manzilda viloyat yo'q. Hududni tanlang.",
+    "view": "Sahifani ochish",
+    "deleteConfirm": "O'chirish uchun yana bosing"
   }
 }

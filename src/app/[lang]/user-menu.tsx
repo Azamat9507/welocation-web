@@ -21,9 +21,14 @@ export async function UserMenu() {
       <div className="absolute right-0 z-20 mt-2 w-44 rounded-xl border border-line bg-background p-3 text-sm shadow-sm">
         <p className="truncate font-medium">{me.nickname}</p>
         {me.admin && (
-          <Link href={href(lang, "/admin/shorts")} className="mt-2 block text-accent">
-            {t.admin.menuLink}
-          </Link>
+          <>
+            <Link href={href(lang, "/admin/shorts")} className="mt-2 block text-accent">
+              {t.admin.menuLink}
+            </Link>
+            <Link href={href(lang, "/admin/spots")} className="mt-2 block text-accent">
+              {t.admin.spotsMenuLink}
+            </Link>
+          </>
         )}
         <form action={logout.bind(null, lang)} className="mt-2">
           <button className="text-muted hover:text-accent">{t.header.logout}</button>

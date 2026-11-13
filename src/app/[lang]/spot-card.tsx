@@ -1,17 +1,20 @@
 import Link from "next/link";
 import type { SpotSummary } from "@/lib/api";
 import { currentLocale } from "@/lib/current-locale";
+import { CardPhotos } from "./card-photos";
 
-export async function SpotCard({ spot, rank, className = "" }: { spot: SpotSummary; rank?: number; className?: string }) {
+type Props = { spot: SpotSummary; rank?: number; className?: string; swipe?: boolean };
+
+// swipe: the card sits in a grid, so a sideways swipe can flip its photos (in a scrolling row it would fight the row)
+export async function SpotCard({ spot, rank, className = "", swipe = false }: Props) {
   const { lang, t } = await currentLocale();
+  const photos = spot.photos?.length ? spot.photos : spot.thumbnailUrl ? [spot.thumbnailUrl] : [];
   return (
     <li className={`min-w-0 ${className}`}>
       <Link href={`/${lang}/spots/${spot.id}`} className="group block">
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-sand">
-          {spot.thumbnailUrl ? (
-            // served as-is: the 공공누리 license does not allow altering the photo
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={spot.thumbnailUrl} alt="" loading="lazy" className="h-full w-full object-cover" />
+          {photos.length > 0 ? (
+            <CardPhotos photos={photos} swipe={swipe} />
           ) : (
             <span className="absolute inset-0 grid place-items-center text-sm text-muted">
               {t.categories[spot.category]}

@@ -19,7 +19,14 @@
     "menuKinds": "Turi",
     "menuRegions": "Hudud",
     "menuThemes": "Mavzu",
-    "menuServices": "Xizmatlar"
+    "menuServices": "Xizmatlar",
+    "searchExamples": [
+      "Paintball",
+      "해운대",
+      "Jejuda sokin plyaj qayerda?",
+      "Seulda tungi manzara qayerda?",
+      "Karting"
+    ]
   },
   "tabs": {
     "home": "Bosh sahifa",
@@ -127,7 +134,16 @@
       "STAY": "Suv bo'yida bir kecha",
       "LEISURE": "Maroqli dam olish kuni",
       "ATTRACTION": "Bugun shu yerga boring"
-    }
+    },
+    "mapTitle": "Koreya bo'ylab {n} ta joy",
+    "mapHint": "Har bir nuqta bitta joy. Viloyatni bossangiz, faqat o'sha yerdagi joylar chiqadi.",
+    "mapLegend": "Turlar bo'yicha joylar",
+    "mapRegions": "Viloyatlar",
+    "mapRegionLabel": "{region}: {n} ta joy",
+    "top10Weekly": "Bu haftaning TOP 10",
+    "top10WeeklyNote": "Dushanba 00:00 dan beri yoqtirishlar bo'yicha",
+    "top10Picks": "WeLocation tanlovi: TOP 10",
+    "top10PicksNote": "Bu yoqtirishlar reytingi emas, joylarni WeLocation tanlagan. Yoqtirishlar ko'paygach, haftalik reytingga o'tadi."
   },
   "list": {
     "filtersLabel": "Filtrlar",

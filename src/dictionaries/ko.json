@@ -19,7 +19,14 @@
     "menuKinds": "종류",
     "menuRegions": "지역",
     "menuThemes": "테마",
-    "menuServices": "서비스"
+    "menuServices": "서비스",
+    "searchExamples": [
+      "페인트볼",
+      "해운대",
+      "제주 조용한 해변 추천해줘",
+      "서울 야경 좋은 곳은?",
+      "카트"
+    ]
   },
   "tabs": {
     "home": "홈",
@@ -127,7 +134,16 @@
       "STAY": "물소리 들으며 하룻밤",
       "LEISURE": "신나게 놀다 가요",
       "ATTRACTION": "오늘은 여기로 떠나요"
-    }
+    },
+    "mapTitle": "전국 {n}곳, 한눈에",
+    "mapHint": "점 하나가 장소 하나예요. 지역을 누르면 그곳의 장소만 볼 수 있어요.",
+    "mapLegend": "종류별 장소 수",
+    "mapRegions": "지역",
+    "mapRegionLabel": "{region}: {n}곳",
+    "top10Weekly": "이번 주 TOP 10",
+    "top10WeeklyNote": "월요일 00:00부터 받은 좋아요 순",
+    "top10Picks": "WeLocation 추천 TOP 10",
+    "top10PicksNote": "좋아요 순위가 아닌 WeLocation이 고른 장소예요. 좋아요가 쌓이면 주간 순위로 바뀝니다."
   },
   "list": {
     "filtersLabel": "필터",

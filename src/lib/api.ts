@@ -64,6 +64,8 @@ export type SpotSummary = {
   likeCount?: number;
   reviewCount: number;
   averageRating: number | null;
+  // first gallery photos, thumbnail first, for cards that flip through them; missing from older API builds
+  photos?: string[];
 };
 
 export type SpotDetail = Omit<SpotSummary, "thumbnailUrl"> & {
@@ -195,6 +197,13 @@ export async function getShorts(page = 0, size = 20): Promise<Page<ShortsItem>> 
 export function getReviews(id: number) {
   return get<Page<Review>>(`/api/spots/${id}/reviews?page=0&size=10`);
 }
+
+// GET /api/spots/map (SpotDtos.SpotMap): every spot as [lat, lng], grouped by category, and counts per region
+export type SpotMap = {
+  total: number;
+  points: Partial<Record<Category, [number, number][]>>;
+  regions: Partial<Record<Region, number>>;
+};
 
 // Not cached: a like should show up on the next page load. The API answers from one Redis read.
 export async function getWeeklyRanking(): Promise<WeeklyRanking> {

@@ -19,7 +19,14 @@
     "menuKinds": "Type",
     "menuRegions": "Region",
     "menuThemes": "Theme",
-    "menuServices": "Services"
+    "menuServices": "Services",
+    "searchExamples": [
+      "Paintball",
+      "해운대",
+      "Quiet beach in Jeju?",
+      "Where to see Seoul at night?",
+      "Go-kart"
+    ]
   },
   "tabs": {
     "home": "Home",
@@ -127,7 +134,16 @@
       "STAY": "A night by the water",
       "LEISURE": "A day of thrills",
       "ATTRACTION": "Your trip for today"
-    }
+    },
+    "mapTitle": "{n} places across Korea",
+    "mapHint": "Each dot is a place. Tap a region to see only its places.",
+    "mapLegend": "Places by type",
+    "mapRegions": "Regions",
+    "mapRegionLabel": "{region}: {n} places",
+    "top10Weekly": "Top 10 this week",
+    "top10WeeklyNote": "By likes since Monday 00:00",
+    "top10Picks": "WeLocation picks: Top 10",
+    "top10PicksNote": "Chosen by WeLocation, not ranked by likes. This becomes the weekly ranking once likes add up."
   },
   "list": {
     "filtersLabel": "Filters",

@@ -17,8 +17,12 @@ import {
 import { currentLocale } from "@/lib/current-locale";
 import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, intlLocale, type Locale } from "@/lib/i18n";
+import { getPicks } from "@/lib/picks";
+import { getSpotMap } from "@/lib/spot-map";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
 import { HomeCategories } from "./home-categories";
+import { KoreaMap } from "./home/korea-map";
+import { PICKS, TopTen } from "./home/top-ten";
 import { SpotCard } from "./spot-card";
 import { StaysRail } from "./stays-rail";
 
@@ -41,14 +45,18 @@ async function HomeContent({ searchParams }: { searchParams: PageProps<"/[lang]"
 
 async function HomeSections() {
   const { lang, t } = await currentLocale();
-  const [ranking, newest, cafes, stays] = await Promise.all([
+  const [ranking, newest, cafes, stays, map, picks] = await Promise.all([
     getWeeklyRanking().catch(() => null),
     getSpots({ page: 1 }, 12),
     waterCafes(t),
     // API builds before the STAY category answer 400; the rail just stays hidden then
     getSpots({ category: "STAY", page: 1 }, 30).catch(() => null),
+    getSpotMap(),
+    getPicks(PICKS),
   ]);
   const ranked = ranking?.items ?? [];
+  // a real top 10 once the week has ten liked spots; our picks until then, labelled as picks
+  const weeklyTop = ranked.length >= 10;
   const slides = heroSlides(
     t,
     ranked.map((r) => r.spot),
@@ -79,7 +87,22 @@ async function HomeSections() {
 
       <HomeCategories lang={lang} t={t.home} />
 
-      {ranked.length >= 4 && (
+      {map && map.total > 0 && <KoreaMap lang={lang} t={t} map={map} />}
+
+      {weeklyTop ? (
+        <TopTen
+          lang={lang}
+          t={t}
+          title={t.home.top10Weekly}
+          note={t.home.top10WeeklyNote}
+          seeAll={href(lang, "/ranking")}
+          spots={ranked.slice(0, 10).map((r) => r.spot)}
+        />
+      ) : (
+        picks.length >= 5 && <TopTen lang={lang} t={t} title={t.home.top10Picks} note={t.home.top10PicksNote} spots={picks} />
+      )}
+
+      {!weeklyTop && ranked.length >= 4 && (
         <Rail
           t={t}
           title={t.home.weekly}
@@ -229,7 +252,7 @@ async function SpotList({ filter }: { filter: SpotFilter }) {
       ) : (
         <ul className="grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-x-5 md:grid-cols-3 lg:grid-cols-4">
           {result.items.map((spot) => (
-            <SpotCard key={spot.id} spot={spot} />
+            <SpotCard key={spot.id} spot={spot} swipe />
           ))}
         </ul>
       )}

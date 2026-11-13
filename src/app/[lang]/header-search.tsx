@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useId, useState, type FocusEvent, type FormEvent, type KeyboardEvent } from "react";
+import { useEffect, useId, useState, type FocusEvent, type FormEvent, type KeyboardEvent } from "react";
 import { MAX_QUESTION } from "./guide/types";
 import { useGuidePanel } from "./guide-panel/context";
 import { SearchIcon } from "./icons";
@@ -17,8 +17,64 @@ type Props = {
     askAi: string;
     searchFor: string;
     askAiFor: string;
+    // typed into the empty box one letter at a time, as ideas of what to search
+    searchExamples: string[];
   };
 };
+
+const TYPE_MS = 90;
+const ERASE_MS = 40;
+const HOLD_MS = 1600;
+const FIRST_DELAY_MS = 2500;
+
+// The placeholder types out an example, holds it, erases it and moves to the next. It waits a moment after
+// load (the plain placeholder is what the first paint shows), pauses while the tab is hidden, and never runs
+// with reduced motion or once the box has focus or text.
+function useTypedPlaceholder(examples: string[], base: string, running: boolean) {
+  const [shown, setShown] = useState<string | null>(null);
+  useEffect(() => {
+    if (!running || examples.length === 0) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduce.matches) return;
+    let word = 0;
+    let len = 0;
+    let erasing = false;
+    let timer: number;
+    const tick = () => {
+      if (document.hidden) {
+        timer = window.setTimeout(tick, 1000);
+        return;
+      }
+      const text = examples[word];
+      if (!erasing) {
+        len++;
+        setShown(text.slice(0, len));
+        if (len >= text.length) {
+          erasing = true;
+          timer = window.setTimeout(tick, HOLD_MS);
+          return;
+        }
+        timer = window.setTimeout(tick, TYPE_MS);
+      } else {
+        len--;
+        setShown(text.slice(0, len));
+        if (len <= 0) {
+          erasing = false;
+          word = (word + 1) % examples.length;
+          timer = window.setTimeout(tick, 500);
+          return;
+        }
+        timer = window.setTimeout(tick, ERASE_MS);
+      }
+    };
+    timer = window.setTimeout(tick, FIRST_DELAY_MS);
+    return () => {
+      window.clearTimeout(timer);
+      setShown(null);
+    };
+  }, [examples, running]);
+  return shown === null ? base : shown + "|";
+}
 
 type Row = "search" | "ai";
 
@@ -34,6 +90,8 @@ export function HeaderSearch({ lang, searchMax, t }: Props) {
   const [text, setText] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [active, setActive] = useState(0);
+  const [focused, setFocused] = useState(false);
+  const placeholder = useTypedPlaceholder(t.searchExamples, t.searchPlaceholder, !focused && text === "");
 
   const trimmed = text.trim();
   const rows: Row[] = looksLikeQuestion(trimmed) ? ["ai", "search"] : ["search", "ai"];
@@ -99,9 +157,13 @@ export function HeaderSearch({ lang, searchMax, t }: Props) {
           setExpanded(true);
           setActive(0);
         }}
-        onFocus={() => setExpanded(true)}
+        onFocus={() => {
+          setExpanded(true);
+          setFocused(true);
+        }}
+        onBlur={() => setFocused(false)}
         onKeyDown={onKeyDown}
-        placeholder={t.searchPlaceholder}
+        placeholder={placeholder}
         aria-label={t.searchLabel}
         role="combobox"
         aria-autocomplete="none"

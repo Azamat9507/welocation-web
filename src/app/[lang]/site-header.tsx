@@ -42,6 +42,7 @@ export async function SiteHeader() {
               askAi: t.header.askAi,
               searchFor: t.header.searchFor,
               askAiFor: t.header.askAiFor,
+              searchExamples: t.header.searchExamples,
             }}
           />
           <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:ml-0">

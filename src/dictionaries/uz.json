@@ -244,7 +244,12 @@
     "wait": "Biroz kuting…",
     "signupSubmit": "Ro'yxatdan o'tish",
     "newHere": "Birinchi marta keldingizmi?",
-    "haveAccount": "Hisobingiz bormi?"
+    "haveAccount": "Hisobingiz bormi?",
+    "withKakao": "Kakao bilan kirish",
+    "withGoogle": "Google bilan kirish",
+    "orEmail": "yoki email bilan",
+    "oauthFailed": "Kirish yakunlanmadi. Qaytadan urinib ko'ring.",
+    "oauthCancelled": "Kirish bekor qilindi."
   },
   "errors": {
     "tooMany": "So'rovlar juda ko'p. Birozdan keyin qayta urinib ko'ring.",

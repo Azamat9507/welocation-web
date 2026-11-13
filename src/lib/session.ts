@@ -4,7 +4,10 @@ import { href, splitLocale, type Locale } from "./i18n";
 
 // The API's JWT lives only here, in an httpOnly cookie on the web origin.
 // Browser scripts never see it; Server Actions and server components forward it to the API.
-const COOKIE = "wl_session";
+// In production the name carries the __Host- prefix: the browser then only accepts it from this exact host, over
+// HTTPS, for the whole path. sslip.io is not on the Public Suffix List, so without it any *.sslip.io site could
+// plant a session cookie for ours (logging a visitor into someone else's account). Local http keeps the plain name.
+const COOKIE = process.env.NODE_ENV === "production" ? "__Host-wl_session" : "wl_session";
 
 export async function getToken(): Promise<string | undefined> {
   return (await cookies()).get(COOKIE)?.value;
@@ -20,8 +23,15 @@ export async function setSession(token: string, expiresInSeconds: number) {
   });
 }
 
+// Set to empty with the same attributes: the browser ignores a __Host- cookie (even an expiring one) without Secure
 export async function clearSession() {
-  (await cookies()).delete(COOKIE);
+  (await cookies()).set(COOKIE, "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 0,
+  });
 }
 
 // Every request reaches the API from this server, so the visitor's address is passed on for the API's per-IP limits.

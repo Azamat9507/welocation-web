@@ -48,10 +48,10 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
       </Link>
 
       {spot.images.length > 0 && (
-        // with a video, the row breaks out of the text column on wide screens so the photos keep their size
+        // with a video, the row takes the page's full width on wide screens so the photos stay large
         <div
           className={
-            video ? "md:relative md:left-1/2 md:flex md:w-[min(56rem,calc(100vw-2rem))] md:-translate-x-1/2 md:gap-3" : undefined
+            video ? "md:relative md:left-1/2 md:flex md:w-[min(62rem,calc(100vw-2rem))] md:-translate-x-1/2 md:gap-3" : undefined
           }
         >
           <div className="min-w-0 md:flex-1">
@@ -64,8 +64,8 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
             />
           </div>
           {video && (
-            // same height as the main photo (sm:h-[28rem]): 9:16 at 15.75rem wide
-            <div className="mt-2 hidden w-[15.75rem] shrink-0 md:block">
+            // same height as the main photo (28rem, 30rem from lg): 9:16 at 15.75rem / 16.875rem wide
+            <div className="mt-2 hidden w-[15.75rem] shrink-0 md:block lg:w-[16.875rem]">
               <ShortsPlayer videoId={video.videoId} title={video.title} poster={spot.images[0]} playLabel={video.play} />
               <Link href={video.seeAll.href} className="mt-1 block text-right text-xs text-accent">
                 {video.seeAll.label}

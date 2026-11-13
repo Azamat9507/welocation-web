@@ -52,7 +52,7 @@ export function Gallery({
                 src={src}
                 alt={many ? fill(labels.photo, { name, n: i + 1 }) : name}
                 loading={i === 0 ? "eager" : "lazy"}
-                className="h-64 w-full bg-sand object-contain sm:h-[28rem]"
+                className={`h-64 w-full bg-sand object-contain sm:h-[28rem] ${video ? "lg:h-[30rem]" : ""}`}
               />
             </li>
           ))}

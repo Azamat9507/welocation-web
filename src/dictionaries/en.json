@@ -318,7 +318,9 @@
     "source": "Video: YouTube",
     "seeAll": "All Shorts",
     "heading": "Short video",
-    "more": "More videos"
+    "more": "More videos",
+    "close": "Close video",
+    "thumb": "Video"
   },
   "admin": {
     "title": "Manage Shorts",

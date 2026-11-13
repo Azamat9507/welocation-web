@@ -9,7 +9,7 @@ import { fill, href, intlLocale } from "@/lib/i18n";
 import { Rating } from "../../rating";
 import { ShortsPlayer } from "../../shorts-player";
 import { Directions } from "./directions";
-import { Gallery } from "./gallery";
+import { Gallery, type GalleryVideo } from "./gallery";
 import { ReviewForm } from "./review-form";
 import { Toggles } from "./toggles";
 
@@ -30,6 +30,16 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
 
   const [spot, reviews] = await Promise.all([getSpot(id), getReviews(id)]);
   if (!spot) notFound();
+  const video: GalleryVideo | null = isVideoId(spot.shortsVideoId)
+    ? {
+        videoId: spot.shortsVideoId,
+        title: fill(t.shorts.videoTitle, { name: spot.name }),
+        play: fill(t.shorts.play, { name: spot.name }),
+        close: t.shorts.close,
+        thumb: t.shorts.thumb,
+        seeAll: { href: href(lang, `/shorts?start=${spot.id}`), label: t.shorts.seeAll },
+      }
+    : null;
 
   return (
     <article className="mx-auto max-w-2xl">
@@ -38,12 +48,31 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
       </Link>
 
       {spot.images.length > 0 && (
-        <Gallery
-          images={spot.images}
-          name={spot.name}
-          credit={spot.images.some(isTourApiImage) ? t.common.photoCredit : null}
-          labels={t.spot.gallery}
-        />
+        // with a video, the row breaks out of the text column on wide screens so the photos keep their size
+        <div
+          className={
+            video ? "md:relative md:left-1/2 md:flex md:w-[min(56rem,calc(100vw-2rem))] md:-translate-x-1/2 md:gap-3" : undefined
+          }
+        >
+          <div className="min-w-0 md:flex-1">
+            <Gallery
+              images={spot.images}
+              name={spot.name}
+              credit={spot.images.some(isTourApiImage) ? t.common.photoCredit : null}
+              labels={t.spot.gallery}
+              video={video ?? undefined}
+            />
+          </div>
+          {video && (
+            // same height as the main photo (sm:h-[28rem]): 9:16 at 15.75rem wide
+            <div className="mt-2 hidden w-[15.75rem] shrink-0 md:block">
+              <ShortsPlayer videoId={video.videoId} title={video.title} poster={spot.images[0]} playLabel={video.play} />
+              <Link href={video.seeAll.href} className="mt-1 block text-right text-xs text-accent">
+                {video.seeAll.label}
+              </Link>
+            </div>
+          )}
+        </div>
       )}
 
       <p className="mt-3 text-xs text-muted">
@@ -74,7 +103,7 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
 
       {spot.category === "STAY" && <PriceLinks name={spot.name} address={spot.address} t={t.spot} />}
 
-      {isVideoId(spot.shortsVideoId) && (
+      {video && spot.images.length === 0 && (
         <section className="mt-4">
           <div className="flex items-baseline justify-between gap-3">
             <h2 className="text-sm font-semibold">{t.shorts.heading}</h2>
@@ -82,13 +111,7 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
               {t.shorts.seeAll}
             </Link>
           </div>
-          <ShortsPlayer
-            videoId={spot.shortsVideoId}
-            title={fill(t.shorts.videoTitle, { name: spot.name })}
-            poster={spot.images[0] ?? null}
-            playLabel={fill(t.shorts.play, { name: spot.name })}
-            className="mt-2 w-44 sm:w-56"
-          />
+          <ShortsPlayer videoId={video.videoId} title={video.title} poster={null} playLabel={video.play} className="mt-2 w-44 sm:w-56" />
           <p className="mt-1 text-[11px] text-muted">{t.shorts.source}</p>
         </section>
       )}

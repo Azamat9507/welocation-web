@@ -51,3 +51,8 @@ body {
   font-size: 10px;
   line-height: 1.4;
 }
+
+/* nearby-map.tsx sets this when the map could not open; the list's map buttons would do nothing then */
+body[data-nearby-map-failed] .nearby-show-on-map {
+  display: none;
+}

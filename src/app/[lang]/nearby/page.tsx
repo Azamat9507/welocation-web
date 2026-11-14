@@ -137,7 +137,9 @@ async function Results({ lang, t, filter, point }: ResultsProps) {
     <div className="mt-4 flex flex-col gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-start lg:gap-6">
       <div className="lg:sticky lg:top-20 lg:order-2">
         <NearbyMap
+          key={nearbyQuery(filter)}
           center={point}
+          fromMap={filter.fromMap === true}
           radiusKm={filter.radius}
           category={filter.category}
           spots={spots.map((s) => ({

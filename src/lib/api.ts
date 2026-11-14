@@ -77,7 +77,35 @@ export type SpotDetail = Omit<SpotSummary, "thumbnailUrl"> & {
   shortsVideoId?: string | null;
   // added by an admin, not from TourAPI: the photos are ours and the spot can be edited
   manual?: boolean;
+  // dramas and films shot here; missing from API builds before scenes
+  scenes?: SceneView[];
 };
+
+export type SceneKind = "DRAMA" | "MOVIE";
+
+// scene: what happens at the spot in the work, in Korean (the source data has no other language)
+export type SceneView = { work: string; kind: SceneKind; scene: string | null };
+
+// GET /api/scenes/works (SpotDtos.Work), most spots first
+export type Work = { title: string; kind: SceneKind; spotCount: number; coverUrl: string | null };
+
+// GET /api/scenes?work= (SpotDtos.WorkSpots): spots with a photo first
+export type WorkSpots = { work: Work; spots: { spot: SpotSummary; scene: string | null }[] };
+
+// The API answers 400 above this length
+export const WORK_MAX_LENGTH = 100;
+
+// API builds before scenes answer 401 here (the path is not public there): no works then
+export async function getWorks(): Promise<Work[]> {
+  const res = await fetch(`${API_ORIGIN}/api/scenes/works`, { headers: { Accept: "application/json" } });
+  if (res.status === 401 || res.status === 404) return [];
+  if (!res.ok) throw new Error(`API ${res.status} for /api/scenes/works`);
+  return res.json() as Promise<Work[]>;
+}
+
+export function getWork(title: string) {
+  return get<WorkSpots>(`/api/scenes?${new URLSearchParams({ work: title })}`);
+}
 
 // GET /api/spots/shorts (SpotDtos.ShortsItem)
 export type ShortsItem = {
@@ -130,7 +158,16 @@ export type WeeklyRanking = {
   items: RankedSpot[];
 };
 
-export type SpotFilter = { region?: Region; category?: Category; activity?: Activity; tag?: Tag; q?: string; page: number };
+// scenes: false leaves drama and film locations out (the home page's newest row); not part of the page URL
+export type SpotFilter = {
+  region?: Region;
+  category?: Category;
+  activity?: Activity;
+  tag?: Tag;
+  q?: string;
+  scenes?: false;
+  page: number;
+};
 
 // The API answers 400 above this length
 export const SEARCH_MAX_LENGTH = 50;
@@ -177,6 +214,7 @@ export async function getSpots(f: SpotFilter, size = 20): Promise<Page<SpotSumma
   if (f.activity) p.set("activity", f.activity);
   if (f.tag) p.set("tag", f.tag);
   if (f.q) p.set("q", f.q);
+  if (f.scenes === false) p.set("scenes", "false");
   return (await get<Page<SpotSummary>>(`/api/spots?${p}`))!;
 }
 

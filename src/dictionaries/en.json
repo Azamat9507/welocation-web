@@ -165,7 +165,9 @@
     "themeCafe": "Coffee by the window",
     "themeCafeLine": "Cafes with a view",
     "viewTitle": "The view from above",
-    "viewLine": "Wide views from observation decks"
+    "viewLine": "Wide views from observation decks",
+    "scenesTitle": "Where K-dramas were filmed",
+    "scenesNote": "Visit the places behind famous scenes"
   },
   "list": {
     "filtersLabel": "Filters",
@@ -461,5 +463,22 @@
     "email": "Email",
     "sources": "Some coordinates: © OpenStreetMap contributors (ODbL) · Icons: Microsoft Fluent Emoji (MIT) · Font: Pretendard (OFL) · Videos: YouTube",
     "backToTop": "Back to top"
+  },
+  "scenes": {
+    "metaTitle": "K-drama and film locations",
+    "metaDescription": "Places where Winter Sonata, Jewel in the Palace, Squid Game and other well-known Korean dramas and films were shot, with photos.",
+    "title": "K-drama and film locations",
+    "note": "Pick a title to see where it was filmed",
+    "places": "{n} places",
+    "kind": {
+      "DRAMA": "Drama",
+      "MOVIE": "Film"
+    },
+    "onSpot": "Seen in",
+    "koreanOnly": "Scene notes are in Korean.",
+    "all": "← All titles",
+    "empty": "No titles yet",
+    "source": "Filming locations: Korea Culture Information Service Agency and others (data.go.kr)",
+    "posterCredit": "Posters © their broadcasters and studios"
   }
 }

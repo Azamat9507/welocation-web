@@ -33,3 +33,4 @@ Next.js 16 (App Router, Cache Components), TypeScript, Tailwind CSS 4.
 
 - Place data and photos: Korea Tourism Organization TourAPI (KOGL).
 - Category icons in `public/icons/`: [Microsoft Fluent Emoji](https://github.com/microsoft/fluentui-emoji) 3D set, MIT License, resized to 128px.
+- Drama and film posters in `public/posters/`: the official posters of each work, © their broadcasters and studios, shown with that credit on the pages that use them. Filming locations: 한국문화정보원 미디어콘텐츠 영상 촬영지 데이터 (data.go.kr).

@@ -165,7 +165,9 @@
     "themeCafe": "Deraza yonida qahva",
     "themeCafeLine": "Manzarali kafelar",
     "viewTitle": "Yuqoridan manzara",
-    "viewLine": "Tomosha maydonchalaridan keng manzara"
+    "viewLine": "Tomosha maydonchalaridan keng manzara",
+    "scenesTitle": "Dorama va kinolar suratga olingan joylar",
+    "scenesNote": "Mashhur sahnalar olingan joylarga boring"
   },
   "list": {
     "filtersLabel": "Filtrlar",
@@ -461,5 +463,22 @@
     "email": "Email",
     "sources": "Ayrim koordinatalar: © OpenStreetMap ishtirokchilari (ODbL) · Ikonkalar: Microsoft Fluent Emoji (MIT) · Shrift: Pretendard (OFL) · Videolar: YouTube",
     "backToTop": "Yuqoriga"
+  },
+  "scenes": {
+    "metaTitle": "Dorama va kino joylari",
+    "metaDescription": "Qish sonatasi, Jumong, Squid Game va boshqa mashhur koreys doramalari hamda kinolari suratga olingan joylar, rasmlari bilan.",
+    "title": "Dorama va kino joylari",
+    "note": "Asarni tanlang, u suratga olingan joylarni ko'rsatamiz",
+    "places": "{n} ta joy",
+    "kind": {
+      "DRAMA": "Dorama",
+      "MOVIE": "Kino"
+    },
+    "onSpot": "Bu yerda suratga olingan",
+    "koreanOnly": "Sahna tavsifi koreys tilida.",
+    "all": "← Barcha asarlar",
+    "empty": "Hozircha asar yo'q",
+    "source": "Suratga olish joylari: Korea Culture Information Service Agency va boshqalar (data.go.kr)",
+    "posterCredit": "Posterlar © telekanallar va studiyalar"
   }
 }

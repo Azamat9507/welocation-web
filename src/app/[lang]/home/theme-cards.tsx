@@ -5,10 +5,12 @@ import { LATER, SectionHead } from "./section-head";
 export type Theme = { href: string; title: string; line: string; imageUrl: string | null; ai?: boolean };
 
 // Four tall cards, each a way into the site: a photo from a real spot of that theme with two lines over it
-export function ThemeCards({ title, note, themes, credit }: { title: string; note: string; themes: Theme[]; credit: string }) {
+type Props = { title: string; note: string; themes: Theme[]; credit: string; seeAll?: { href: string; label: string } };
+
+export function ThemeCards({ title, note, themes, credit, seeAll }: Props) {
   return (
     <section className={LATER}>
-      <SectionHead title={title} note={note} />
+      <SectionHead title={title} note={note} href={seeAll?.href} seeAll={seeAll?.label} />
       <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:gap-5 md:px-0 [&::-webkit-scrollbar]:hidden">
         {themes.map((th) => (
           <li key={th.href} className="w-[42%] shrink-0 snap-start sm:w-[30%] md:w-auto">

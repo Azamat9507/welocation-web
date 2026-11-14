@@ -165,7 +165,9 @@
     "themeCafe": "창가에서 마시는 커피",
     "themeCafeLine": "경치 좋은 카페",
     "viewTitle": "위에서 내려다보는 풍경",
-    "viewLine": "전망대에서 보는 탁 트인 경치"
+    "viewLine": "전망대에서 보는 탁 트인 경치",
+    "scenesTitle": "드라마·영화 속 그 장소",
+    "scenesNote": "명장면이 탄생한 곳을 찾아가 보세요"
   },
   "list": {
     "filtersLabel": "필터",
@@ -448,5 +450,21 @@
     "email": "이메일",
     "sources": "장소 좌표 일부: © OpenStreetMap 기여자(ODbL) · 아이콘: Microsoft Fluent Emoji(MIT) · 글꼴: Pretendard(OFL) · 영상: YouTube",
     "backToTop": "맨 위로"
+  },
+  "scenes": {
+    "metaTitle": "드라마·영화 촬영지",
+    "metaDescription": "겨울연가, 대장금, 오징어게임 등 유명 드라마와 영화를 촬영한 장소를 사진과 함께 모았어요.",
+    "title": "드라마·영화 촬영지",
+    "note": "작품을 고르면 촬영한 장소를 보여 드려요",
+    "places": "{n}곳",
+    "kind": {
+      "DRAMA": "드라마",
+      "MOVIE": "영화"
+    },
+    "onSpot": "이 장소가 나온 작품",
+    "koreanOnly": "",
+    "all": "← 전체 작품",
+    "empty": "아직 정리된 작품이 없어요",
+    "source": "촬영지 정보: 한국문화정보원 외 (공공데이터포털)"
   }
 }

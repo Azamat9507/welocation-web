@@ -6,6 +6,7 @@ import { findMyReview, getMe, getMyState } from "@/lib/api-auth";
 import { currentLocale } from "@/lib/current-locale";
 import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, intlLocale } from "@/lib/i18n";
+import { workTitle } from "@/lib/works";
 import { Rating } from "../../rating";
 import { ShortsPlayer } from "../../shorts-player";
 import { Directions } from "./directions";
@@ -101,6 +102,26 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
         lng={spot.longitude}
         labels={t.spot.directions}
       />
+
+      {spot.scenes && spot.scenes.length > 0 && (
+        <section className="mt-4 rounded-xl bg-surface p-3">
+          <h2 className="text-sm font-semibold">🎬 {t.scenes.onSpot}</h2>
+          <ul className="mt-2 space-y-2">
+            {spot.scenes.map((s) => (
+              <li key={s.work}>
+                <Link href={href(lang, `/scenes?${new URLSearchParams({ work: s.work })}`)} className="text-sm font-medium text-accent">
+                  {workTitle(s.work, lang)}
+                </Link>
+                <span className="text-xs text-muted"> · {t.scenes.kind[s.kind]}</span>
+                {s.scene && <p className="text-xs leading-snug text-muted">{s.scene}</p>}
+              </li>
+            ))}
+          </ul>
+          {t.scenes.koreanOnly && spot.scenes.some((s) => s.scene) && (
+            <p className="mt-2 text-[11px] text-muted">{t.scenes.koreanOnly}</p>
+          )}
+        </section>
+      )}
 
       {spot.category === "STAY" && <PriceLinks name={spot.name} address={spot.address} t={t.spot} />}
       {spot.activity === "SURVIVAL" && <p className="mt-2 text-xs text-muted">{t.spot.survivalNote}</p>}

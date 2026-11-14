@@ -8,6 +8,7 @@ import {
   filterQuery,
   getSpots,
   getWeeklyRanking,
+  getWorks,
   isTourApiImage,
   parseFilter,
   type Activity,
@@ -21,6 +22,7 @@ import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, intlLocale, type Locale } from "@/lib/i18n";
 import { getPicks } from "@/lib/picks";
 import { getSpotMap } from "@/lib/spot-map";
+import { byFame, workTitle } from "@/lib/works";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
 import { HomeCategories } from "./home-categories";
 import { ChipRail } from "./home/chip-rail";
@@ -53,10 +55,11 @@ async function HomeContent({ searchParams }: { searchParams: PageProps<"/[lang]"
 
 async function HomeSections() {
   const { lang, t } = await currentLocale();
-  const [ranking, newest, beaches, stays, leisure, cafes, views, map, picks] = await Promise.all([
+  const [ranking, newest, beaches, stays, leisure, cafes, views, map, picks, works] = await Promise.all([
     getWeeklyRanking().catch(() => null),
-    // the banner takes its fallback slides from the first of these; the rest feed "newest" after the dedupe (50 = API max)
-    getSpots({ page: 1 }, 50),
+    // the banner takes its fallback slides from the first of these; the rest feed "newest" after the dedupe (50 = API max).
+    // Film locations have their own section; imported all at once, they would fill "newest" for weeks
+    getSpots({ page: 1, scenes: false }, 50),
     getSpots({ category: "BEACH", page: 1 }, 30).catch(() => null),
     // API builds before the STAY category answer 400; the rail just stays hidden then
     getSpots({ category: "STAY", page: 1 }, 30).catch(() => null),
@@ -65,6 +68,7 @@ async function HomeSections() {
     getSpots({ q: "전망대", page: 1 }, 12).catch(() => null),
     getSpotMap(),
     getPicks(PICKS),
+    getWorks().catch(() => []),
   ]);
   const ranked = ranking?.items ?? [];
   // a real top 10 once the week has ten liked spots; our picks until then, labelled as picks
@@ -95,6 +99,8 @@ async function HomeSections() {
   const staySpots = take(stays?.items, 8);
   const weeklyRail = !weeklyTop && ranked.length >= 4 ? take(ranked.map((r) => r.spot), 8) : [];
   const fresh = take(newest.items, 8).slice(0, 8);
+  // a work's card is its cover photo; without one the card would be an empty tile
+  const workCards = byFame(works.filter((w) => w.coverUrl)).slice(0, 8);
 
   return (
     <>
@@ -146,6 +152,21 @@ async function HomeSections() {
           { href: href(lang, "/guide"), title: h.themeAi, line: h.themeAiLine, imageUrl: null, ai: true },
         ]}
       />
+
+      {workCards.length >= 4 && (
+        <ThemeCards
+          title={h.scenesTitle}
+          note={h.scenesNote}
+          credit={t.common.photoCredit}
+          seeAll={{ href: href(lang, "/scenes"), label: h.seeAll }}
+          themes={workCards.map((w) => ({
+            href: href(lang, `/scenes?${new URLSearchParams({ work: w.title })}`),
+            title: workTitle(w.title, lang),
+            line: `${t.scenes.kind[w.kind]} · ${fill(t.scenes.places, { n: w.spotCount })}`,
+            imageUrl: w.coverUrl,
+          }))}
+        />
+      )}
 
       {seaSpots.length >= 4 && (
         <ByKey

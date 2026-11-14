@@ -42,3 +42,4 @@ next-env.d.ts
 
 # example env is documentation, not a secret
 !.env.example
+/public/vendor/

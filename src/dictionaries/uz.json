@@ -291,6 +291,16 @@
     "summary": "{r} km radius · eng yaqinlari avval ({n})",
     "max": " (ko'pi bilan 50 ta)",
     "distance": "Masofa",
+    "map": {
+      "label": "Yaqindagi joylar xaritasi",
+      "searchHere": "Shu hududni qidirish",
+      "you": "Siz shu yerdasiz",
+      "center": "Qidiruv markazi",
+      "showOnMap": "Xaritada ko'rsatish",
+      "open": "Batafsil",
+      "twoFingers": "Xaritani surish uchun ikki barmoq bilan torting",
+      "failed": "Bu brauzerda xarita ochilmadi. Ro'yxatdan foydalaning."
+    },
     "locate": {
       "find": "Atrofni qidirish",
       "again": "Joriy joylashuvdan qayta topish",

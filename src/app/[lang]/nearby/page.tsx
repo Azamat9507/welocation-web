@@ -16,6 +16,8 @@ import { currentLocale } from "@/lib/current-locale";
 import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, type Locale } from "@/lib/i18n";
 import { LocateButton } from "./locate-button";
+import { NearbyMap } from "./nearby-map";
+import { ShowOnMap } from "./show-on-map";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { t } = await currentLocale();
@@ -25,9 +27,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function NearbyPage({ searchParams }: PageProps<"/[lang]/nearby">) {
   const { t } = await currentLocale();
   return (
-    <section className="mx-auto max-w-2xl">
+    <section className="mx-auto max-w-2xl lg:max-w-6xl">
       <h1 className="text-xl font-bold">{t.nearby.title}</h1>
-      <Suspense fallback={<p className="py-8 text-center text-sm text-muted">{t.common.loading}</p>}>
+      {/* a screen tall while loading, so the footer is not on screen first and then pushed away by the results */}
+      <Suspense fallback={<p className="min-h-[100svh] py-8 text-center text-sm text-muted">{t.common.loading}</p>}>
         <Nearby searchParams={searchParams} />
       </Suspense>
     </section>
@@ -130,29 +133,53 @@ async function Results({ lang, t, filter, point }: ResultsProps) {
   }
 
   return (
-    <>
-      <p className="mt-4 mb-2 text-sm text-muted">
-        {fill(t.nearby.summary, { r: filter.radius, n: spots.length })}
-        {spots.length >= 50 ? t.nearby.max : ""}
-      </p>
-      <ul className="space-y-2">
-        {spots.map((spot) => (
-          <NearbyRow key={spot.id} lang={lang} t={t} spot={spot} />
-        ))}
-      </ul>
-      {spots.some((s) => s.thumbnailUrl && isTourApiImage(s.thumbnailUrl)) && (
-        <p className="mt-2 text-right text-xs text-muted">{t.common.photoCredit}</p>
-      )}
-    </>
+    // phone: the map on top, the list below; wide screens: the list left, the map right and staying in view
+    <div className="mt-4 flex flex-col gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-start lg:gap-6">
+      <div className="lg:sticky lg:top-20 lg:order-2">
+        <NearbyMap
+          key={nearbyQuery(filter)}
+          center={point}
+          fromMap={filter.fromMap === true}
+          radiusKm={filter.radius}
+          category={filter.category}
+          spots={spots.map((s) => ({
+            id: s.id,
+            name: s.name,
+            category: s.category,
+            lat: s.latitude,
+            lng: s.longitude,
+            distance: formatDistance(s.distanceMeters),
+            url: href(lang, `/spots/${s.id}`),
+          }))}
+          lang={lang}
+          labels={t.nearby.map}
+        />
+      </div>
+      <div className="min-w-0 lg:order-1">
+        <p className="mb-2 text-sm text-muted">
+          {fill(t.nearby.summary, { r: filter.radius, n: spots.length })}
+          {spots.length >= 50 ? t.nearby.max : ""}
+        </p>
+        <ul className="space-y-2">
+          {spots.map((spot) => (
+            <NearbyRow key={spot.id} lang={lang} t={t} spot={spot} />
+          ))}
+        </ul>
+        {spots.some((s) => s.thumbnailUrl && isTourApiImage(s.thumbnailUrl)) && (
+          <p className="mt-2 text-right text-xs text-muted">{t.common.photoCredit}</p>
+        )}
+      </div>
+    </div>
   );
 }
 
 function NearbyRow({ lang, t, spot }: { lang: Locale; t: Dictionary; spot: NearbySpot }) {
   return (
-    <li className="min-w-0">
+    // id and data-map-active: a marker click on the map lights this row up
+    <li id={`spot-${spot.id}`} className="group flex min-w-0 scroll-mt-24 items-center gap-2">
       <Link
         href={href(lang, `/spots/${spot.id}`)}
-        className="flex items-center gap-3 rounded-lg border border-line bg-surface p-2 hover:border-accent"
+        className="flex min-w-0 flex-1 items-center gap-3 rounded-lg border border-line bg-surface p-2 hover:border-accent group-data-[map-active]:border-accent group-data-[map-active]:bg-accent-soft"
       >
         <div className="h-14 w-14 shrink-0 overflow-hidden rounded-md bg-accent-soft">
           {spot.thumbnailUrl && (
@@ -173,6 +200,7 @@ function NearbyRow({ lang, t, spot }: { lang: Locale; t: Dictionary; spot: Nearb
           {formatDistance(spot.distanceMeters)}
         </span>
       </Link>
+      <ShowOnMap id={spot.id} label={t.nearby.map.showOnMap} />
     </li>
   );
 }

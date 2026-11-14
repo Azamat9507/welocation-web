@@ -249,6 +249,8 @@ export type NearbyFilter = {
   point: { lat: number; lng: number } | null;
   radius: NearbyRadius;
   category?: Category;
+  // the point came from "search this area" on the map, not from the browser's location
+  fromMap?: boolean;
 };
 
 // About 100 m: enough for a nearby list, and the URL never carries a precise location
@@ -272,6 +274,7 @@ export function parseNearby(q: Record<string, string | string[] | undefined>): N
     point: lat !== undefined && lng !== undefined ? { lat, lng } : null,
     radius,
     category: category !== undefined && (CATEGORIES as readonly string[]).includes(category) ? (category as Category) : undefined,
+    fromMap: one(q.src) === "map" || undefined,
   };
 }
 
@@ -283,6 +286,7 @@ export function nearbyQuery(f: NearbyFilter): string {
   }
   if (f.radius !== DEFAULT_NEARBY_RADIUS) p.set("radius", String(f.radius));
   if (f.category) p.set("category", f.category);
+  if (f.point && f.fromMap) p.set("src", "map");
   const s = p.toString();
   return s ? `?${s}` : "";
 }

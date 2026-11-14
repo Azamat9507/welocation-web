@@ -28,6 +28,7 @@ export const POLICY: Record<Locale, Policy> = {
       { h: "5. 처리 위탁 및 국외 이전", p: [
         "DigitalOcean, LLC: 서버 운영(데이터 보관). 보관 위치: 싱가포르 데이터센터. 이전되는 항목: 1항의 모든 정보. 이전 시점과 방법: 서비스 이용 시 네트워크를 통해 전송. 보유 기간: 3항과 같음.",
         "Google LLC(Gemini API): AI 가이드 답변 생성. 이전되는 항목: AI 가이드에 입력한 질문 문장. 서비스는 질문 문장을 저장하지 않습니다. 질문에 개인정보를 쓰지 말아 주세요.",
+        "OpenFreeMap(지도 이미지): '내 주변' 페이지의 지도. 브라우저가 지도 조각을 직접 받아 오므로 이용자의 IP 주소와 보고 있는 지도 범위가 이 서버에 전달됩니다. 쿠키는 쓰지 않으며, 위치 좌표나 회원 정보는 보내지 않습니다.",
         "국외 이전을 원하지 않으시면 회원가입과 AI 가이드를 이용하지 않을 수 있으며, 이 경우에도 장소 검색과 보기는 이용할 수 있습니다.",
       ] },
       { h: "6. 이용자의 권리", p: ["언제든지 자신의 개인정보 열람, 정정, 삭제, 처리 정지를 요구할 수 있습니다. 아래 이메일로 요청하시면 지체 없이 처리합니다."] },
@@ -59,6 +60,7 @@ export const POLICY: Record<Locale, Policy> = {
       { h: "5. Service providers and transfer abroad", p: [
         "DigitalOcean, LLC: runs the server and stores the data, in a data centre in Singapore. Transferred: everything in section 1, over the network as you use the Service. Kept: as in section 3.",
         "Google LLC (Gemini API): writes the AI guide's answers. Transferred: the question you type into the AI guide. The Service does not store your questions. Please don't put personal information in them.",
+        "OpenFreeMap (map images): the map on the Nearby page. Your browser loads the map tiles directly, so your IP address and the map area you look at reach that server. It uses no cookies, and no location or account data is sent.",
         "If you don't want your data transferred abroad, you can skip signing up and the AI guide; searching and viewing places still work.",
       ] },
       { h: "6. Your rights", p: ["You can ask at any time to see, correct or delete your personal information, or to stop its processing. Email us and we will act without delay."] },
@@ -90,6 +92,7 @@ export const POLICY: Record<Locale, Policy> = {
       { h: "5. Подрядчики и передача за рубеж", p: [
         "DigitalOcean, LLC: работа сервера и хранение данных в дата-центре в Сингапуре. Передаётся: всё из раздела 1, по сети во время использования Сервиса. Срок: как в разделе 3.",
         "Google LLC (Gemini API): ответы AI-гида. Передаётся: вопрос, который вы пишете AI-гиду. Сервис не хранит ваши вопросы. Не указывайте в них персональные данные.",
+        "OpenFreeMap (изображения карты): карта на странице «Рядом». Браузер загружает фрагменты карты напрямую, поэтому ваш IP-адрес и просматриваемая область карты попадают на этот сервер. Cookie не используются, координаты и данные аккаунта не передаются.",
         "Если вы не хотите передачи данных за рубеж, можно не регистрироваться и не пользоваться AI-гидом; поиск и просмотр мест работают и так.",
       ] },
       { h: "6. Ваши права", p: ["Вы можете в любой момент запросить просмотр, исправление или удаление своих данных либо прекращение их обработки. Напишите нам, и мы выполним запрос без промедления."] },
@@ -121,6 +124,7 @@ export const POLICY: Record<Locale, Policy> = {
       { h: "5. Xizmat ko'rsatuvchilar va chet elga uzatish", p: [
         "DigitalOcean, LLC: serverni yuritadi va ma'lumotlarni Singapurdagi ma'lumot markazida saqlaydi. Uzatiladi: 1-banddagi hamma ma'lumot, Xizmatdan foydalanganda tarmoq orqali. Muddat: 3-banddagidek.",
         "Google LLC (Gemini API): AI gid javoblarini yozadi. Uzatiladi: AI gidga yozgan savolingiz. Xizmat savollaringizni saqlamaydi. Savolga shaxsiy ma'lumot yozmang.",
+        "OpenFreeMap (xarita rasmlari): “Yaqindagi joylar” sahifasidagi xarita. Brauzer xarita bo'laklarini to'g'ridan-to'g'ri yuklaydi, shuning uchun IP manzilingiz va ko'rayotgan xarita hududi o'sha serverga boradi. Cookie ishlatilmaydi, joylashuv koordinatalari va akkaunt ma'lumoti yuborilmaydi.",
         "Ma'lumotlaringiz chet elga uzatilishini istamasangiz, ro'yxatdan o'tmasdan va AI giddan foydalanmasdan ham joylarni qidirish va ko'rish mumkin.",
       ] },
       { h: "6. Huquqlaringiz", p: ["Istalgan vaqtda ma'lumotlaringizni ko'rish, tuzatish, o'chirish yoki ularga ishlov berishni to'xtatishni so'rashingiz mumkin. Emailga yozing, kechiktirmay bajaramiz."] },

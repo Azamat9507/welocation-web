@@ -45,3 +45,9 @@ body {
     opacity: 0.45;
   }
 }
+
+/* MapLibre's credit line inherits the page's text size, which on a phone covers a third of the map */
+.maplibregl-ctrl-attrib {
+  font-size: 10px;
+  line-height: 1.4;
+}

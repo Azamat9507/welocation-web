@@ -291,6 +291,15 @@
     "summary": "Within {r} km · nearest first ({n})",
     "max": " (up to 50)",
     "distance": "Distance",
+    "map": {
+      "label": "Map of nearby places",
+      "searchHere": "Search this area",
+      "you": "You are here",
+      "showOnMap": "Show on map",
+      "open": "Details",
+      "twoFingers": "Use two fingers to move the map",
+      "failed": "The map can't open in this browser. Use the list instead."
+    },
     "locate": {
       "find": "Find nearby",
       "again": "Search from my location again",

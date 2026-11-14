@@ -241,6 +241,7 @@
     "nickname": "Taxallus",
     "password": "Parol",
     "passwordHint": "(kamida 8 belgi)",
+    "emailHint": "Email tasdiqlanmaydi. Haqiqiy bo'lmagan email bilan parolni tiklab bo'lmaydi.",
     "wait": "Biroz kuting…",
     "signupSubmit": "Ro'yxatdan o'tish",
     "newHere": "Birinchi marta keldingizmi?",

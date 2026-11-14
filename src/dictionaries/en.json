@@ -291,6 +291,9 @@
     "summary": "Within {r} km · nearest first ({n})",
     "max": " (up to 50)",
     "distance": "Distance",
+    "seoulHint": "Showing central Seoul for now. Pick a radius and type, then tap “Find nearby”, or move the map and search any area.",
+    "widened": "Nothing within {from} km, so the search was widened to {to} km.",
+    "widenedKind": "No {kind} within {from} km, so the search was widened to {to} km.",
     "map": {
       "label": "Map of nearby places",
       "searchHere": "Search this area",

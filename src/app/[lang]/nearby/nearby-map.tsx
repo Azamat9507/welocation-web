@@ -23,7 +23,10 @@ type Props = {
   center: { lat: number; lng: number };
   // true when the center came from "search this area", not from the browser's location
   fromMap: boolean;
+  // the circle drawn; may be wider than the chosen radius when an empty search was widened
   radiusKm: number;
+  // the radius chosen in the filters, kept for "search this area"
+  queryRadius: number;
   category?: Category;
   spots: MapSpot[];
   lang: Locale;
@@ -70,7 +73,7 @@ function highlightRow(id: number, scroll: boolean) {
 }
 
 // The page gives this a key per search, so a new search starts with fresh state
-export function NearbyMap({ center, fromMap, radiusKm, category, spots, lang, labels }: Props) {
+export function NearbyMap({ center, fromMap, radiusKm, queryRadius, category, spots, lang, labels }: Props) {
   const box = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [failed, setFailed] = useState(false);
@@ -253,7 +256,7 @@ export function NearbyMap({ center, fromMap, radiusKm, category, spots, lang, la
   const searchHere = () => {
     if (!moved) return;
     const p = new URLSearchParams({ lat: String(round(moved.lat)), lng: String(round(moved.lng)), src: "map" });
-    if (radiusKm !== DEFAULT_NEARBY_RADIUS) p.set("radius", String(radiusKm));
+    if (queryRadius !== DEFAULT_NEARBY_RADIUS) p.set("radius", String(queryRadius));
     if (category) p.set("category", category);
     startTransition(() => router.push(href(lang, `/nearby?${p}`), { scroll: false }));
   };

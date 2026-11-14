@@ -291,6 +291,9 @@
     "summary": "반경 {r}km · 가까운 순 {n}곳",
     "max": " (최대 50곳)",
     "distance": "거리",
+    "seoulHint": "지금은 서울 중심을 보여 줍니다. 반경과 종류를 고른 뒤 ‘내 주변 찾기’를 누르거나, 지도를 움직여 원하는 곳을 검색하세요.",
+    "widened": "{from}km 안에 장소가 없어 {to}km까지 넓혔어요.",
+    "widenedKind": "{from}km 안에 ‘{kind}’이(가) 없어 {to}km까지 넓혔어요.",
     "map": {
       "label": "내 주변 장소 지도",
       "searchHere": "이 지역 검색",

@@ -291,6 +291,9 @@
     "summary": "{r} km radius · eng yaqinlari avval ({n})",
     "max": " (ko'pi bilan 50 ta)",
     "distance": "Masofa",
+    "seoulHint": "Hozir Seoul markazi ko'rsatilmoqda. Radius va turni tanlab, “Atrofni qidirish” ni bosing yoki xaritani surib, istalgan joyni qidiring.",
+    "widened": "{from} km ichida joy yo'q edi, {to} km gacha kengaytirildi.",
+    "widenedKind": "{from} km ichida “{kind}” yo'q edi, {to} km gacha kengaytirildi.",
     "map": {
       "label": "Yaqindagi joylar xaritasi",
       "searchHere": "Shu hududni qidirish",

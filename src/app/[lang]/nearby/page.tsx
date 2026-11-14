@@ -10,6 +10,7 @@ import {
   nearbyQuery,
   parseNearby,
   type NearbyFilter,
+  type NearbyRadius,
   type NearbySpot,
 } from "@/lib/api";
 import { currentLocale } from "@/lib/current-locale";
@@ -50,16 +51,6 @@ async function Nearby({ searchParams }: { searchParams: PageProps<"/[lang]/nearb
         {t.nearby.privacy}
       </p>
 
-      <div className="mt-3">
-        <LocateButton
-          radius={filter.radius}
-          category={filter.category}
-          again={filter.point !== null}
-          lang={lang}
-          labels={t.nearby.locate}
-        />
-      </div>
-
       <nav aria-label={t.list.filtersLabel} className="mt-3 space-y-2">
         <ChipRow
           label={t.nearby.radius}
@@ -82,91 +73,118 @@ async function Nearby({ searchParams }: { searchParams: PageProps<"/[lang]/nearb
         />
       </nav>
 
-      {filter.point ? (
-        <Results lang={lang} t={t} filter={filter} point={filter.point} />
-      ) : (
-        <div className="py-10 text-center text-sm text-muted">
-          {rejectedPoint ? (
-            <p>{t.nearby.outsideKorea}</p>
-          ) : (
-            <p>{t.nearby.hint}</p>
-          )}
-          <Link href={`/${lang}`} className="mt-2 inline-block text-accent">
-            {t.nearby.browseAll}
-          </Link>
-        </div>
+      {/* after the filters: pick the radius and kind first, then search */}
+      <div className="mt-3">
+        <LocateButton
+          radius={filter.radius}
+          category={filter.category}
+          again={filter.point !== null}
+          lang={lang}
+          labels={t.nearby.locate}
+        />
+      </div>
+
+      {!filter.point && (
+        <p className="mt-3 text-sm text-muted">{rejectedPoint ? t.nearby.outsideKorea : t.nearby.seoulHint}</p>
       )}
+      {/* with no location yet the map opens on central Seoul, a place to start panning from; nothing about
+          the visitor is used for it */}
+      <Results
+        lang={lang}
+        t={t}
+        filter={filter}
+        point={filter.point ?? SEOUL}
+        fromMap={filter.point === null || filter.fromMap === true}
+      />
     </>
   );
 }
 
-type ResultsProps = { lang: Locale; t: Dictionary; filter: NearbyFilter; point: { lat: number; lng: number } };
+const SEOUL = { lat: 37.566, lng: 126.978 };
 
-async function Results({ lang, t, filter, point }: ResultsProps) {
+type ResultsProps = {
+  lang: Locale;
+  t: Dictionary;
+  filter: NearbyFilter;
+  point: { lat: number; lng: number };
+  fromMap: boolean;
+};
+
+async function Results({ lang, t, filter, point, fromMap }: ResultsProps) {
   const here = (f: NearbyFilter) => href(lang, `/nearby${nearbyQuery(f)}`);
-  const spots = await getNearby(point, filter.radius, filter.category);
-  const bigger = NEARBY_RADII.find((r) => r > filter.radius);
-
-  if (spots.length === 0) {
-    return (
-      <div className="py-10 text-center text-sm">
-        <p className="text-muted">
-          {filter.category
-            ? fill(t.nearby.noneOfKind, { r: filter.radius, kind: t.categories[filter.category] })
-            : fill(t.nearby.none, { r: filter.radius })}
-        </p>
-        {bigger && (
-          <Link href={here({ ...filter, radius: bigger })} className="mt-2 inline-block text-accent">
-            {fill(t.nearby.widen, { r: bigger })}
-          </Link>
-        )}
-        {!bigger && filter.category && (
-          <Link
-            href={here({ ...filter, category: undefined })}
-            className="mt-2 inline-block text-accent"
-          >
-            {t.nearby.allKinds}
-          </Link>
-        )}
-      </div>
-    );
+  // An empty answer widens the search to the next radius, up to the largest, so a search never ends blank.
+  // At most four short queries, one per radius.
+  let used: NearbyRadius = filter.radius;
+  let spots = await getNearby(point, used, filter.category);
+  for (const r of NEARBY_RADII) {
+    if (spots.length > 0) break;
+    if (r <= used) continue;
+    used = r;
+    spots = await getNearby(point, r, filter.category);
   }
+  const widened = used !== filter.radius && spots.length > 0;
+  const kind = filter.category ? t.categories[filter.category] : undefined;
+
+  const map = (
+    <NearbyMap
+      key={`${nearbyQuery(filter)}|${used}`}
+      center={point}
+      fromMap={fromMap}
+      radiusKm={used}
+      queryRadius={filter.radius}
+      category={filter.category}
+      spots={spots.map((s) => ({
+        id: s.id,
+        name: s.name,
+        category: s.category,
+        lat: s.latitude,
+        lng: s.longitude,
+        distance: formatDistance(s.distanceMeters),
+        url: href(lang, `/spots/${s.id}`),
+      }))}
+      lang={lang}
+      labels={t.nearby.map}
+    />
+  );
 
   return (
     // phone: the map on top, the list below; wide screens: the list left, the map right and staying in view
     <div className="mt-4 flex flex-col gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-start lg:gap-6">
-      <div className="lg:sticky lg:top-20 lg:order-2">
-        <NearbyMap
-          key={nearbyQuery(filter)}
-          center={point}
-          fromMap={filter.fromMap === true}
-          radiusKm={filter.radius}
-          category={filter.category}
-          spots={spots.map((s) => ({
-            id: s.id,
-            name: s.name,
-            category: s.category,
-            lat: s.latitude,
-            lng: s.longitude,
-            distance: formatDistance(s.distanceMeters),
-            url: href(lang, `/spots/${s.id}`),
-          }))}
-          lang={lang}
-          labels={t.nearby.map}
-        />
-      </div>
+      <div className="lg:sticky lg:top-20 lg:order-2">{map}</div>
       <div className="min-w-0 lg:order-1">
-        <p className="mb-2 text-sm text-muted">
-          {fill(t.nearby.summary, { r: filter.radius, n: spots.length })}
-          {spots.length >= 50 ? t.nearby.max : ""}
-        </p>
-        <ul className="space-y-2">
-          {spots.map((spot) => (
-            <NearbyRow key={spot.id} lang={lang} t={t} spot={spot} />
-          ))}
-        </ul>
-        {spots.some((s) => s.thumbnailUrl && isTourApiImage(s.thumbnailUrl)) && (
-          <p className="mt-2 text-right text-xs text-muted">{t.common.photoCredit}</p>
+        {spots.length === 0 ? (
+          <div className="py-6 text-center text-sm">
+            <p className="text-muted">
+              {kind ? fill(t.nearby.noneOfKind, { r: used, kind }) : fill(t.nearby.none, { r: used })}
+            </p>
+            {filter.category && (
+              <Link href={here({ ...filter, category: undefined })} className="mt-2 inline-block text-accent">
+                {t.nearby.allKinds}
+              </Link>
+            )}
+          </div>
+        ) : (
+          <>
+            {widened && (
+              <p className="mb-2 rounded-lg bg-accent-soft px-3 py-2 text-sm">
+                {kind
+                  ? fill(t.nearby.widenedKind, { from: filter.radius, to: used, kind })
+                  : fill(t.nearby.widened, { from: filter.radius, to: used })}
+              </p>
+            )}
+            <p className="mb-2 text-sm text-muted">
+              {fill(t.nearby.summary, { r: used, n: spots.length })}
+              {spots.length >= 50 ? t.nearby.max : ""}
+            </p>
+            <ul className="space-y-2">
+              {spots.map((spot) => (
+                <NearbyRow key={spot.id} lang={lang} t={t} spot={spot} />
+              ))}
+            </ul>
+            {spots.some((s) => s.thumbnailUrl && isTourApiImage(s.thumbnailUrl)) && (
+              <p className="mt-2 text-right text-xs text-muted">{t.common.photoCredit}</p>
+            )}
+          </>
         )}
       </div>
     </div>

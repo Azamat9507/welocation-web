@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { WORK_MAX_LENGTH, getWork, getWorks, isTourApiImage } from "@/lib/api";
 import { currentLocale } from "@/lib/current-locale";
 import { fill, href } from "@/lib/i18n";
-import { byFame, workTitle } from "@/lib/works";
+import { byFame, workPoster, workTitle } from "@/lib/works";
 import { SpotCard } from "../spot-card";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -48,11 +48,11 @@ async function Works() {
             <li key={w.title} className="min-w-0">
               <Link href={href(lang, `/scenes?${new URLSearchParams({ work: w.title })}`)} className="group block">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-sand">
-                  {w.coverUrl ? (
-                    // served as-is: the 공공누리 license does not allow altering the photo
+                  {workPoster(w.title) || w.coverUrl ? (
+                    // a place photo is served as-is: the 공공누리 license does not allow altering it
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={w.coverUrl}
+                      src={workPoster(w.title) ?? w.coverUrl!}
                       alt=""
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
@@ -73,7 +73,10 @@ async function Works() {
           ))}
         </ul>
       )}
-      <Credits photos={works.some((w) => w.coverUrl && isTourApiImage(w.coverUrl))} />
+      <Credits
+        photos={works.some((w) => !workPoster(w.title) && w.coverUrl && isTourApiImage(w.coverUrl))}
+        posters={works.some((w) => workPoster(w.title))}
+      />
     </>
   );
 }
@@ -83,23 +86,44 @@ async function WorkSpotsList({ title }: { title: string }) {
   const data = await getWork(title);
   if (!data) notFound();
   const name = workTitle(data.work.title, lang);
+  const poster = workPoster(data.work.title);
   return (
     <>
       <Link href={href(lang, "/scenes")} className="text-sm text-muted hover:text-accent">
         {t.scenes.all}
       </Link>
-      <h1 className="mt-1 text-xl font-bold sm:text-2xl">{name}</h1>
-      <p className="mt-0.5 text-sm text-muted">
-        {t.scenes.kind[data.work.kind]} · {fill(t.scenes.places, { n: data.work.spotCount })}
-        {name !== data.work.title && <> · {data.work.title}</>}
-      </p>
-      {t.scenes.koreanOnly && <p className="mt-1 text-xs text-muted">{t.scenes.koreanOnly}</p>}
+      {/* The poster first, so the visitor knows the work at a glance; blurred behind itself as the banner */}
+      <header className="relative mt-2 overflow-hidden rounded-2xl bg-[#0d1b2a] text-white">
+        {poster && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={poster} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-50 blur-2xl" />
+        )}
+        <div className="relative flex items-end gap-4 p-4 sm:gap-6 sm:p-6">
+          {poster && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={poster}
+              alt={name}
+              className="w-28 shrink-0 rounded-xl shadow-lg ring-1 ring-white/20 sm:w-44"
+              fetchPriority="high"
+            />
+          )}
+          <div className="min-w-0 pb-1">
+            <p className="text-xs text-white/80 sm:text-sm">
+              {t.scenes.kind[data.work.kind]} · {fill(t.scenes.places, { n: data.work.spotCount })}
+            </p>
+            <h1 className="mt-1 text-2xl leading-tight font-bold sm:text-4xl">{name}</h1>
+            {name !== data.work.title && <p className="mt-1 text-sm text-white/80">{data.work.title}</p>}
+          </div>
+        </div>
+      </header>
+      {t.scenes.koreanOnly && <p className="mt-3 text-xs text-muted">{t.scenes.koreanOnly}</p>}
       <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 md:grid-cols-4 md:gap-x-5">
         {data.spots.map(({ spot, scene }) => (
           <SpotScene key={spot.id} spot={spot} scene={scene} />
         ))}
       </ul>
-      <Credits photos={data.spots.some((s) => s.spot.thumbnailUrl && isTourApiImage(s.spot.thumbnailUrl))} />
+      <Credits photos={data.spots.some((s) => s.spot.thumbnailUrl && isTourApiImage(s.spot.thumbnailUrl))} posters={!!poster} />
     </>
   );
 }
@@ -116,12 +140,13 @@ function SpotScene({ spot, scene }: { spot: Parameters<typeof SpotCard>[0]["spot
   );
 }
 
-async function Credits({ photos }: { photos: boolean }) {
+async function Credits({ photos, posters }: { photos: boolean; posters: boolean }) {
   const { t } = await currentLocale();
   return (
     <p className="mt-4 text-right text-[11px] text-muted">
       {t.scenes.source}
       {photos && <> · {t.common.photoCredit}</>}
+      {posters && <> · {t.scenes.posterCredit}</>}
     </p>
   );
 }

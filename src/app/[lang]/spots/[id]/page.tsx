@@ -6,7 +6,7 @@ import { findMyReview, getMe, getMyState } from "@/lib/api-auth";
 import { currentLocale } from "@/lib/current-locale";
 import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, intlLocale } from "@/lib/i18n";
-import { workTitle } from "@/lib/works";
+import { workPoster, workTitle } from "@/lib/works";
 import { Rating } from "../../rating";
 import { ShortsPlayer } from "../../shorts-player";
 import { Directions } from "./directions";
@@ -108,12 +108,18 @@ async function Spot({ params }: { params: PageProps<"/[lang]/spots/[id]">["param
           <h2 className="text-sm font-semibold">🎬 {t.scenes.onSpot}</h2>
           <ul className="mt-2 space-y-2">
             {spot.scenes.map((s) => (
-              <li key={s.work}>
-                <Link href={href(lang, `/scenes?${new URLSearchParams({ work: s.work })}`)} className="text-sm font-medium text-accent">
-                  {workTitle(s.work, lang)}
-                </Link>
-                <span className="text-xs text-muted"> · {t.scenes.kind[s.kind]}</span>
-                {s.scene && <p className="text-xs leading-snug text-muted">{s.scene}</p>}
+              <li key={s.work} className="flex gap-3">
+                {workPoster(s.work) && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={workPoster(s.work)!} alt="" loading="lazy" className="h-20 w-14 shrink-0 rounded-md object-cover" />
+                )}
+                <div className="min-w-0">
+                  <Link href={href(lang, `/scenes?${new URLSearchParams({ work: s.work })}`)} className="text-sm font-medium text-accent">
+                    {workTitle(s.work, lang)}
+                  </Link>
+                  <span className="text-xs text-muted"> · {t.scenes.kind[s.kind]}</span>
+                  {s.scene && <p className="text-xs leading-snug text-muted">{s.scene}</p>}
+                </div>
               </li>
             ))}
           </ul>

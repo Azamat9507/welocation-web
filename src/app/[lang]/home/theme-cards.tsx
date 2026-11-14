@@ -5,9 +5,17 @@ import { LATER, SectionHead } from "./section-head";
 export type Theme = { href: string; title: string; line: string; imageUrl: string | null; ai?: boolean };
 
 // Four tall cards, each a way into the site: a photo from a real spot of that theme with two lines over it
-type Props = { title: string; note: string; themes: Theme[]; credit: string; seeAll?: { href: string; label: string } };
+// creditAlways: the credit covers every card (posters), not only TourAPI photos
+type Props = {
+  title: string;
+  note: string;
+  themes: Theme[];
+  credit: string;
+  creditAlways?: boolean;
+  seeAll?: { href: string; label: string };
+};
 
-export function ThemeCards({ title, note, themes, credit, seeAll }: Props) {
+export function ThemeCards({ title, note, themes, credit, creditAlways, seeAll }: Props) {
   return (
     <section className={LATER}>
       <SectionHead title={title} note={note} href={seeAll?.href} seeAll={seeAll?.label} />
@@ -37,7 +45,7 @@ export function ThemeCards({ title, note, themes, credit, seeAll }: Props) {
           </li>
         ))}
       </ul>
-      {themes.some((th) => th.imageUrl && isTourApiImage(th.imageUrl)) && (
+      {(creditAlways || themes.some((th) => th.imageUrl && isTourApiImage(th.imageUrl))) && (
         <p className="mt-2 text-right text-[11px] text-muted">{credit}</p>
       )}
     </section>

@@ -22,7 +22,7 @@ import type { Dictionary } from "@/lib/dictionaries";
 import { fill, href, intlLocale, type Locale } from "@/lib/i18n";
 import { getPicks } from "@/lib/picks";
 import { getSpotMap } from "@/lib/spot-map";
-import { byFame, workTitle } from "@/lib/works";
+import { byFame, workPoster, workTitle } from "@/lib/works";
 import { HeroCarousel, type HeroSlide } from "./hero-carousel";
 import { HomeCategories } from "./home-categories";
 import { ChipRail } from "./home/chip-rail";
@@ -99,8 +99,8 @@ async function HomeSections() {
   const staySpots = take(stays?.items, 8);
   const weeklyRail = !weeklyTop && ranked.length >= 4 ? take(ranked.map((r) => r.spot), 8) : [];
   const fresh = take(newest.items, 8).slice(0, 8);
-  // a work's card is its cover photo; without one the card would be an empty tile
-  const workCards = byFame(works.filter((w) => w.coverUrl)).slice(0, 8);
+  // a work's card is its poster, or a photo of one of its places; without either it would be an empty tile
+  const workCards = byFame(works.filter((w) => workPoster(w.title) || w.coverUrl)).slice(0, 8);
 
   return (
     <>
@@ -157,13 +157,14 @@ async function HomeSections() {
         <ThemeCards
           title={h.scenesTitle}
           note={h.scenesNote}
-          credit={t.common.photoCredit}
+          credit={t.scenes.posterCredit}
+          creditAlways
           seeAll={{ href: href(lang, "/scenes"), label: h.seeAll }}
           themes={workCards.map((w) => ({
             href: href(lang, `/scenes?${new URLSearchParams({ work: w.title })}`),
             title: workTitle(w.title, lang),
             line: `${t.scenes.kind[w.kind]} · ${fill(t.scenes.places, { n: w.spotCount })}`,
-            imageUrl: w.coverUrl,
+            imageUrl: workPoster(w.title) ?? w.coverUrl,
           }))}
         />
       )}

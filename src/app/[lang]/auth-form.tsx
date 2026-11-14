@@ -71,6 +71,7 @@ export function AuthForm({ mode, next, lang, t, providers = [], oauthError }: Pr
       <label className="block text-sm">
         {t.email}
         <input name="email" type="email" autoComplete="email" required maxLength={254} defaultValue={v.email} className={input} />
+        {mode === "signup" && <span className="mt-1 block text-xs text-muted">{t.emailHint}</span>}
       </label>
       {mode === "signup" && (
         <label className="block text-sm">

@@ -241,6 +241,7 @@
     "nickname": "Nickname",
     "password": "Password",
     "passwordHint": "(8+ characters)",
+    "emailHint": "We don't verify the email. With a made-up email the password can't be recovered.",
     "wait": "One moment…",
     "signupSubmit": "Create account",
     "newHere": "New here?",
